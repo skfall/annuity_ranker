@@ -33,10 +33,10 @@ class Ranker extends BasicHelp {
 			}
 		}
 
-		public function getItem($id) {
+		public function getAnnuity($id) {
 			$query = "
 				SELECT M.* 
-				FROM [pre]page_home_1 as M 
+				FROM [pre]annuities as M 
 				WHERE `id`='$id' 
 				LIMIT 1
 			";
@@ -45,7 +45,7 @@ class Ranker extends BasicHelp {
 			return $result;
 		}
 
-		public function getItems($params=array(),$typeCount=false) {
+		public function getAnnuities($params=array(),$typeCount=false) {
 			$filter_and = "";
 			if(isset($params['filtr']['massive'])) {
 				foreach($params['filtr']['massive'] as $f_name => $f_value) {
@@ -65,14 +65,14 @@ class Ranker extends BasicHelp {
 			$start = (isset($params['start']) ? ($params['start']-1)*$limit : 0);
 			if(!$typeCount) {
 				$query = "SELECT M.* 
-						FROM [pre]page_home_1 as M  
+						FROM [pre]annuities as M  
 						WHERE 1 $filter_and 
 						ORDER BY $sort_field $sort_vector 
 						LIMIT $start,$limit";
 				return $this->rs($query);
 			}else{
 				$query = "SELECT COUNT(*)  
-						FROM [pre]page_home_1 as M  
+						FROM [pre]annuities as M  
 						WHERE 1 $filter_and 
 						LIMIT 100000";	
 				$result = $this->rs($query);
