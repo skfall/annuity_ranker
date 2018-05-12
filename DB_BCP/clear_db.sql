@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Час створення: Трв 12 2018 р., 15:10
+-- Час створення: Трв 12 2018 р., 16:02
 -- Версія сервера: 10.1.26-MariaDB
 -- Версія PHP: 7.1.8
 
@@ -85,14 +85,8 @@ INSERT INTO `osc_admin_menu` (`id`, `type`, `parent`, `table`, `additional_field
 (46, 1, 5, 'admin_menu', '[]', '[]', '[]', '[]', NULL, NULL, '{\"start\":\"landing\",\"landing\":0,\"view\":0,\"edit\":0,\"create\":0}', '[]', 0, 'Мультиязычность', 'languages', '0', 3, '', 1, '#', '2016-11-16 11:19:20', '2016-11-25 18:00:20', 1),
 (47, 1, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'Главная страница', 'home', 'materials-icon-slider.png', 6, 'Управление страницами', 0, '#', '2013-11-15 03:01:26', '2015-04-20 16:39:41', 1),
 (48, 1, 47, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'Секция 1', 'home1', 'fa-bars', 6, 'Управление главной', 0, '#', '2013-11-15 03:01:26', '2015-04-20 16:39:41', 1),
-(49, 1, 52, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'Сервисы', 'services', 'fa-bars', 6, 'Управление сервисами', 0, '#', '2013-11-15 03:01:26', '2015-04-20 16:39:41', 1),
-(50, 1, 52, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'Проекты', 'projects', 'fa-bars', 6, 'Управление проектами', 0, '#', '2013-11-15 03:01:26', '2015-04-20 16:39:41', 1),
-(51, 1, 47, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'Секция 2', 'home2', 'fa-bars', 6, 'Управление главной', 0, '#', '2013-11-15 03:01:26', '2015-04-20 16:39:41', 1),
 (52, 1, 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'Все страницы', 'all_pages', 'materials-icon-slider.png', 6, 'Управление страницами', 0, '#', '2013-11-15 03:01:26', '2015-04-20 16:39:41', 1),
-(53, 1, 47, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'Секция 3', 'home3', 'fa-bars', 6, 'Управление главной', 0, '#', '2013-11-15 03:01:26', '2015-04-20 16:39:41', 1),
-(54, 1, 47, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'Секция 4', 'home4', 'fa-bars', 6, 'Управление главной', 0, '#', '2013-11-15 03:01:26', '2015-04-20 16:39:41', 1),
-(55, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'Форма обратной связи', 'cf', 'fa-phone', 0, 'Форма обратной связи', 0, '#', '2013-11-15 03:03:08', '2013-11-15 15:55:43', 1),
-(56, 1, 3, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'Комментарии', 'comments', 'fa-bars', 0, 'Комментарии', 0, '#', '2013-11-15 16:01:48', '2015-08-12 15:38:40', 1);
+(55, 1, 1, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 'Форма обратной связи', 'cf', 'fa-phone', 0, 'Форма обратной связи', 0, '#', '2013-11-15 03:03:08', '2013-11-15 15:55:43', 1);
 
 -- --------------------------------------------------------
 
@@ -355,7 +349,8 @@ INSERT INTO `osc_logs` (`id`, `date`, `type`, `description`, `userid`, `ip`) VAL
 (13, '2018-04-26 23:00:37', 1, 'Admin login: Success login.', 2, '::1'),
 (14, '2018-04-26 23:06:46', 1, 'Admin login: Success login.', 2, '::1'),
 (15, '2018-04-26 23:16:03', 1, 'Admin login: Success login.', 3, '::1'),
-(16, '2018-04-26 23:17:59', 1, 'Admin login: Success login.', 1, '::1');
+(16, '2018-04-26 23:17:59', 1, 'Admin login: Success login.', 1, '::1'),
+(17, '2018-05-12 16:48:17', 1, 'Admin login: Success login.', 1, '::1');
 
 -- --------------------------------------------------------
 
@@ -445,9 +440,7 @@ CREATE TABLE `osc_meta` (
 --
 
 INSERT INTO `osc_meta` (`id`, `alias`, `meta_title`, `meta_keys`, `meta_desc`) VALUES
-(1, 'home', 'Volterra | Home', '', ''),
-(5, 'contacts', 'Volterra | Contacts', '', ''),
-(6, 'invest-relations', 'Volterra | Invest Relations', '', '');
+(1, 'home', 'Home', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1424,7 +1417,7 @@ ALTER TABLE `osc_languages`
 -- AUTO_INCREMENT для таблиці `osc_logs`
 --
 ALTER TABLE `osc_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT для таблиці `osc_log_types`
 --
@@ -1444,7 +1437,7 @@ ALTER TABLE `osc_message_types`
 -- AUTO_INCREMENT для таблиці `osc_meta`
 --
 ALTER TABLE `osc_meta`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблиці `osc_nav`
 --
