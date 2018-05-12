@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^amaxinteractive.com/split
+RewriteRule (.*) amaxinteractive.com/split/$1 [R=301,L]
+
+
+RewriteBase /split/
+
