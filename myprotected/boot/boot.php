@@ -28,7 +28,7 @@ $config = [
 	'host'		=>'localhost',
 	'user'		=>'root',
 	'pass'		=>'',
-	'db'		=>'volterra',
+	'db'		=>'annuity_ranker',
 	'charset'	=>'utf8',
 	'prefix'	=>'osc_'
 ];
