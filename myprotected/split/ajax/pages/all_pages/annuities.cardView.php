@@ -14,10 +14,19 @@
 	$cardTmp = array(
 		'ID'						=>	array( 'type'=>'text', 		'field'=>'id', 				'params'=>array() ),
 		'Name'					=>	array( 'type'=>'text', 		'field'=>'name', 		'params'=>array() ),
-		'Alias'					=>	array( 'type'=>'text', 		'field'=>'Alias', 			'params'=>array() ),
-		'Edit date'		=>	array( 'type'=>'date', 		'field'=>'modified', 		'params'=>array() ),
-		'Изображение'		=>	array( 'type'=>'image',		'field'=>'filename',			'params'=>array( 'path'=>RSF.'/split/files/home_slides/' ) ),
+		'Alias'					=>	array( 'type'=>'text', 		'field'=>'alias', 			'params'=>array() ),
+		'Published'			=>	array( 'type'=>'text', 		'field'=>'block', 			'params'=>array( 'replace'=>array('0'=>'Yes', '1'=>'No') ) ),
+		'Display order'			=>	array( 'type'=>'text', 		'field'=>'pos'),
+		'Modified'		=>	array( 'type'=>'date', 		'field'=>'modified', 		'params'=>array() ),
+		'Created'		=>	array( 'type'=>'date', 		'field'=>'created', 		'params'=>array() ),
+		'Preview image'		=>	array( 'type'=>'image',		'field'=>'preview',			'params'=>array( 'path'=>RSF.'/split/files/annuities/' ) ),
 	);
+
+	if($cardItem['is_video_bg']){
+		$cardTmp['Background image'] = array( 'type'=>'video',		'field'=>'background',			'params'=>array( 'path'=>RSF.'/split/files/annuities/' ) );
+	}else{
+		$cardTmp['Background image'] = array( 'type'=>'image',		'field'=>'background',			'params'=>array( 'path'=>RSF.'/split/files/annuities/' ) );
+	}
 
 
 
@@ -29,7 +38,7 @@
 	
 	$data['bodyContent'] .= "
 		<div class='ipad-20' id='order_conteinter'>
-			<h3>Детальный просмотр слайда #$item_id</h3>";
+			<h3>Detailed item view #$item_id</h3>";
 	
 	$data['bodyContent'] .= $cardViewTableStr;
 				

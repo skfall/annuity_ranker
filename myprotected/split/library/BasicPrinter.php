@@ -379,8 +379,8 @@ class BasicPrinter
                         		value=''									name='editor-input-file' 
                                 size='25'									maxlength='255'
                                 onchange='' 								disabled='disabled' />
-                        <button class='my-field' type='button' title='Выбрать файл' onClick=\"check_file('$field');\">Выбрать</button>
-                        <button class='my-close' type='button' title='Сбросить выбор' onClick=\"uncheck_file('$field');\">&nbsp;</button>
+                        <button class='my-field' type='button' title='Select file' onClick=\"check_file('$field');\">Select</button>
+                        <button class='my-close' type='button' title='Reset' onClick=\"uncheck_file('$field');\">&nbsp;</button>
                 	</div>
             	</div>
                 
@@ -417,7 +417,7 @@ class BasicPrinter
 				
 				$result .= "
 				<div class='item' id='media-item-$field'>
-                	<img class='close-file-item' alt='X' title='Удалить файл' src='".WP_FOLDER."img/close-icon.png' onClick=\"delete_media_item('$appTable','$id','$field','$path','$value');\">
+                	<img class='close-file-item' alt='X' title='Delete file' src='".WP_FOLDER."img/close-icon.png' onClick=\"delete_media_item('$appTable','$id','$field','$path','$value');\">
 					<div class='item-inside'>
                     	<a class='theater' $target href='".$path.$value."' title='Modal view' rel='group'>
 							<img alt='File not found' src='$path_to_file'>
@@ -461,8 +461,8 @@ class BasicPrinter
                         		value=''									name='editor-input-file-$field' 
                                 size='25'									maxlength='255'
                                 onchange='' 								disabled='disabled' />
-                        <button class='my-field' type='button' title='Выбрать файл' onClick=\"check_files('$field');\">Выбрать</button>
-                        <button class='my-close' type='button' title='Сбросить выбор' onClick=\"uncheck_files('$field');\">&nbsp;</button>
+                        <button class='my-field' type='button' title='Select files' onClick=\"check_files('$field');\">Select</button>
+                        <button class='my-close' type='button' title='Reset' onClick=\"uncheck_files('$field');\">&nbsp;</button>
                 	</div>
             	</div>
                 
@@ -637,8 +637,8 @@ class BasicPrinter
                         		value=""									name="editor-input-file" 
                                 size="25"									maxlength="255"
                                 onchange="" 								disabled="disabled" />
-                        <button class="my-field" type="button" title="Выбрать файл" onClick="check_file();">Выбрать</button>
-                        <button class="my-close" type="button" title="Сбросить выбор" onClick="uncheck_file();">&nbsp;</button>
+                        <button class="my-field" type="button" title="Select files" onClick="check_file();">Select</button>
+                        <button class="my-close" type="button" title="Reset" onClick="uncheck_file();">&nbsp;</button>
                 	</div>
             	</div>
                 

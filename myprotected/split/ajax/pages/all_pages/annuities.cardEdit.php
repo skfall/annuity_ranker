@@ -7,20 +7,26 @@
 	
 	// Start body content
 	
-	$cardItem = $zh->getHomeFirstSectionItem($item_id);
+	$cardItem = $zh->getAnnuity($item_id);
 
 	$rootPath = ROOT_PATH;
 	
 	$cardTmp = array(
-					 'Заголовок'				=>	array( 'type'=>'area', 		'field'=>'section_caption', 		'params'=>array( 'size'=>100, 'hold'=>'Заголовок' ) ),
-					 'Подзаголовок'				=>	array( 'type'=>'input', 		'field'=>'section_sub_caption', 		'params'=>array( 'size'=>100, 'hold'=>'Подзаголовок' ) ),
+					 'Name'				=>	array( 'type'=>'input', 		'field'=>'name', 'params'=>array( 'size'=>100, 'hold'=>'Name', 'onchange'=>"change_alias();" ) ),
+					 'Alias'				=>	array( 'type'=>'input', 		'field'=>'alias', 		'params'=>array( 'size'=>100, 'hold'=>'Alias' ) ),
 					 'clear-1'				=>	array( 'type'=>'clear' ),
+					 'Publish'			=>	array( 'type'=>'block', 	'field'=>'block', 			'params'=>array( 'reverse'=>true ) ),
+					 'Display order'				=>	array( 'type'=>'number', 		'field'=>'pos', 		'params'=>array( 'size'=>100, 'hold'=>'Display order' ) ),
+					 
 					 //'Контент'				=>	array( 'type'=>'summernote', 		'field'=>'section_content', 		'params'=>array( 'size'=>100, 'hold'=>'Подзаголовок' ) ),
 					 'clear-2'				=>	array( 'type'=>'clear' ),
-					 'Изображение'			=>	array( 'type'=>'image_mono','field'=>'filename', 		'params'=>array( 'path'=>RSF."/split/files/home_slides/", 'appTable'=>$appTable, 'id'=>$item_id ) ),
+					 'Preview image'		=>	array( 'type'=>'image_mono','field'=>'preview', 		'params'=>array( 'path'=>RSF."/split/files/annuities/", 'appTable'=>$appTable, 'id'=>$item_id ) ),
+					 'Background image'		=>	array( 'type'=>'image_mono','field'=>'background', 		'params'=>array( 'path'=>RSF."/split/files/annuities/", 'appTable'=>$appTable, 'id'=>$item_id ) ),
+					 'Is video background?'			=>	array( 'type'=>'block', 	'field'=>'is_video_bg', 'params'=>array( ) ),
+					 
 					 );
 
-	$cardEditFormParams = array( 'cardItem'=>$cardItem, 'cardTmp'=>$cardTmp, 'rootPath'=>$rootPath, 'actionName'=>"editHome1Slide", 'ajaxFolder'=>'edit', 'appTable'=>$appTable );
+	$cardEditFormParams = array( 'cardItem'=>$cardItem, 'cardTmp'=>$cardTmp, 'rootPath'=>$rootPath, 'actionName'=>"editAnnuity", 'ajaxFolder'=>'edit', 'appTable'=>$appTable );
 	
 	$cardEditFormStr = $zh->getCardEditForm($cardEditFormParams);
 	
@@ -28,7 +34,7 @@
 	
 	$data['bodyContent'] .= "
 		<div class='ipad-20' id='order_conteinter'>
-			<h3 class='new-line'>Форма редактирования слайда #$item_id</h3>";
+			<h3 class='new-line'>Item edit form #$item_id</h3>";
 	
 	$data['bodyContent'] .= $cardEditFormStr;
 				

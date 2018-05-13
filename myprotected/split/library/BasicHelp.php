@@ -1367,17 +1367,28 @@ class BasicHelp extends BasicPrinter
 						$result .= "</td>";
 						break;
 					}
-					case 'frame':
-					{
+					case 'frame': {
 						if ($params['cardItem'][$tmp['field']]) {
 							$result .= "<td><div>".$params['cardItem'][$tmp['field']]."</div></td>";
 						}else{
 							$result .= "<td><div>empty</div></td>";
 						}
-
-						
 						break;
-					
+					}
+
+					//    
+					case 'video': {
+						if ($params['cardItem'][$tmp['field']]) {
+							$filePath = $tmp['params']['path'].$params['cardItem'][$tmp['field']];
+							$result .= "<td><div>
+								<video style=' width: 100%; height: auto; max-height: 270px;'>
+									<source src='".$filePath."' type='video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"'>
+								</video>
+							</div></td>";
+						}else{
+							$result .= "<td><div>empty</div></td>";
+						}
+						break;
 					}
 					// case 'header':
 					// {
@@ -1704,8 +1715,8 @@ class BasicHelp extends BasicPrinter
 					}
 					case 'block':
 					{
-						$yes = (isset($tmp['params']['yes']) ? $tmp['params']['yes'] : "Да");
-						$no = (isset($tmp['params']['no']) ? $tmp['params']['no'] : "Нет");
+						$yes = (isset($tmp['params']['yes']) ? $tmp['params']['yes'] : "Yes");
+						$no = (isset($tmp['params']['no']) ? $tmp['params']['no'] : "No");
 						$replace = (isset($tmp['params']['replace']) ? $tmp['params']['replace'] : false);
 						
 						$selfType = false;

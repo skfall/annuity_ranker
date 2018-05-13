@@ -42,7 +42,7 @@
 	$tableColumns = array(
 						  'Checkbox'			=>	array('type'=>'checkbox',	'field'=>''),
 						  'Name'				=>	array('type'=>'text',		'field'=>'name'),
-						  'Is default'			=>	array('type'=>'block',		'field'=>'is_default', 'params' => array('reverse' => true)),
+						  'Published'			=>	array('type'=>'block',		'field'=>'block'),
 						  'View'			=>	array('type'=>'cardView',	'field'=>'Смотреть'),
 						  'Edit'		=>	array('type'=>'cardEdit',	'field'=>'Редактировать'),
 						  'ID'					=>	array('type'=>'text',		'field'=>'id')
