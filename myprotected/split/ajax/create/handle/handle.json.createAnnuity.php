@@ -7,24 +7,18 @@
 	
 	$appTable = $_POST['appTable'];
 	
-	$item_id = $_POST['item_id'];
-
-	$lpx = $_POST['lpx'];
-	$lang_prefix = ($lpx ? $lpx."_" : ""); // empty = iw
+	$item_id = (isset($_POST['item_id']) ? $_POST['item_id'] : 0);
 	$now = date("Y-m-d H:i:s", time());
 
-	
 	$cardUpd = array(
 		'name'			=> $_POST['name'],
 		'alias'			=> $_POST['alias'],
 		'block'			=> $_POST['block'][0],
 		'is_video_bg'	=> $_POST['is_video_bg'][0],
 		'pos'	=> (int)$_POST['pos'],
-		'modified'	=> $now
+		'modified'	=> $now,
+		'created' 	=> $now
 	);
-
-	
-					
 
 	$file_path = "../../../../split/files/annuities/";
 	$im_1_filename = "preview";
@@ -86,34 +80,36 @@
 	}
 
 	$alias = $_POST['alias'];
-
-	$q = "SELECT M.id FROM `osc_annuities` AS M WHERE M.alias = '$alias' AND M.id != $item_id LIMIT 1";
+	$q = "SELECT M.id FROM `osc_annuities` AS M WHERE M.alias = '$alias' LIMIT 1";
 	$check_alias = $ah->rs($q);
+
 	if(!$check_alias){
 		$name_len = mb_strlen($_POST['name']);
-
 		if ($name_len > 0) {
-			$query = "UPDATE `osc_annuities` SET ";
-				
+			$query = "INSERT INTO `osc_annuities` ";
+			$fieldsStr = " ( ";
+			$valuesStr = " ( ";
 			$cntUpd = 0;
 			foreach($cardUpd as $field => $itemUpd) {
 				$cntUpd++;
-				$query .= ($cntUpd==1 ? "`$field`='$itemUpd'" : ", `$field`='$itemUpd'");
+				$fieldsStr .= ($cntUpd==1 ? "`$field`" : ", `$field`");
+				$valuesStr .= ($cntUpd==1 ? "'$itemUpd'" : ", '$itemUpd'");
 			}
+			$fieldsStr .= " ) ";
+			$valuesStr .= " ) ";
+			$query .= $fieldsStr." VALUES ".$valuesStr;
+			$item_id = $ah->rs($query, 0, 1, 1);
 			
-			$query .= " WHERE `id`=$item_id LIMIT 1";
-			$ah->rs($query);
-			$data['message'] = "Annuity was successfully saved.";
+			if($item_id){
+				$data['message'] = "Annuity was successfully saved. ID: ".$item_id;
+				$data['item_id'] = $item_id;
+				$data['status'] = "success";
+			}
 		}else{
 			$data['message'] = "Failed to save. Name is too short.";	
 		}
-		
-		
 	}else{
-		$data['message'] = "Failed to save. Annuity with this alias is already exists.";		
+		$data['message'] = "Failed to save. Annuity with this alias is already exists.";
 	}
-	
-	
-	
-	
+
 	

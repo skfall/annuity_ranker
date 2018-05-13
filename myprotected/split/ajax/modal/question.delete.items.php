@@ -13,12 +13,12 @@
 </head>
 
 <body>
-	<button class="close-modal" onclick="close_modal();">Закрыть окно</button>
+	<button class="close-modal" onclick="close_modal();">Close window</button>
     <div class="modalW" id="modalW-1">
-    	<h4>Действительно удалить отмеченные записи?</h4>
+    	<h4>Delete selected items?</h4>
         
-        <a href="#" class="modalYes"	onclick="delete_checked_items();">Да, подтверждаю удаление.</a>&nbsp;&nbsp;
-        <a href="#" class="modalNo"		onclick="close_modal();">Нет, отменить действие.</a>
+        <a href="#" class="modalYes"	onclick="delete_checked_items();">Yes.</a>&nbsp;&nbsp;
+        <a href="#" class="modalNo"		onclick="close_modal();">No.</a>
     </div>
 <?php 
 	$answer_path	= $_POST['answer_path'];

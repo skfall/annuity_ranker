@@ -132,7 +132,7 @@
 			if(isset($info['name'])) $item_name .= " ".$info['name'];
 			
 			?>
-			<p>Запись <b><?php echo $item_name ?></b> успешно удалена из системы.</p>
+			<p>Record <b><?php echo $item_name ?></b> was deleted.</p>
 			<?php
 
 		}
@@ -141,7 +141,7 @@
 
 
 	}else{
-		if(sizeof($items) == 0){ echo "Ни одна запись для удаления не найдена."; }
+		if(sizeof($items) == 0){ echo "Records for delete not found."; }
 	
 		foreach($items as $item_id)
 		{
@@ -276,7 +276,7 @@
 			if(isset($info['name'])) $item_name .= " ".$info['name'];
 			
 			?>
-			<p>Запись <b><?php echo $item_name ?></b> успешно удалена из системы.</p>
+			<p>Record <b><?php echo $item_name ?></b> was deleted.</p>
 			<?php
 		}
 	}

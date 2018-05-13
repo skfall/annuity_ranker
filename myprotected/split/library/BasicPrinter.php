@@ -414,21 +414,45 @@ class BasicPrinter
 							$path_to_file = "split/img/txt-icon.png";
 							$target = " target='_blank' ";
 						}
+
+						if ($file_ext == 'mp4' || $file_ext == 'webm' || $file_ext == 'ogg') {
+							$result .= "
+							<div class='item' id='media-item-$field'>
+								<img class='close-file-item' alt='X' title='Delete file' src='".WP_FOLDER."img/close-icon.png' onClick=\"delete_media_item('$appTable','$id','$field','$path','$value');\">
+								<div class='item-inside'>
+									<a class='theater' $target href='".$path.$value."' title='Modal view' rel='group'>
+									<video style='max-width: 100%; width: auto; height: auto; max-height: 103px;' controls>
+										<source src='".$path_to_file."' type='video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"'>
+										<source src='".$path_to_file."' type='video/webm; codecs=\"vp8, vorbis\"'>
+										<source src='".$path_to_file."' type='video/ogg; codecs=\"theora, vorbis\"'>
+										<p class=\"tac\">Not supported</p>
+									</video>
+									</a>
+								<div class='icode hidden' contenteditable='true' 
+									onmouseover=\"$(this).stop().animate({'bottom':'0px'},400,'easeInOutExpo');\"
+									onmouseout=\"$(this).stop().animate({'bottom':'-80px'},400,'easeInOutExpo');\">
+									<xmp>XMP_TEXT</xmp>
+								</div>
+								</div>
+							</div>";
+							
+						}else{
+							$result .= "
+							<div class='item' id='media-item-$field'>
+								<img class='close-file-item' alt='X' title='Delete file' src='".WP_FOLDER."img/close-icon.png' onClick=\"delete_media_item('$appTable','$id','$field','$path','$value');\">
+								<div class='item-inside'>
+									<a class='theater' $target href='".$path.$value."' title='Modal view' rel='group'>
+										<img alt='File not found' src='$path_to_file'>
+									</a>
+								<div class='icode hidden' contenteditable='true' 
+									onmouseover=\"$(this).stop().animate({'bottom':'0px'},400,'easeInOutExpo');\"
+									onmouseout=\"$(this).stop().animate({'bottom':'-80px'},400,'easeInOutExpo');\">
+									<xmp>XMP_TEXT</xmp>
+								</div>
+								</div>
+							</div>";
+						}
 				
-				$result .= "
-				<div class='item' id='media-item-$field'>
-                	<img class='close-file-item' alt='X' title='Delete file' src='".WP_FOLDER."img/close-icon.png' onClick=\"delete_media_item('$appTable','$id','$field','$path','$value');\">
-					<div class='item-inside'>
-                    	<a class='theater' $target href='".$path.$value."' title='Modal view' rel='group'>
-							<img alt='File not found' src='$path_to_file'>
-						</a>
-                    <div class='icode hidden' contenteditable='true' 
-                    	onmouseover=\"$(this).stop().animate({'bottom':'0px'},400,'easeInOutExpo');\"
-                        onmouseout=\"$(this).stop().animate({'bottom':'-80px'},400,'easeInOutExpo');\">
-                    	<xmp>XMP_TEXT</xmp>
-                    </div>
-                    </div>
-                </div>";
 			}else{
 				// to do
 				}
@@ -448,6 +472,7 @@ class BasicPrinter
 		
 		public function print_image_mult($header, $field, $value, $path, $appTable ,$id, $mas_field, $method='edit', $ev_type = '', $shotam = '')
 		{
+
 			$result = "
 			 <div class='clear'></div>
         	
@@ -501,96 +526,118 @@ class BasicPrinter
 							$path_to_file = "split/img/txt-icon.png";
 							$target = " target='_blank' ";
 						}
-				
 
-				if ($appTable == 'osc_th_gal') {
+				if($file_ext == 'mp4' || $file_ext == 'webm' || $file_ext == 'ogg'){
 					$result .= "
-					<div class='item doc_item' id='media-item-".$val_item['id']."' style='height: 240px !important;'>
-	                	<img class='close-file-item' alt='X' title='Delete file' src='".WP_FOLDER."img/close-icon.png' onClick=\"delete_media_item_ref('".$val_item['id']."','$path','$appTable');\">
-						<div class='item-inside' style='height: 240px !important;'>
-	                    	<a class='theater' href='".$path.$val_item[$mas_field]."' title='".$val_item[$mas_field]."' rel='group' $target >
-								<img alt='File not found $file_ext' src='".$path_to_file."'>
-							</a>
-		                    <div class='icode hidden' contenteditable='true' 
-		                    	onmouseover=\"$(this).stop().animate({'bottom':'0px'},400,'easeInOutExpo');\"
-		                        onmouseout=\"$(this).stop().animate({'bottom':'-80px'},400,'easeInOutExpo');\">
-		                    	<xmp>XMP_TEXT</xmp>
-		                    </div>
-		                     <div class='file-manager-wrap'>
-								<label>Имя документа</label>
-								<input type='text' placeholder='Имя документа' value=\"".(isset($val_item['doc_name']) ? $val_item['doc_name'] : "Doc")."\" onchange=\"save_new_file_doc_name(".$val_item['id'].",$(this).val(),'$field')\" />
-								<label>Описание документа</label>
-								<textarea  placeholder='Описание документа' onchange=\"save_new_file_doc_desc(".$val_item['id'].",$(this).val(),'$field')\" style='width: 97%; height: 69px; resize: none;'>".(isset($val_item['doc_desc']) ? $val_item['doc_desc'] : "Doc")."</textarea>
+						<div class='item' id='media-item-".$val_item['id']."'>
+							<img class='close-file-item' alt='X' title='Delete file' src='".WP_FOLDER."img/close-icon.png' onClick=\"delete_media_item_ref('".$val_item['id']."','$path','$appTable');\">
+							<div class='item-inside'>
+								<a class='theater' href='".$path.$val_item[$mas_field]."' title='".$val_item[$mas_field]."' rel='group' $target >
+									<video style='max-width: 100%; width: auto; height: auto; max-height: 103px;' controls>
+										<source src='".$path_to_file."' type='video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"'>
+										<source src='".$path_to_file."' type='video/webm; codecs=\"vp8, vorbis\"'>
+										<source src='".$path_to_file."' type='video/ogg; codecs=\"theora, vorbis\"'>
+										<p class=\"tac\">Not supported</p>
+									</video>
+								</a>
+							<div class='icode hidden' contenteditable='true' 
+								onmouseover=\"$(this).stop().animate({'bottom':'0px'},400,'easeInOutExpo');\"
+								onmouseout=\"$(this).stop().animate({'bottom':'-80px'},400,'easeInOutExpo');\">
+								<xmp>XMP_TEXT</xmp>
 							</div>
-	                    </div>
-		               
-	                </div>";
-			
-				}elseif($shotam == 'th_gal'){
-					$result .= "
-					<div class='item doc_item' id='media-item-".$val_item['id']."' style='height: 260px !important;'>
-	                	<img class='close-file-item' alt='X' title='Delete file' src='".WP_FOLDER."img/close-icon.png' onClick=\"delete_media_item_ref('".$val_item['id']."','$path','th_gal');\">
-						<div class='item-inside' style='height: 260px !important;'>
-	                    	<a class='theater' href='".$path.$val_item[$mas_field]."' title='".$val_item[$mas_field]."' rel='group' $target >
-								<img alt='File not found $file_ext' src='".$path_to_file."'>
-							</a>
-		                    <div class='icode hidden' contenteditable='true' 
-		                    	onmouseover=\"$(this).stop().animate({'bottom':'0px'},400,'easeInOutExpo');\"
-		                        onmouseout=\"$(this).stop().animate({'bottom':'-80px'},400,'easeInOutExpo');\">
-		                    	<xmp>XMP_TEXT</xmp>
-		                    </div>
-		                     <div class='file-manager-wrap'>
-								<label>Заголовок</label>
-								<input type='text' placeholder='Заголовок' value=\"".(isset($val_item['caption']) ? $val_item['caption'] : "")."\" onchange=\"save_th_gal_caption(".$val_item['id'].",$(this).val(),'$field')\" />
-								<label>Подзаголовок</label>
-								<input type='text' placeholder='Подзаголовок' value=\"".(isset($val_item['sub_caption']) ? $val_item['sub_caption'] : "")."\" onchange=\"save_th_gal_sub_caption(".$val_item['id'].",$(this).val(),'$field')\" />
-
-								<label>Иконка</label>
-								<input type='file' placeholder='Иконка' value=\"".(isset($val_item['icon']) ? $val_item['icon'] : "")."\" id=\"ico_inp".$val_item['id']."\" />
-								<button type='button' onclick=\"update_th_gal_ico('".$val_item['id']."', $('#ico_inp".$val_item['id']."').val())\" style=\"width: 116px; float: left; margin-left:4px; margin-top: 9px;\">Update icon</button>
-
 							</div>
-	                    </div>
-		               
-	                </div>";
-				}elseif($shotam == 'house_gal'){
-					$result .= "
-					<div class='item doc_item' id='media-item-".$val_item['id']."' style='height: 240px !important;'>
-	                	<img class='close-file-item' alt='X' title='Delete file' src='".WP_FOLDER."img/close-icon.png' onClick=\"delete_media_item_ref('".$val_item['id']."','$path','th_gal');\">
-						<div class='item-inside' style='height: 240px !important;'>
-	                    	<a class='theater' href='".$path.$val_item[$mas_field]."' title='".$val_item[$mas_field]."' rel='group' $target >
-								<img alt='File not found $file_ext' src='".$path_to_file."'>
-							</a>
-		                    <div class='icode hidden' contenteditable='true' 
-		                    	onmouseover=\"$(this).stop().animate({'bottom':'0px'},400,'easeInOutExpo');\"
-		                        onmouseout=\"$(this).stop().animate({'bottom':'-80px'},400,'easeInOutExpo');\">
-		                    	<xmp>XMP_TEXT</xmp>
-		                    </div>
-		                     <div class='file-manager-wrap'>
-								<label>Заголовок</label>
-								<input type='text' placeholder='Заголовок' value=\"".(isset($val_item['caption']) ? $val_item['caption'] : "")."\" onchange=\"save_house_gal_caption(".$val_item['id'].",$(this).val(),'$field')\" />
-								<label>Подзаголовок</label>
-								<input type='text' placeholder='Подзаголовок' value=\"".(isset($val_item['sub_caption']) ? $val_item['sub_caption'] : "")."\" onchange=\"save_house_gal_sub_caption(".$val_item['id'].",$(this).val(),'$field')\" />
-							</div>
-	                    </div>
-		               
-	                </div>";
+						</div>";
 				}else{
-					$result .= "
-					<div class='item' id='media-item-".$val_item['id']."'>
-	                	<img class='close-file-item' alt='X' title='Delete file' src='".WP_FOLDER."img/close-icon.png' onClick=\"delete_media_item_ref('".$val_item['id']."','$path','$appTable');\">
-						<div class='item-inside'>
-	                    	<a class='theater' href='".$path.$val_item[$mas_field]."' title='".$val_item[$mas_field]."' rel='group' $target >
-								<img alt='File not found $file_ext' src='".$path_to_file."'>
-							</a>
-	                    <div class='icode hidden' contenteditable='true' 
-	                    	onmouseover=\"$(this).stop().animate({'bottom':'0px'},400,'easeInOutExpo');\"
-	                        onmouseout=\"$(this).stop().animate({'bottom':'-80px'},400,'easeInOutExpo');\">
-	                    	<xmp>XMP_TEXT</xmp>
-	                    </div>
-	                    </div>
-	                </div>";
+					if ($appTable == 'osc_th_gal') {
+						$result .= "
+						<div class='item doc_item' id='media-item-".$val_item['id']."' style='height: 240px !important;'>
+							<img class='close-file-item' alt='X' title='Delete file' src='".WP_FOLDER."img/close-icon.png' onClick=\"delete_media_item_ref('".$val_item['id']."','$path','$appTable');\">
+							<div class='item-inside' style='height: 240px !important;'>
+								<a class='theater' href='".$path.$val_item[$mas_field]."' title='".$val_item[$mas_field]."' rel='group' $target >
+									<img alt='File not found $file_ext' src='".$path_to_file."'>
+								</a>
+								<div class='icode hidden' contenteditable='true' 
+									onmouseover=\"$(this).stop().animate({'bottom':'0px'},400,'easeInOutExpo');\"
+									onmouseout=\"$(this).stop().animate({'bottom':'-80px'},400,'easeInOutExpo');\">
+									<xmp>XMP_TEXT</xmp>
+								</div>
+								 <div class='file-manager-wrap'>
+									<label>Имя документа</label>
+									<input type='text' placeholder='Имя документа' value=\"".(isset($val_item['doc_name']) ? $val_item['doc_name'] : "Doc")."\" onchange=\"save_new_file_doc_name(".$val_item['id'].",$(this).val(),'$field')\" />
+									<label>Описание документа</label>
+									<textarea  placeholder='Описание документа' onchange=\"save_new_file_doc_desc(".$val_item['id'].",$(this).val(),'$field')\" style='width: 97%; height: 69px; resize: none;'>".(isset($val_item['doc_desc']) ? $val_item['doc_desc'] : "Doc")."</textarea>
+								</div>
+							</div>
+						   
+						</div>";
+				
+					}elseif($shotam == 'th_gal'){
+						$result .= "
+						<div class='item doc_item' id='media-item-".$val_item['id']."' style='height: 260px !important;'>
+							<img class='close-file-item' alt='X' title='Delete file' src='".WP_FOLDER."img/close-icon.png' onClick=\"delete_media_item_ref('".$val_item['id']."','$path','th_gal');\">
+							<div class='item-inside' style='height: 260px !important;'>
+								<a class='theater' href='".$path.$val_item[$mas_field]."' title='".$val_item[$mas_field]."' rel='group' $target >
+									<img alt='File not found $file_ext' src='".$path_to_file."'>
+								</a>
+								<div class='icode hidden' contenteditable='true' 
+									onmouseover=\"$(this).stop().animate({'bottom':'0px'},400,'easeInOutExpo');\"
+									onmouseout=\"$(this).stop().animate({'bottom':'-80px'},400,'easeInOutExpo');\">
+									<xmp>XMP_TEXT</xmp>
+								</div>
+								 <div class='file-manager-wrap'>
+									<label>Заголовок</label>
+									<input type='text' placeholder='Заголовок' value=\"".(isset($val_item['caption']) ? $val_item['caption'] : "")."\" onchange=\"save_th_gal_caption(".$val_item['id'].",$(this).val(),'$field')\" />
+									<label>Подзаголовок</label>
+									<input type='text' placeholder='Подзаголовок' value=\"".(isset($val_item['sub_caption']) ? $val_item['sub_caption'] : "")."\" onchange=\"save_th_gal_sub_caption(".$val_item['id'].",$(this).val(),'$field')\" />
+	
+									<label>Иконка</label>
+									<input type='file' placeholder='Иконка' value=\"".(isset($val_item['icon']) ? $val_item['icon'] : "")."\" id=\"ico_inp".$val_item['id']."\" />
+									<button type='button' onclick=\"update_th_gal_ico('".$val_item['id']."', $('#ico_inp".$val_item['id']."').val())\" style=\"width: 116px; float: left; margin-left:4px; margin-top: 9px;\">Update icon</button>
+	
+								</div>
+							</div>
+						   
+						</div>";
+					}elseif($shotam == 'house_gal'){
+						$result .= "
+						<div class='item doc_item' id='media-item-".$val_item['id']."' style='height: 240px !important;'>
+							<img class='close-file-item' alt='X' title='Delete file' src='".WP_FOLDER."img/close-icon.png' onClick=\"delete_media_item_ref('".$val_item['id']."','$path','th_gal');\">
+							<div class='item-inside' style='height: 240px !important;'>
+								<a class='theater' href='".$path.$val_item[$mas_field]."' title='".$val_item[$mas_field]."' rel='group' $target >
+									<img alt='File not found $file_ext' src='".$path_to_file."'>
+								</a>
+								<div class='icode hidden' contenteditable='true' 
+									onmouseover=\"$(this).stop().animate({'bottom':'0px'},400,'easeInOutExpo');\"
+									onmouseout=\"$(this).stop().animate({'bottom':'-80px'},400,'easeInOutExpo');\">
+									<xmp>XMP_TEXT</xmp>
+								</div>
+								 <div class='file-manager-wrap'>
+									<label>Заголовок</label>
+									<input type='text' placeholder='Заголовок' value=\"".(isset($val_item['caption']) ? $val_item['caption'] : "")."\" onchange=\"save_house_gal_caption(".$val_item['id'].",$(this).val(),'$field')\" />
+									<label>Подзаголовок</label>
+									<input type='text' placeholder='Подзаголовок' value=\"".(isset($val_item['sub_caption']) ? $val_item['sub_caption'] : "")."\" onchange=\"save_house_gal_sub_caption(".$val_item['id'].",$(this).val(),'$field')\" />
+								</div>
+							</div>
+						   
+						</div>";
+					}else{
+						$result .= "
+						<div class='item' id='media-item-".$val_item['id']."'>
+							<img class='close-file-item' alt='X' title='Delete file' src='".WP_FOLDER."img/close-icon.png' onClick=\"delete_media_item_ref('".$val_item['id']."','$path','$appTable');\">
+							<div class='item-inside'>
+								<a class='theater' href='".$path.$val_item[$mas_field]."' title='".$val_item[$mas_field]."' rel='group' $target >
+									<img alt='File not found $file_ext' src='".$path_to_file."'>
+								</a>
+							<div class='icode hidden' contenteditable='true' 
+								onmouseover=\"$(this).stop().animate({'bottom':'0px'},400,'easeInOutExpo');\"
+								onmouseout=\"$(this).stop().animate({'bottom':'-80px'},400,'easeInOutExpo');\">
+								<xmp>XMP_TEXT</xmp>
+							</div>
+							</div>
+						</div>";
+					}
 				}
+				
 				
                 /*
                 	<div class='file-manager-wrap'>

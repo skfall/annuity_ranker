@@ -30,7 +30,7 @@ if ($root) {
 <meta content="KAM STUDIO" name="author"	/>
 <meta content="noindex,nofollow" name="robots"	/>
 <link href="favicon.png" rel="shortcut icon" />
-<title>Админ-панель | Volterra</title>
+<title>Admin panel</title>
 <link rel="stylesheet" type="text/css" href="webroot/css/reset.css" />
 <link rel="stylesheet" type="text/css" href="webroot/css/style.css" />
 <link rel="stylesheet" type="text/css" href="webroot/css/animate.css" />
@@ -72,39 +72,6 @@ if ($root) {
 <script type="text/javascript" src="webroot/js/remodal.js"></script>
 
 
-<div class="remodal selectEventType" data-remodal-id="selectEventType">
-  <p class="remodalHeader">Создание новой акции</p>
-  <div class="clear"></div>
-  <form action="#">
-  	<select name="event_type" class="eventSelectChoose" onchange="selectEventType(this);">
-  		<option class="default" value="0">Выберите тип акции</option>
-  		<option value="2">Вывод баннера с привязкой к комнате</option>
-  		<option value="3">Вывод таймера с привязкой к планировке квартиры</option>
-  		<option value="4">Вывод инфо-блока с привязкой к планировке коттеджа</option>
-  		<option value="5">Вывод таймера с привязкой к планировке таунхауза</option>
-  		<option value="6">Вывод секции с привязкой к блоку таунхауза</option>
-  	</select>
-  </form>
-</div>
-
-<div class="remodal cottageStatusEdit" data-remodal-id="cottageStatusEdit">
-  <p class="remodalHeader">Редактирование генплана коттеджей</p>
-  <div class="clear"></div>
-  <form action="#" method="POST" id="ct_status_form">
-    <select name="ct_status" class="ct_status">
-      <option class="default" value="0">Выберите статус коттеджа</option>
-      <option value="1">Участок под застройку</option>
-      <option value="2">В наличии</option>
-      <option value="3">Продано</option>
-    </select>
-
-    <input type="hidden" name="ct_id" value="0" />
-
-    <textarea class="ct_status_area" name="ct_text"></textarea>
-
-    <button type="button" onclick="cottageStatusEdit();">Применить</button>
-  </form>
-</div>
 
 </body>
 </html>

@@ -1381,8 +1381,11 @@ class BasicHelp extends BasicPrinter
 						if ($params['cardItem'][$tmp['field']]) {
 							$filePath = $tmp['params']['path'].$params['cardItem'][$tmp['field']];
 							$result .= "<td><div>
-								<video style=' width: 100%; height: auto; max-height: 270px;'>
+								<video style=' width: auto; height: auto; max-height: 270px;' controls>
 									<source src='".$filePath."' type='video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"'>
+									<source src='".$filePath."' type='video/webm; codecs=\"vp8, vorbis\"'>
+									<source src='".$filePath."' type='video/ogg; codecs=\"theora, vorbis\"'>
+									<p class=\"tac\">Not supported</p>
 								</video>
 							</div></td>";
 						}else{

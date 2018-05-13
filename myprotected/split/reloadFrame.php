@@ -18,40 +18,40 @@
 			?>
 			
             <br>
-            <center>Добро пожаловать в панель администратора <b><i>ЖК "Новая Конча-Заспа"</i></b>.</center>
+            <center>Welcome to admin panel <b><i>Annuity-Ranker</i></b>.</center>
             
-            <h2 class="dataCaption">Данные ресурса</h2>
+            <h2 class="dataCaption">Application info-data</h2>
             
             <table class="maintable">
             	<thead>
                 	<tr>
-                    	<th>Параметр</th>
-                		<th>Значение</th>
+                    	<th>Parametr</th>
+                		<th>Value</th>
                     </tr>
                 </thead>
                 <tbody>
                 	<tr class="trcolor">
-                    	<td class="param">Доменное имя</td>
+                    	<td class="param">Domain name</td>
                         <td class="value"><?= $_SERVER['HTTP_HOST'] ?></td>
                     </tr>
                     <tr class="">
-                    	<td class="param">PHP версия</td>
+                    	<td class="param">PHP version</td>
                         <td class="value"><?= phpversion() ?></td>
                     </tr>
                     <tr class="trcolor">
-                    	<td class="param">MySQL версия</td>
+                    	<td class="param">MySQL version</td>
                         <td class="value"><?= $mysqlVersion['Value'] ?></td>
                     </tr>
                     <tr class="">
-                    	<td class="param">Таблиц в базе</td>
+                    	<td class="param">Tables in database</td>
                         <td class="value"><?= count($table_schema) ?></td>
                     </tr>
                     <tr class="trcolor">
-                    	<td class="param">Количество пользователей</td>
+                    	<td class="param">Users count</td>
                         <td class="value"><?= $all_users['count'] ?></td>
                     </tr>
                     <tr class="">
-                    	<td class="param">Количество суперадминов</td>
+                    	<td class="param">Superadmins count</td>
                         <td class="value"><?= $admin_users['count'] ?></td>
                     </tr>
                 </tbody>
