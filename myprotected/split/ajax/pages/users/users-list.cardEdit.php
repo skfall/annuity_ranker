@@ -28,7 +28,7 @@
 					 
 					 'clear-1'				=>	array( 'type'=>'clear' ),
 					 
-					 'Ггрупа пользователей'	=>	array( 'type'=>'select', 	'field'=>'type', 			'params'=>array( 'list'=>$usersTypes, 
+					 'Група пользователей'	=>	array( 'type'=>'select', 	'field'=>'type', 			'params'=>array( 'list'=>$usersTypes, 
 					 																									 'fieldValue'=>'id', 
 																														 'fieldTitle'=>'name', 
 																														 'currValue'=>$cardItem['type'], 

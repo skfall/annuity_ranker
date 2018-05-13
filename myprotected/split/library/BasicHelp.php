@@ -1318,7 +1318,31 @@ class BasicHelp extends BasicPrinter
 				if($tmp['type'] == "header"){
 					$result .= " 
 					<tr class='$trClass'>
-						<td class='fieldName' colspan='2' style='font-weight: 700; font-size: 20px;'>$header</td>
+						<td class='fieldName' colspan='2' style='font-weight: 700; font-size: 20px;'>$header</td></tr>
+					";
+					continue;
+				}else if($tmp['type'] == "pre_text"){
+			
+					$result .= " 
+					<tr class='$trClass'>
+						<td class='fieldName' colspan='2' style='font-weight: 700; font-size: 20px;'>$header</td>";
+						$rates = $tmp['params']['value'];
+
+						foreach ($rates as $rate_key => $rate_value) {
+							$result .= "
+							<tr><td style='font-weight: 700; font-size: 20px; padding-top: 15px; border-left: 1px dashed #333;'>".$rate_key." <br><span style='font-size: 14px;'>Updated: ".$rate_value[0]['Updated']."</span></td><td style=' max-width: 920px;'>";
+							foreach ($rate_value as $rk => $rv) {
+								$result .= "<ul style='padding: 0 10px; border: 1px dashed #333; float: left; margin-right: 10px;'>";
+								$result .= "<li>Age: <b>".$rv["Age"]."</b></li>";
+								$result .= "<li>Growth rate: <b>".$rv["Growth_Rate"]."%</b></li>";
+								$result .= "<li>Growth rate (special): <b>".$rv["Growth_Rate_SPECIAL"]."%</b></li>";
+								$result .= "<li>Withdrawal rate: <b>".$rv["Withdrawal_Rate"]."%</b></li>";
+								$result .= "<li>Withdrawal rate (special): <b>".$rv["Withdrawal_Rate_SPECIAL"]."%</b></li>";
+								$result .= "</ul>";
+							}
+						}				
+					$result .= "</td></tr>
+			
 					";
 					continue;
 				}else{
