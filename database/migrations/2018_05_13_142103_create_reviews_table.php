@@ -14,6 +14,10 @@ class CreateReviewsTable extends Migration
     public function up()
     {
         Schema::create('osc_reviews', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_unicode_ci';
+            
             $table->increments('id');
             $table->integer('company_id')->default(0);
             $table->integer('user_id')->default(0);

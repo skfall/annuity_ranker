@@ -8,7 +8,7 @@
 	// Start body content
 	
 	$annuities = $zh->getAnnuitiesList();
-	array_push($annuities, ['id' => 0, 'name' => 'Select annuity...']);
+	array_unshift($annuities, ['id' => 0, 'name' => 'Select annuity...']);
 	
 	$cardItem = $zh->getCompany($item_id);
 

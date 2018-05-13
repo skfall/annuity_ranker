@@ -14,6 +14,10 @@ class CreateCompaniesTable extends Migration
     public function up()
     {
         Schema::create('osc_companies', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_unicode_ci';
+            
             $table->increments('id');
             $table->string('name')->nullable();
             $table->string('alias')->nullable();

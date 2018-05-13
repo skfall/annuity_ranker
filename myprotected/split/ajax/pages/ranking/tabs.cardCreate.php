@@ -7,25 +7,33 @@
 	
 	// Start body content
 	
-	$cardItem = $zh->getAnnuity($item_id);
+	$cardItem = $zh->getTab($item_id);
+	$companies = $zh->getCompaniesList();
+	array_unshift($companies, ['id' => 0, 'name' => 'Select company...']);
 
 	$rootPath = ROOT_PATH;
 	
 	$cardTmp = array(
 		'Name'				=>	array( 'type'=>'input', 		'field'=>'name', 'params'=>array( 'size'=>100, 'hold'=>'Name', 'onchange'=>"change_alias();" ) ),
-		'Alias'				=>	array( 'type'=>'input', 		'field'=>'alias', 		'params'=>array( 'size'=>100, 'hold'=>'Alias' ) ),
+		'Company'	=>	array( 'type'=>'select', 	'field'=>'company_id', 			'params'=>array( 'list'=>$companies, 
+			'fieldValue'=>'id', 
+			'fieldTitle'=>'name', 
+			'currValue'=>0, 
+			'onChange'=>"" 
+		)),
 		'clear-1'				=>	array( 'type'=>'clear' ),
 		'Publish'			=>	array( 'type'=>'block', 	'field'=>'block', 			'params'=>array( 'reverse'=>true ) ),
 		'Display order'				=>	array( 'type'=>'number', 		'field'=>'pos', 		'params'=>array( 'size'=>100, 'hold'=>'Display order' ) ),
-		
-		//'Контент'				=>	array( 'type'=>'summernote', 		'field'=>'section_content', 		'params'=>array( 'size'=>100, 'hold'=>'Подзаголовок' ) ),
+
 		'clear-2'				=>	array( 'type'=>'clear' ),
-		'Preview image'		=>	array( 'type'=>'image_mono','field'=>'preview', 		'params'=>array( 'path'=>RSF."/split/files/annuities/", 'appTable'=>$appTable, 'id'=>$item_id ) ),
-		'Background image'		=>	array( 'type'=>'image_mono','field'=>'background', 		'params'=>array( 'path'=>RSF."/split/files/annuities/", 'appTable'=>$appTable, 'id'=>$item_id ) ),
-		'Is video background?'			=>	array( 'type'=>'block', 	'field'=>'is_video_bg', 'params'=>array( ) ),
+
+		'Content'				=>	array( 'type'=>'summernote', 		'field'=>'content', 		'params'=>array( 'size'=>100, 'hold'=>'Content' ) ),
+		
+		
+		
 	);
 
-	$cardEditFormParams = array( 'cardItem'=>$cardItem, 'cardTmp'=>$cardTmp, 'rootPath'=>$rootPath, 'actionName'=>"createAnnuity", 'ajaxFolder'=>'create', 'appTable'=>$appTable );
+	$cardEditFormParams = array( 'cardItem'=>$cardItem, 'cardTmp'=>$cardTmp, 'rootPath'=>$rootPath, 'actionName'=>"createTab", 'ajaxFolder'=>'create', 'appTable'=>$appTable );
 	
 	$cardEditFormStr = $zh->getCardEditForm($cardEditFormParams);
 	

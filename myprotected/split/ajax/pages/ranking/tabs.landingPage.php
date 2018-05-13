@@ -2,8 +2,8 @@
 	$headParams = array( 'parent'=>$parent, 'alias'=>$alias, 'id'=>$id, 'appTable'=>$appTable );
 	$data['headContent'] = $zh->getLandingHeader($headParams);
 
-	$itemsList = $zh->getAnnuities($params);
-	$totalItems = $zh->getAnnuities($params,true);
+	$itemsList = $zh->getTabs($params);
+	$totalItems = $zh->getTabs($params,true);
 	
 	$on_page = (isset($_COOKIE['global_on_page']) ? $_COOKIE['global_on_page'] : GLOBAL_ON_PAGE);
 	$pages = ceil($totalItems/$on_page);
@@ -26,7 +26,7 @@
 								'Publish' => array( 'fieldName'=>'M.block', 'params' => array('Yes'=>'0', 'No'=>'1') ) 
 							);
 	$filter3_options = array( 
-							'sort' => array( 'ID'=>'id' ),
+							'sort' => array( 'ID'=>'id', 'Company' => 'company_name' ),
 							'order' => array( 'По возрастанию'=>'', 'По убыванию'=>' DESC' ) 
 							);
 	$filterFormParams = array(	'params'=>$params, 
@@ -41,7 +41,8 @@
 
 	$tableColumns = array(
 						  'Checkbox'			=>	array('type'=>'checkbox',	'field'=>''),
-						  'Name'				=>	array('type'=>'text',		'field'=>'name'),
+						  'Tab name'				=>	array('type'=>'text',		'field'=>'name'),
+						  'Company name'				=>	array('type'=>'text',		'field'=>'company_name'),
 						  'Published'			=>	array('type'=>'block',		'field'=>'block'),
 						  'View'			=>	array('type'=>'cardView',	'field'=>'Смотреть'),
 						  'Edit'		=>	array('type'=>'cardEdit',	'field'=>'Редактировать'),

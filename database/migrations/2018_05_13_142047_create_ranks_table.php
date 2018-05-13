@@ -14,6 +14,10 @@ class CreateRanksTable extends Migration
     public function up()
     {
         Schema::create('osc_rates', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_unicode_ci';
+            
             $table->integer('annuity_id')->default(0);
             $table->integer('company_id')->default(0);
             $table->integer('age')->default(0);

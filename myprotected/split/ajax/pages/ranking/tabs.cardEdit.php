@@ -3,9 +3,49 @@
 
 	$headParams = array( 'parent'=>$parent, 'alias'=>$alias, 'id'=>$id, 'item_id'=>$item_id, 'appTable'=>$appTable );
 	
-	$data['headContent'] = $zh->getCardCreateHeader($headParams);
+	$data['headContent'] = $zh->getCardEditHeader($headParams);
 	
 	// Start body content
+
+
+
+
+
+
+
+
+	/*
+	
+	
+	
+	
+	
+				FIX IMAGE UPLOAD FROM REDACTOR
+				FIX IMAGE UPLOAD FROM REDACTOR
+				FIX IMAGE UPLOAD FROM REDACTOR
+				FIX IMAGE UPLOAD FROM REDACTOR
+				FIX IMAGE UPLOAD FROM REDACTOR
+				FIX IMAGE UPLOAD FROM REDACTOR
+				FIX IMAGE UPLOAD FROM REDACTOR
+				FIX IMAGE UPLOAD FROM REDACTOR
+				FIX IMAGE UPLOAD FROM REDACTOR
+				FIX IMAGE UPLOAD FROM REDACTOR
+				FIX IMAGE UPLOAD FROM REDACTOR
+				FIX IMAGE UPLOAD FROM REDACTOR
+				FIX IMAGE UPLOAD FROM REDACTOR
+				FIX IMAGE UPLOAD FROM REDACTOR
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	*/
 	
 	$cardItem = $zh->getAnnuity($item_id);
 
@@ -23,9 +63,10 @@
 		'Preview image'		=>	array( 'type'=>'image_mono','field'=>'preview', 		'params'=>array( 'path'=>RSF."/split/files/annuities/", 'appTable'=>$appTable, 'id'=>$item_id ) ),
 		'Background image'		=>	array( 'type'=>'image_mono','field'=>'background', 		'params'=>array( 'path'=>RSF."/split/files/annuities/", 'appTable'=>$appTable, 'id'=>$item_id ) ),
 		'Is video background?'			=>	array( 'type'=>'block', 	'field'=>'is_video_bg', 'params'=>array( ) ),
+		
 	);
 
-	$cardEditFormParams = array( 'cardItem'=>$cardItem, 'cardTmp'=>$cardTmp, 'rootPath'=>$rootPath, 'actionName'=>"createAnnuity", 'ajaxFolder'=>'create', 'appTable'=>$appTable );
+	$cardEditFormParams = array( 'cardItem'=>$cardItem, 'cardTmp'=>$cardTmp, 'rootPath'=>$rootPath, 'actionName'=>"editAnnuity", 'ajaxFolder'=>'edit', 'appTable'=>$appTable );
 	
 	$cardEditFormStr = $zh->getCardEditForm($cardEditFormParams);
 	
@@ -33,7 +74,7 @@
 	
 	$data['bodyContent'] .= "
 		<div class='ipad-20' id='order_conteinter'>
-			<h3 class='new-line'>Item create form</h3>";
+			<h3 class='new-line'>Item edit form #$item_id</h3>";
 	
 	$data['bodyContent'] .= $cardEditFormStr;
 				
