@@ -15,11 +15,11 @@
 		'ID'						=>	array( 'type'=>'text', 		'field'=>'id', 				'params'=>array() ),
 		'Tab name'					=>	array( 'type'=>'text', 		'field'=>'name', 		'params'=>array() ),
 		'Company name'					=>	array( 'type'=>'text', 		'field'=>'company_name', 			'params'=>array() ),
+		'Content'					=>	array( 'type'=>'text', 		'field'=>'content', 			'params'=>array() ),
 		'Published'			=>	array( 'type'=>'text', 		'field'=>'block', 			'params'=>array( 'replace'=>array('0'=>'Yes', '1'=>'No') ) ),
 		'Display order'			=>	array( 'type'=>'text', 		'field'=>'pos'),
 		'Created'		=>	array( 'type'=>'date', 		'field'=>'created', 		'params'=>array() ),
 		'Modified'		=>	array( 'type'=>'date', 		'field'=>'modified', 		'params'=>array() ),
-		
 	);
 
 
