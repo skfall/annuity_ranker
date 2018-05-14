@@ -21,6 +21,7 @@ class CreateQuestionsTable extends Migration
             $table->increments('id');
             $table->string('question')->nullable();
             $table->integer('annuity_id')->default(0);
+            $table->integer('pos')->default(0);
             $table->boolean('block')->default(false);
             $table->dateTime('created')->nullable();
             $table->dateTime('modified')->nullable();
