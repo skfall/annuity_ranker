@@ -19,6 +19,8 @@
 		'Alias'					=>	array( 'type'=>'text', 		'field'=>'alias', 		'params'=>array() ),
 		'Published'			=>	array( 'type'=>'text', 		'field'=>'block', 			'params'=>array( 'replace'=>array('0'=>'Yes', '1'=>'No') ) ),
 		'Percent'					=>	array( 'type'=>'text', 		'field'=>'percent', 		'params'=>array() ),
+		'Min amount'					=>	array( 'type'=>'text', 		'field'=>'min_amount', 			'params'=>array() ),
+		'Max amount'					=>	array( 'type'=>'text', 		'field'=>'max_amount', 			'params'=>array() ),
 		'Dropdown near growth rate'			=>	array( 'type'=>'text', 		'field'=>'td_field_27_plus', 			'params'=>array( 'replace'=>array('1'=>'Yes', '0'=>'No') ) ),
 		'Dropdown near percent'			=>	array( 'type'=>'text', 		'field'=>'percent_plus', 			'params'=>array( 'replace'=>array('1'=>'Yes', '0'=>'No') ) ),
 		'Dropdown near withdrawal rate'			=>	array( 'type'=>'text', 		'field'=>'td_field_29_plus', 			'params'=>array( 'replace'=>array('1'=>'Yes', '0'=>'No') ) ),

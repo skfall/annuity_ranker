@@ -21,6 +21,12 @@
 		'Publish'			=>	array( 'type'=>'block', 	'field'=>'block', 			'params'=>array( 'reverse'=>true ) ),
 		'Percent'			=>	array( 'type'=>'number', 		'field'=>'percent', 		'params'=>array( 'size'=>100, 'hold'=>'Percent' ) ),
 		'Dropdown near growth rate'		=>	array( 'type'=>'block', 	'field'=>'td_field_27_plus', 			'params'=>array( ) ),
+
+		'clear-99'				=>	array( 'type'=>'clear' ),
+		'Min amount'				=>	array( 'type'=>'number', 		'field'=>'min_amount', 		'params'=>array( 'size'=>100, 'hold'=>'Min amount' ) ),
+		'Max amount'				=>	array( 'type'=>'number', 		'field'=>'max_amount', 		'params'=>array( 'size'=>100, 'hold'=>'Max amount' ) ),
+		'clear-100'				=>	array( 'type'=>'clear' ),
+		
 		'Dropdown near percent'		=>	array( 'type'=>'block', 	'field'=>'percent_plus', 			'params'=>array( ) ),
 		'Dropdown near withdrawal rate'		=>	array( 'type'=>'block', 	'field'=>'td_field_29_plus', 			'params'=>array( ) ),
 
@@ -76,11 +82,11 @@ All values must be > 0
 
 Column 1 -> Age [Only integer]
 
-Column 2 -> Growth rate [Only integer or decimal]
-Column 3 -> Growth rate (SPECIAL) [Only integer or decimal]
+Column 2 -> Growth rate [String]
+Column 3 -> Growth rate (SPECIAL) [String]
 
-Column 4 -> Withdrawal rate [Only integer or decimal]
-Column 5 -> Withdrawal rate (SPECIAL) [Only integer or decimal]
+Column 4 -> Withdrawal rate [String]
+Column 5 -> Withdrawal rate (SPECIAL) [String]
 
 W A R N I N G: Upload will ERASE all previous rates by selected annuity and current company!
 </pre>

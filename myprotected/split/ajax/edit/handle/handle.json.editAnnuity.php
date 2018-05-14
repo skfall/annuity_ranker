@@ -20,8 +20,6 @@
 		'block'			=> $_POST['block'][0],
 		'is_video_bg'	=> $_POST['is_video_bg'][0],
 		'pos'	=> (int)$_POST['pos'],
-		'min_amount'	=> (int)$_POST['min_amount'],
-		'max_amount'	=> (int)$_POST['max_amount'],
 		'col_1'			=> $_POST['col_1'],
 		'col_2'			=> $_POST['col_2'],
 		'col_3'			=> $_POST['col_3'],

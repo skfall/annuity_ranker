@@ -4,6 +4,7 @@ use App\Rockstar\Helper as Helper;
 use App;
 use Config;
 use Session;
+use App\Models;
 
 class Core extends Helper {
 	public function __construct(){
@@ -191,41 +192,127 @@ class Core extends Helper {
 		return $response;
 	}
 
-	public function getProjects($filter, $start = 0, $per_page = 9){
-		$projects = \App\Models\Project::where($filter)->orderBy('pos', 'desc')->skip($start)->take($per_page)->get();
-		return $projects;
-	}
-
-	public function getProject($id = 0){
-		$id = (int)$id;
-		$project = \App\Models\Project::where(['block' => 0, 'id' => $id])->first();
-		return $project;
-	}
-
-	public function getSameProjects($project = null){
-		$response = collect(array());
-		if($project != null){
-			$response = \App\Models\Project::where([['block', '!=', '1'], ['id', '!=', $project->id], ['type', $project->type]])->orderBy('pos', 'desc')->skip(0)->take(9)->get();
+	public function get_questions(){
+		$response = array('status' => 'failed', 'html' => '', 'message' => '');
+		$annuity_id = $this->post('annuity_id');
+		$id = 0;
+		if ($annuity_id == "default") {
+			$id = DEFAULT_ANNUITY_ID;
+		}else{
+			$id = (int)$annuity_id;
 		}
+
+		$annuity = Models\Annuity::find($id);
+		if ($annuity) {
+			$questions = $annuity->questions()->get();
+			if ($questions) {
+				$html = "";
+				ob_start();
+				foreach ($questions as $qi => $question) { ?>
+					<div class="question_item" style="background: #eee; padding: 10px; margin: 10px; float: left; border: 1px solid #333;">
+						<p>Question: <?= $question->question ?></p>
+						<ul style='list-style-type: circle;'><?php 
+							foreach ($question->answers()->get() as $ai => $answer) { ?>
+								<li onclick="network.sendAnswer('<?= $question->id ?>', '<?= $answer->id ?>', '<?= $annuity->id ?>')" style='padding: 5px; margin: 15px; border: 1px solid #333; cursor: pointer;'><?= $answer->answer ?></li>
+							<?php }
+						?></ul>
+					</div>	
+				<?php }
+				$html = ob_get_clean();
+
+				$response['status'] = "success";
+				$response['reason'] = $annuity->name;
+				$response['html'] = $html;
+
+			}else{
+				$response['reason'] = "no_questions";
+				$response['message'] = "Questions not found";
+			}
+		}else{
+			$response['reason'] = "no_annuity";
+			$response['message'] = "Annuity not found";
+		}
+
 		return $response;
 	}
 
-	public function getHomePageSections($instances){
-		return [
-			$instances['1']::get() ?: [],
-			$instances['2']::get() ?: [],
-			$instances['3']::get() ?: [],
-			$instances['4']::get() ?: [],
-		];
-	}
+	public function get_annuity_form(){
+		$response = array('status' => 'failed', 'html' => '', 'message' => '');
+		$annuity_id = $this->post('annuity_id');
+		$annuity = Models\Annuity::find((int)$annuity_id);
+		$another_annuities = Models\Annuity::where('id', '!=', $annuity->id)->get();
 
-	public function getServices($filter = [], ...$params){
-		// $filter ~ ['id' => 2] || [['id', '>', 1], ['id', '<=', 5]]
-		$instance = \App\Models\Service::where($filter);
-		if ($params && $params[0] == 'home_services') {
-			$instance = $instance->orderBy('id', 'desc')->skip(0)->take(6);
+		if ($annuity) {
+			$html = "";
+			ob_start(); ?>
+				<div class="top_filter" style="background: #eee; padding: 10px; margin: 10px; border: 1px solid #333;">
+					<div style="clear: both;"></div>
+					<p>Filter place...</p>
+					<div class="annuity" style="background: #ccc; padding: 10px; margin: 10px; float: left; border: 1px solid #333;">
+						<?= $annuity->name ?>
+					</div>
+
+					<?php 
+						foreach ($another_annuities as $ai => $an) {
+							?>
+								<div class="annuity" style="background: #eee; padding: 10px; margin: 10px; float: left; border: 1px solid #333; cursor: pointer;" onclick="network.get_questions('<?= $an->id ?>')">
+									<?= $an->name ?>
+								</div>
+							<?php
+						}
+					?>
+
+					<div style="clear: both;"></div>					
+				</div>
+				<div class="companies" style="background: #eee; padding: 10px; margin: 10px; border: 1px solid #333;">
+					<?php 
+						$companies = Models\Company::where('block', 0)->get();
+					?>
+					<table style="width: 100%;">
+						<tbody>
+						<?php 
+							if($companies){
+								?>
+								<tr>
+									<td style="background: #ccc; padding: 10px; border: 1px solid #333;"><?= $annuity->col_1 ?></td>
+									<td style="background: #ccc; padding: 10px; border: 1px solid #333;"><?= $annuity->col_2 ?></td>
+									<td style="background: #ccc; padding: 10px; border: 1px solid #333;"><?= $annuity->col_3 ?></td>
+									<td style="background: #ccc; padding: 10px; border: 1px solid #333;"><?= $annuity->col_4 ?></td>
+									<td style="background: #ccc; padding: 10px; border: 1px solid #333;"><?= $annuity->col_5 ?></td>
+								</tr>
+								<?php
+								foreach ($companies as $ci => $cv) {
+									$rate = $cv->rates()->where([['company_id', $cv->id], ['annuity_id', $annuity->id]])->first();
+									if (!$rate) continue;
+
+									?>
+										<tr>
+											<td style="background: #eee; padding: 10px; border: 1px solid #333;"><?= $cv->name ?></td>
+											<td style="background: #eee; padding: 10px; border: 1px solid #333;"><?= $rate->rate1 ?>%</td>
+											<td style="background: #eee; padding: 10px; border: 1px solid #333;"><?= $cv->percent ?>%</td>
+											<td style="background: #eee; padding: 10px; border: 1px solid #333;"><?= $rate->rate2 ?>%</td>
+											<td style="background: #eee; padding: 10px; border: 1px solid #333;"><?= $cv->created ?></td>
+										</tr>
+									<?php
+								}
+							}else{
+								?>
+									<tr><td colspan="5" style="background: #eee; padding: 10px; border: 1px solid #333;">There is no companies by this annuity.</td></tr>
+								<?php
+							}
+						?>
+						</tbody>
+					</table>
+				</div>
+			<?php $html = ob_get_clean();
+			$response['html'] = $html;			
+			$response['status'] = "success";
+			$response['message'] = $annuity->name;
+		}else{
+			$response['reason'] = "no_annuity";
+			$response['message'] = "Annuity not found";
 		}
-		return $instance->get() ?: [];
+		return $response;
 	}
 
 }

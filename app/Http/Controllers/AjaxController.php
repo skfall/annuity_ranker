@@ -23,6 +23,12 @@ class AjaxController extends BaseController {
             case 'contact_form':
                 $response = $core->contact_form();
                 break;
+            case 'get_questions':
+                $response = $core->get_questions();
+                break;
+            case 'get_annuity_form':
+                $response = $core->get_annuity_form();
+                break;
     		default:
     			break;
     	}

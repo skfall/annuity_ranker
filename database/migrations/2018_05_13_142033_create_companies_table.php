@@ -31,6 +31,8 @@ class CreateCompaniesTable extends Migration
             $table->string('logo')->nullable();
             $table->string('td_field_11')->nullable();
 
+            $table->integer('min_amount')->default(0);      
+            $table->integer('max_amount')->default(10000000);  
             
             $table->float('percent')->default(0);
             $table->boolean('percent_plus')->default(false);

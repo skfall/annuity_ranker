@@ -15,10 +15,14 @@
 		'ID'						=>	array( 'type'=>'text', 		'field'=>'id', 				'params'=>array() ),
 		'Name'					=>	array( 'type'=>'text', 		'field'=>'name', 		'params'=>array() ),
 		'Alias'					=>	array( 'type'=>'text', 		'field'=>'alias', 			'params'=>array() ),
-		'Min amount'					=>	array( 'type'=>'text', 		'field'=>'min_amount', 			'params'=>array() ),
-		'Max amount'					=>	array( 'type'=>'text', 		'field'=>'max_amount', 			'params'=>array() ),
 		'Published'			=>	array( 'type'=>'text', 		'field'=>'block', 			'params'=>array( 'replace'=>array('0'=>'Yes', '1'=>'No') ) ),
 		'Display order'			=>	array( 'type'=>'text', 		'field'=>'pos'),
+
+		'Default value for age'			=>	array( 'type'=>'text', 		'field'=>'age'),
+		'Default value for spouse age'			=>	array( 'type'=>'text', 		'field'=>'special_age'),
+		'Special rate default value'			=>	array( 'type'=>'text', 		'field'=>'special_active', 			'params'=>array( 'replace'=>array('1'=>'Yes', '0'=>'No') ) ),
+		
+
 		'Modified'		=>	array( 'type'=>'date', 		'field'=>'modified', 		'params'=>array() ),
 		'Created'		=>	array( 'type'=>'date', 		'field'=>'created', 		'params'=>array() ),
 		'Table col 1'					=>	array( 'type'=>'text', 		'field'=>'col_1', 			'params'=>array() ),

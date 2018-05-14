@@ -22,11 +22,11 @@ class CreateRanksTable extends Migration
             $table->integer('company_id')->default(0);
             $table->integer('age')->default(0);
 
-            $table->float('rate1')->default(0);
-            $table->float('special_rate1')->default(0);
+            $table->string('rate1')->nullable();
+            $table->string('special_rate1')->nullable();
 
-            $table->float('rate2')->default(0);
-            $table->float('special_rate2')->default(0);
+            $table->string('rate2')->nullable();
+            $table->string('special_rate2')->nullable();
 
             $table->dateTime('created')->nullable();
             $table->dateTime('modified')->nullable();

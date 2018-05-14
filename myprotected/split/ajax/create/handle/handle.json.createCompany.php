@@ -18,6 +18,8 @@
 		'alias'			=> $_POST['alias'],
 		'block'			=> $_POST['block'][0],
 		'percent'		=> (double)$_POST['percent'],
+		'min_amount'	=> (int)$_POST['min_amount'],
+		'max_amount'	=> (int)$_POST['max_amount'],
 
 		'td_field_27_plus'			=> $_POST['td_field_27_plus'][0],
 		'percent_plus'			=> $_POST['percent_plus'][0],
@@ -185,24 +187,16 @@
 								if(array_key_exists(4, $row) && $row[4])
 									$wrs = $row[4];
 								else continue;
-
-								$age = (int)$age;
-								$gr = (double)$gr;
-								$grs = (double)$grs;
-								$wr = (double)$wr;
-								$wrs = (double)$wrs;
 			
-								if($age > 0 && $gr > 0 && $grs > 0 && $wr > 0 && $wrs > 0){
-									if($cnt == 0){
-										$q = "DELETE FROM `osc_rates` WHERE `company_id` = $item_id AND `annuity_id` = $annuity_id";
-										$deleted = $ah->rs($q);
+								if($cnt == 0){
+									$q = "DELETE FROM `osc_rates` WHERE `company_id` = $item_id AND `annuity_id` = $annuity_id";
+									$deleted = $ah->rs($q);
 
-										$new_rates_q .= " ($annuity_id, $item_id, $age, $gr, $grs, $wr, $wrs, '$now', '$now') ";
-									}else{
-										$new_rates_q .= ", ($annuity_id, $item_id, $age, $gr, $grs, $wr, $wrs, '$now', '$now') ";
-									}
-									$cnt++;
+									$new_rates_q .= " ($annuity_id, $item_id, '$age', '$gr', '$grs', '$wr', '$wrs', '$now', '$now') ";
+								}else{
+									$new_rates_q .= ", ($annuity_id, $item_id, '$age', '$gr', '$grs', '$wr', '$wrs', '$now', '$now') ";
 								}
+								$cnt++;
 							}
 
 							if ($new_rates_q) {

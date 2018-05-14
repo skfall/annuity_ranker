@@ -17,10 +17,12 @@
 		'clear-1'				=>	array( 'type'=>'clear' ),
 		'Publish'			=>	array( 'type'=>'block', 	'field'=>'block', 			'params'=>array( 'reverse'=>true ) ),
 		'Display order'				=>	array( 'type'=>'number', 		'field'=>'pos', 		'params'=>array( 'size'=>100, 'hold'=>'Display order' ) ),
-		'clear-2'				=>	array( 'type'=>'clear' ),
-		'Min amount'				=>	array( 'type'=>'number', 		'field'=>'min_amount', 		'params'=>array( 'size'=>100, 'hold'=>'Min amount' ) ),
-		'Max amount'				=>	array( 'type'=>'number', 		'field'=>'max_amount', 		'params'=>array( 'size'=>100, 'hold'=>'Max amount' ) ),
 		
+		'clear-2'				=>	array( 'type'=>'clear' ),		
+		'Default value for age'	=>	array( 'type'=>'number', 		'field'=>'age', 		'params'=>array( 'size'=>3, 'hold'=>'Default value for age' ) ),
+		'Default value for spouse age'	=>	array( 'type'=>'number', 		'field'=>'special_age', 		'params'=>array( 'size'=>3, 'hold'=>'Default value for spouse age' ) ),
+		'Special rate default value'			=>	array( 'type'=>'block', 	'field'=>'special_active', 			'params'=>array() ),
+
 		//'Контент'				=>	array( 'type'=>'summernote', 		'field'=>'section_content', 		'params'=>array( 'size'=>100, 'hold'=>'Подзаголовок' ) ),
 		'clear-3'				=>	array( 'type'=>'clear' ),
 		'Preview image'		=>	array( 'type'=>'image_mono','field'=>'preview', 		'params'=>array( 'path'=>RSF."/split/files/annuities/", 'appTable'=>$appTable, 'id'=>$item_id ) ),

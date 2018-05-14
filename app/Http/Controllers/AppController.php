@@ -74,6 +74,8 @@ class AppController extends BaseController {
             define('UID', 0);
         }
 
+        define('DEFAULT_ANNUITY_ID', 1);
+
 
         $this->body_class = $page;
         

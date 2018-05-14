@@ -23,11 +23,12 @@ class CreateAnnuitiesTable extends Migration
             $table->string('alias')->nullable();
             $table->integer('pos')->default(0);      
             $table->string('preview')->nullable();
-            $table->string('background')->nullable();
+            $table->string('background')->nullable();   
 
-            $table->integer('min_amount')->default(0);      
-            $table->integer('max_amount')->default(10000000);      
-
+            $table->integer('age')->default(0);      
+            $table->integer('special_age')->default(0);      
+            $table->boolean('special_active')->default(false);      
+            
             $table->string('col_1')->nullable();
             $table->string('col_2')->nullable();
             $table->string('col_3')->nullable();
