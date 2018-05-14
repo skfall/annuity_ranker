@@ -17,19 +17,19 @@
 	$rootPath = "../../../../..";
 	
 	$cardTmp = array(
-					 'Имя'					=>	array( 'type'=>'input', 	'field'=>'first_name', 			'params'=>array( 'size'=>25, 'hold'=>'Name', 'onchange'=>"change_alias();" ) ),
+					 'Name'					=>	array( 'type'=>'input', 	'field'=>'first_name', 			'params'=>array( 'size'=>25, 'hold'=>'Name', 'onchange'=>"change_alias();" ) ),
 					 
-					 'Фамилия'				=>	array( 'type'=>'input', 	'field'=>'last_name', 			'params'=>array( 'size'=>25, 'hold'=>'Alias' ) ),
+					 'Surname'				=>	array( 'type'=>'input', 	'field'=>'last_name', 			'params'=>array( 'size'=>25, 'hold'=>'Surname' ) ),
 					 
-					 'Логин'				=>	array( 'type'=>'input', 	'field'=>'login', 			'params'=>array( 'size'=>25, 'hold'=>'Alias' ) ),
+					 'Login'				=>	array( 'type'=>'input', 	'field'=>'login', 			'params'=>array( 'size'=>25, 'hold'=>'Login' ) ),
 					 
-					 'Телефон'				=>	array( 'type'=>'input', 	'field'=>'phone', 			'params'=>array( 'size'=>25, 'hold'=>'Alias' ) ),
+					 'Phone'				=>	array( 'type'=>'input', 	'field'=>'phone', 			'params'=>array( 'size'=>25, 'hold'=>'Phone' ) ),
 					 
-					 'День Рождения'		=>	array( 'type'=>'date', 		'field'=>'birthday', 		'params'=>array( ) ),
+					 'Birthday'		=>	array( 'type'=>'date', 		'field'=>'birthday', 		'params'=>array( ) ),
 					 
 					 'clear-1'				=>	array( 'type'=>'clear' ),
 					 
-					 'Група пользователей'	=>	array( 'type'=>'hidden', 	'field'=>'type' ),
+					 'User group'	=>	array( 'type'=>'hidden', 	'field'=>'type' ),
 					 
 					 /*
 					 'Група пользователей'	=>	array( 'type'=>'select', 	'field'=>'type', 			'params'=>array( 'list'=>$usersTypes, 
@@ -39,27 +39,27 @@
 																														 'onChange'=>"reload_users_extra_fields($(this).val(),$item_id);" 
 																														 ) ),
 					 */
-					 'Публикация'			=>	array( 'type'=>'hidden', 	'field'=>'block' ), // 'params'=>array( 'reverse'=>true )
+					 'Publishing'			=>	array( 'type'=>'hidden', 	'field'=>'block' ), // 'params'=>array( 'reverse'=>true )
 					 
-					 'Активность'			=>	array( 'type'=>'hidden', 	'field'=>'active' ), // 'params'=>array( 'reverse'=>false )
+					 'Active'			=>	array( 'type'=>'hidden', 	'field'=>'active' ), // 'params'=>array( 'reverse'=>false )
 					 
-					 'Пол'					=>	array( 'type'=>'block', 	'field'=>'gender', 			'params'=>array( 'reverse'=>true, 'yes'=>"М", 'no'=>"Ж", 'replace'=>array('0'=>'1', '1'=>'0') ) ),
-					 
-					 
-					 'Экстра поля'			=>	array( 'type'=>'usersExtraFields',	'field'=>'ef_groups'),
+					 'Gender'					=>	array( 'type'=>'block', 	'field'=>'gender', 			'params'=>array( 'reverse'=>true, 'yes'=>"М", 'no'=>"Ж", 'replace'=>array('0'=>'1', '1'=>'0') ) ),
 					 
 					 
-					 'Изображения'			=>	array( 'type'=>'header'),
+					 'Extra fields'			=>	array( 'type'=>'usersExtraFields',	'field'=>'ef_groups'),
 					 
-					 'Аватар пользователя'	=>	array( 'type'=>'image_mono','field'=>'avatar', 	'params'=>array( 'path'=>"/split/files/users/", 'appTable'=>$appTable, 'id'=>$item_id ) ),
 					 
-					 'Смена пароля'				=>	array( 'type'=>'header'),
+					 'Images'			=>	array( 'type'=>'header'),
 					 
-					 'Старый пароль'			=>	array( 'type'=>'input', 	'field'=>'old-pass', 			'params'=>array( 'size'=>25, 'hold'=>'Старый пароль', 'type'=>'password' ) ),
+					 'User avatar'	=>	array( 'type'=>'image_mono','field'=>'avatar', 	'params'=>array( 'path'=>"/split/files/users/", 'appTable'=>$appTable, 'id'=>$item_id ) ),
 					 
-					 'Новый пароль'				=>	array( 'type'=>'input', 	'field'=>'new-pass', 			'params'=>array( 'size'=>25, 'hold'=>'Новый пароль', 'type'=>'password' ) ),
+					 'Change password'				=>	array( 'type'=>'header'),
 					 
-					 'Повторить новый пароль'	=>	array( 'type'=>'input', 	'field'=>'new-pass-r', 			'params'=>array( 'size'=>25, 'hold'=>'Повторить новый пароль', 'type'=>'password' ) ),
+					 'Old password'			=>	array( 'type'=>'input', 	'field'=>'old-pass', 			'params'=>array( 'size'=>25, 'hold'=>'Old password', 'type'=>'password' ) ),
+					 
+					 'New password'				=>	array( 'type'=>'input', 	'field'=>'new-pass', 			'params'=>array( 'size'=>25, 'hold'=>'New password', 'type'=>'password' ) ),
+					 
+					 'Repeat new password'	=>	array( 'type'=>'input', 	'field'=>'new-pass-r', 			'params'=>array( 'size'=>25, 'hold'=>'Repeat new password', 'type'=>'password' ) ),
 					 
 					 'clear-2'				=>	array( 'type'=>'clear' )
 					 

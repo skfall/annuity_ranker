@@ -1,22 +1,23 @@
 <?php 
 	// Start header content
 
-	$headParams = array( 'parent'=>$parent, 'alias'=>$alias, 'id'=>$id, 'item_id'=>$item_id, 'appTable'=>$appTable, 'type' => 'static_text' );
+	$headParams = array( 'parent'=>$parent, 'alias'=>$alias, 'id'=>$id, 'item_id'=>$item_id, 'appTable'=>$appTable, 'type' => 'user_answer' );
 	
 	$data['headContent'] = $zh->getCardViewHeader($headParams);
 	
 	// Start body content
 	
-	$cardItem = $zh->getText($item_id);
+	$cardItem = $zh->getUserAnswer($item_id);
 
 	$rootPath = ROOT_PATH;
 
 	$cardTmp = array(
 		'ID'						=>	array( 'type'=>'text', 		'field'=>'id', 				'params'=>array() ),
-		'Name'					=>	array( 'type'=>'text', 		'field'=>'name', 		'params'=>array() ),
-		'Text'					=>	array( 'type'=>'text', 		'field'=>'value', 			'params'=>array() ),
-		'Link'					=>	array( 'type'=>'text', 		'field'=>'link', 			'params'=>array() ),		
-		'Modified'		=>	array( 'type'=>'date', 		'field'=>'modified', 		'params'=>array() ),
+		'Question'					=>	array( 'type'=>'text', 		'field'=>'question', 		'params'=>array() ),
+		'Selected answer'					=>	array( 'type'=>'text', 		'field'=>'answer', 			'params'=>array() ),
+		'Question annuity'					=>	array( 'type'=>'text', 		'field'=>'annuity_name', 			'params'=>array() ),		
+		'User IP'					=>	array( 'type'=>'text', 		'field'=>'ip', 			'params'=>array() ),		
+		'Created'		=>	array( 'type'=>'date', 		'field'=>'created', 		'params'=>array() ),
 	);
 
 

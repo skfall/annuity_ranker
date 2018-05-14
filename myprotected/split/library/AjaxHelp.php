@@ -62,7 +62,7 @@ class ajaxHelp
 		try
 		{
 			$date = date("d.m.y H:i");
-			$message_date = "<p> </p><p>Date of send: ".$date."</p>";
+			$message_date = "<p> </p><p>Date: ".$date."</p>";
 			
 			$to  = $to_mail." <".$to_mail.">" ;
       		$subject = "=?UTF-8?B?".base64_encode($subject_mail)."?=";

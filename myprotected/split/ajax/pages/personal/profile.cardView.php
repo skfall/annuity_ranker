@@ -12,23 +12,23 @@
 	$rootPath = "../../../../..";
 	
 	$cardTmp = array(
-					 'Имя'					=>	array( 'type'=>'text', 		'field'=>'name', 			'params'=>array() ),
-					 'Фамилия'				=>	array( 'type'=>'text', 		'field'=>'fname', 			'params'=>array() ),
+					 'Name'					=>	array( 'type'=>'text', 		'field'=>'name', 			'params'=>array() ),
+					 'Surname'				=>	array( 'type'=>'text', 		'field'=>'fname', 			'params'=>array() ),
 					 'ID'					=>	array( 'type'=>'text', 		'field'=>'id', 				'params'=>array() ),
-					 'Изображение'			=>	array( 'type'=>'image',		'field'=>'avatar',			'params'=>array( 'path'=>'/split/files/users/' ) ),
+					 'Avatar'			=>	array( 'type'=>'image',		'field'=>'avatar',			'params'=>array( 'path'=>'/split/files/users/' ) ),
 					 'Email'				=>	array( 'type'=>'text', 		'field'=>'login', 			'params'=>array() ),
-					 'Телефон'				=>	array( 'type'=>'text', 		'field'=>'phone', 			'params'=>array() ),
-					 'Публикация'			=>	array( 'type'=>'text', 		'field'=>'block', 			'params'=>array( 'replace'=>array('0'=>'Да', '1'=>'Нет') ) ),
-					 'Состояние'			=>	array( 'type'=>'text', 		'field'=>'active', 			'params'=>array( 'replace'=>array('0'=>'Не активен', '1'=>'Активен') ) ),
-					 'Пол'					=>	array( 'type'=>'text', 		'field'=>'male', 			'params'=>array( 'replace'=>array('М'=>'Мужской', 'Ж'=>'Женский') ) ),
+					 'Phone'				=>	array( 'type'=>'text', 		'field'=>'phone', 			'params'=>array() ),
+					 'Publishing'			=>	array( 'type'=>'text', 		'field'=>'block', 			'params'=>array( 'replace'=>array('0'=>'Да', '1'=>'Нет') ) ),
+					 'Active status'			=>	array( 'type'=>'text', 		'field'=>'active', 			'params'=>array( 'replace'=>array('0'=>'Not active', '1'=>'Active') ) ),
+					 'Пол'					=>	array( 'type'=>'text', 		'field'=>'male', 			'params'=>array( 'replace'=>array('М'=>'Male', 'Ж'=>'Female') ) ),
 					 //'Дочерние элементы'	=>	array( 'type'=>'arr_mult',	'field'=>'childs', 			'params'=>array( 'field'=>'name','link'=>array('parent'=>$parent,'alias'=>$alias,'id'=>$id,'item_id'=>1,'params'=>'{}') ) ),
-					 'Группа пользователей'	=>	array( 'type'=>'arr_mono', 	'field'=>'typeInfo', 		'params'=>array( 'field'=>'name' ) ),
-					 'Дата рождения'		=>	array( 'type'=>'date', 		'field'=>'birthday', 		'params'=>array( ) ),
+					 'User group'	=>	array( 'type'=>'arr_mono', 	'field'=>'typeInfo', 		'params'=>array( 'field'=>'name' ) ),
+					 'Birthday'		=>	array( 'type'=>'date', 		'field'=>'birthday', 		'params'=>array( ) ),
 					 
-					 'Дополнительные данные'=>	array( 'type'=>'usersExtraFields', 'field'=>'ef_groups','params'=>array( 'data'=>$cardItem['ef_groups'] ) ),
+					 'Extra fields'=>	array( 'type'=>'usersExtraFields', 'field'=>'ef_groups','params'=>array( 'data'=>$cardItem['ef_groups'] ) ),
 					 
-					 'Дата регистрации'		=>	array( 'type'=>'date', 		'field'=>'dateCreate', 		'params'=>array( ) ),
-					 'Дата редактирования'	=>	array( 'type'=>'date', 		'field'=>'dateModify', 		'params'=>array( ) )
+					 'Registered'		=>	array( 'type'=>'date', 		'field'=>'dateCreate', 		'params'=>array( ) ),
+					 'Modified'	=>	array( 'type'=>'date', 		'field'=>'dateModify', 		'params'=>array( ) )
 					 );
 
 	$cardViewTableParams = array( 'cardItem'=>$cardItem, 'cardTmp'=>$cardTmp, 'rootPath'=>$rootPath );

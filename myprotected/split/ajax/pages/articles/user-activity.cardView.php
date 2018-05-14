@@ -1,7 +1,7 @@
 <?php 
 	// Start header content
 
-	$headParams = array( 'parent'=>$parent, 'alias'=>$alias, 'id'=>$id, 'item_id'=>$item_id, 'appTable'=>$appTable, 'type' => 'static_text' );
+	$headParams = array( 'parent'=>$parent, 'alias'=>$alias, 'id'=>$id, 'item_id'=>$item_id, 'appTable'=>$appTable );
 	
 	$data['headContent'] = $zh->getCardViewHeader($headParams);
 	
