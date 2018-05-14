@@ -175,21 +175,11 @@
 					break;
 				}
 
-				case 'projects':
-					$q = "SELECT * FROM `osc_stages` WHERE `project_id`= $item_id";
-					$stages = $db->q($q);
-					if($stages){
-						foreach($stages as $stage){
-							$s_id = (int)$stage['id'];
-							$q = "DELETE FROM `osc_stages` WHERE `id` = '$s_id'";
-							$db->q($q,0,1);
-							$q = "DELETE FROM `osc_stage_docs` WHERE `stage_id` = '$s_id'";
-							$db->q($q,0,1);
-							$q = "DELETE FROM `osc_stage_photos` WHERE `stage_id` = '$s_id'";
-							$db->q($q,0,1);
-						}
-					}
+				case 'companies':
+					$q = "DELETE FROM `osc_rates` WHERE `company_id` = '$item_id'";
+					$db->q($q,0,1);
 					break;
+					
 
 				case 'articles':
 				{

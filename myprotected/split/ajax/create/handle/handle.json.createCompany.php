@@ -155,15 +155,15 @@
 						$real_path = realpath($file_path.$rate_excel);
 			
 						$objPHPExcel = PHPExcel_IOFactory::load($real_path);
-						$data = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+						$excel_data = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
 			
-						if(count($data) > 0){
+						if(count($excel_data) > 0){
 
 							$new_rates_q = "";
 							$cnt = 0;
 							$now = date("Y-m-d H:i:s", time());
-							$data = array_values($data);
-							foreach ($data as $row) {
+							$excel_data = array_values($excel_data);
+							foreach ($excel_data as $row) {
 								$row = array_values($row);
 
 								if(array_key_exists(0, $row) && $row[0])
