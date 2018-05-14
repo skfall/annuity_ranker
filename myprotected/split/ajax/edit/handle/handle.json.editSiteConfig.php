@@ -24,12 +24,9 @@
 					'email'		=> $_POST['email'],
 					'phone'		=> $_POST['phone'],
 					'address'		=> $_POST['address'],
-					'lat'		=> (float)str_replace(',', '.', $_POST['lat']),
-					'lng'		=> (float)str_replace(',', '.', $_POST['lng']),
 					
 					'copyright'		=> $_POST['copyright'],
-					
-
+			
 					'top_script'		=> $_POST['top_script'],
 					'bot_script'		=> $_POST['bot_script'],
 					
@@ -59,5 +56,5 @@
 	
 	
 	
-	$data['message'] = "Настройки успешно вступили в силу";
+	$data['message'] = "Settings was successfuly saved.";
 	

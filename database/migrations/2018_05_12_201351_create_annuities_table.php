@@ -27,6 +27,14 @@ class CreateAnnuitiesTable extends Migration
 
             $table->integer('min_amount')->default(0);      
             $table->integer('max_amount')->default(10000000);      
+
+            $table->string('col_1')->nullable();
+            $table->string('col_2')->nullable();
+            $table->string('col_3')->nullable();
+            $table->string('col_4')->nullable();
+            $table->string('col_5')->nullable();
+            $table->string('col_6')->nullable();
+            $table->string('col_7')->nullable();
         
             $table->boolean('is_video_bg')->default(false);
             $table->boolean('block')->default(false);

@@ -21,6 +21,13 @@
 		'Display order'			=>	array( 'type'=>'text', 		'field'=>'pos'),
 		'Modified'		=>	array( 'type'=>'date', 		'field'=>'modified', 		'params'=>array() ),
 		'Created'		=>	array( 'type'=>'date', 		'field'=>'created', 		'params'=>array() ),
+		'Table col 1'					=>	array( 'type'=>'text', 		'field'=>'col_1', 			'params'=>array() ),
+		'Table col 2'					=>	array( 'type'=>'text', 		'field'=>'col_2', 			'params'=>array() ),
+		'Table col 3'					=>	array( 'type'=>'text', 		'field'=>'col_3', 			'params'=>array() ),
+		'Table col 4'					=>	array( 'type'=>'text', 		'field'=>'col_4', 			'params'=>array() ),
+		'Table col 5'					=>	array( 'type'=>'text', 		'field'=>'col_5', 			'params'=>array() ),
+		'Table col 6'					=>	array( 'type'=>'text', 		'field'=>'col_6', 			'params'=>array() ),
+		'Table col 7'					=>	array( 'type'=>'text', 		'field'=>'col_7', 			'params'=>array() ),		
 		'Preview image'		=>	array( 'type'=>'image',		'field'=>'preview',			'params'=>array( 'path'=>RSF.'/split/files/annuities/' ) ),
 	);
 

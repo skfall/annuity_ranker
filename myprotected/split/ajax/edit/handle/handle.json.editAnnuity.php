@@ -22,6 +22,13 @@
 		'pos'	=> (int)$_POST['pos'],
 		'min_amount'	=> (int)$_POST['min_amount'],
 		'max_amount'	=> (int)$_POST['max_amount'],
+		'col_1'			=> $_POST['col_1'],
+		'col_2'			=> $_POST['col_2'],
+		'col_3'			=> $_POST['col_3'],
+		'col_4'			=> $_POST['col_4'],
+		'col_5'			=> $_POST['col_5'],
+		'col_6'			=> $_POST['col_6'],
+		'col_6'			=> $_POST['col_7'],
 		'modified'	=> $now
 	);
 

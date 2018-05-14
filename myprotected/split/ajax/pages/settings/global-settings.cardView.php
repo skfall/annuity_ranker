@@ -14,24 +14,21 @@
 	$rootPath = ROOT_PATH;
 	
 	$cardTmp = array(
-					 'Название сайта'		=>	array( 'type'=>'text', 		'field'=>'sitename', 		'params'=>array() ),
+					 'Site name'		=>	array( 'type'=>'text', 		'field'=>'sitename', 		'params'=>array() ),
 
 					 'Email'		=>	array( 'type'=>'text', 		'field'=>'email', 		'params'=>array() ),
-					 'Телефоны'		=>	array( 'type'=>'text', 		'field'=>'phone', 		'params'=>array() ),
-					 'Адрес'		=>	array( 'type'=>'text', 		'field'=>'address', 		'params'=>array() ),
+					 'Phones'		=>	array( 'type'=>'text', 		'field'=>'phone', 		'params'=>array() ),
+					 'Address'		=>	array( 'type'=>'text', 		'field'=>'address', 		'params'=>array() ),
 
-					 'MAP LAT'		=>	array( 'type'=>'text', 		'field'=>'lat', 		'params'=>array() ),
-					 'MAP LNG'		=>	array( 'type'=>'text', 		'field'=>'lng', 		'params'=>array() ),
-					 
-					 'Индексация сайта в поисковых системах'		=>	array( 'type'=>'text', 		'field'=>'site_index', 		'params'=>array( 'replace'=>array('0'=>'Нет', '1'=>'Да') ) ),
+					 'Site indexing in search engines'		=>	array( 'type'=>'text', 		'field'=>'site_index', 		'params'=>array( 'replace'=>array('0'=>'Нет', '1'=>'Да') ) ),
 					 
 					 'Copyright'		=>	array( 'type'=>'text', 		'field'=>'copyright', 		'params'=>array() ),
 					
-					 'Дата редактирования'	=>	array( 'type'=>'date', 		'field'=>'modified', 		'params'=>array() ),
+					 'Modified'	=>	array( 'type'=>'date', 		'field'=>'modified', 		'params'=>array() ),
 
 
-					 'JS код перед закрытием тега </head>'		=>	array( 'type'=>'text', 		'field'=>'top_script', 		'params'=>array() ),
-					 'JS код перед закрытием тега </body>'		=>	array( 'type'=>'text', 		'field'=>'bot_script', 		'params'=>array() ),
+					 'JS code before HEAD-close tag'		=>	array( 'type'=>'text', 		'field'=>'top_script', 		'params'=>array() ),
+					 'JS code before BODY-close tag'		=>	array( 'type'=>'text', 		'field'=>'bot_script', 		'params'=>array() ),
 					 );
 
 	$cardViewTableParams = array( 'cardItem'=>$cardItem, 'cardTmp'=>$cardTmp, 'rootPath'=>$rootPath, 'lpx'=>$lpx, 'headParams'=>$headParams, 'langs'=>$langs );
@@ -42,7 +39,7 @@
 	
 	$data['bodyContent'] .= "
 		<div class='ipad-20' id='order_conteinter'>
-			<h3>Глобальные настройки сайта (режим просмотра)</h3>";
+			<h3>Global site settings (view mode)</h3>";
 	
 	$data['bodyContent'] .= $cardViewTableStr;
 				

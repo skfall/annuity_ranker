@@ -15,29 +15,25 @@
 	$cardTmp = array(
 
 
-					 'Управление сайтом'	=>	array( 'type'=>'header'),
-					 'Название сайта'		=>	array( 'type'=>'input', 	'field'=>'sitename', 			'params'=>array( 'size'=>35, 'hold'=>'Название сайта') ),
+					 'Site management'	=>	array( 'type'=>'header'),
+					 'Site name'		=>	array( 'type'=>'input', 	'field'=>'sitename', 			'params'=>array( 'size'=>35, 'hold'=>'Site name') ),
 
-					 'Индексация'			=>	array( 'type'=>'block', 	'field'=>'site_index', 				'params'=>array( 'reverse'=>false ) ),
+					 'Indexing'			=>	array( 'type'=>'block', 	'field'=>'site_index', 				'params'=>array( 'reverse'=>false ) ),
 
 					 'clear-0'				=>	array( 'type'=>'clear' ),
 
-					 'Copyright'		=>	array( 'type'=>'input', 	'field'=>'copyright', 			'params'=>array( 'size'=>50, 'hold'=>'Copyright сайта') ),
+					 'Copyright'		=>	array( 'type'=>'input', 	'field'=>'copyright', 			'params'=>array( 'size'=>50, 'hold'=>'Copyright') ),
 
-					'Контактная информация' => array('type' =>  'header'),
+					'Contact information' => array('type' =>  'header'),
 					'Email'		=>	array( 'type'=>'input', 	'field'=>'email', 			'params'=>array( 'size'=>35, 'hold'=>'') ),
-					'Номера телефонов'		=>	array( 'type'=>'area', 	'field'=>'phone', 			'params'=>array( 'size'=>35, 'hold'=>'') ),
-					'Адрес'		=>	array( 'type'=>'area', 	'field'=>'address', 			'params'=>array( 'size'=>35, 'hold'=>'') ),
+					'Phone numbers'		=>	array( 'type'=>'area', 	'field'=>'phone', 			'params'=>array( 'size'=>35, 'hold'=>'') ),
+					'Address'		=>	array( 'type'=>'area', 	'field'=>'address', 			'params'=>array( 'size'=>35, 'hold'=>'') ),
 
 					'clear-1'				=>	array( 'type'=>'clear' ),
 
-					'Lat'					=>	array( 'type'=>'input', 		'field'=>'lat', 		'params'=>array( 'size'=>50, 'hold'=>'Lat' ) ),
-					'Lng'					=>	array( 'type'=>'input', 		'field'=>'lng', 		'params'=>array( 'size'=>50, 'hold'=>'Lng' ) ),
-
-
 					 'JavaScript code'	=>	array( 'type'=>'header'),
-					 'Перед закрытием тега HEAD'				=>	array( 'type'=>'area', 	'field'=>'top_script', 			'params'=>array( 'size'=>100, 'hold'=>'<script>some code...</script>', 'onchange'=>"" ) ),
-					 'Перед закрытием тега BODY'				=>	array( 'type'=>'area', 	'field'=>'bot_script', 			'params'=>array( 'size'=>100, 'hold'=>'<script>some code...</script>', 'onchange'=>"" ) )
+					 'Before HEAD-close tag'				=>	array( 'type'=>'area', 	'field'=>'top_script', 			'params'=>array( 'size'=>100, 'hold'=>'<script>some code...</script>', 'onchange'=>"" ) ),
+					 'Before BODY-close tag'				=>	array( 'type'=>'area', 	'field'=>'bot_script', 			'params'=>array( 'size'=>100, 'hold'=>'<script>some code...</script>', 'onchange'=>"" ) )
 
 					 );
 
@@ -49,7 +45,7 @@
 	
 	$data['bodyContent'] .= "
 		<div class='ipad-20' id='order_conteinter'>
-			<h3 class='new-line'>Глобальные настройки сайта (режим редактирования)</h3>";
+			<h3 class='new-line'>Global site settings (edit mode)</h3>";
 	
 	$data['bodyContent'] .= $cardEditFormStr;
 				

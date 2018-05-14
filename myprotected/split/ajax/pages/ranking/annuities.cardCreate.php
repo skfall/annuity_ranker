@@ -26,6 +26,16 @@
 		'Preview image'		=>	array( 'type'=>'image_mono','field'=>'preview', 		'params'=>array( 'path'=>RSF."/split/files/annuities/", 'appTable'=>$appTable, 'id'=>$item_id ) ),
 		'Background image'		=>	array( 'type'=>'image_mono','field'=>'background', 		'params'=>array( 'path'=>RSF."/split/files/annuities/", 'appTable'=>$appTable, 'id'=>$item_id ) ),
 		'Is video background?'			=>	array( 'type'=>'block', 	'field'=>'is_video_bg', 'params'=>array( ) ),
+
+		'Table headers'				=>	array( 'type'=>'header' ),
+		'Col 1'				=>	array( 'type'=>'input', 		'field'=>'col_1', 		'params'=>array( 'size'=>40, 'hold'=>'Col 1' ) ),
+		'Col 2'				=>	array( 'type'=>'input', 		'field'=>'col_2', 		'params'=>array( 'size'=>40, 'hold'=>'Col 2' ) ),
+		'Col 3'				=>	array( 'type'=>'input', 		'field'=>'col_3', 		'params'=>array( 'size'=>40, 'hold'=>'Col 3' ) ),
+		'Col 4'				=>	array( 'type'=>'input', 		'field'=>'col_4', 		'params'=>array( 'size'=>40, 'hold'=>'Col 4' ) ),
+		'Col 5'				=>	array( 'type'=>'input', 		'field'=>'col_5', 		'params'=>array( 'size'=>40, 'hold'=>'Col 5' ) ),
+		'Col 6'				=>	array( 'type'=>'input', 		'field'=>'col_6', 		'params'=>array( 'size'=>40, 'hold'=>'Col 6' ) ),
+		'Col 7'				=>	array( 'type'=>'input', 		'field'=>'col_7', 		'params'=>array( 'size'=>40, 'hold'=>'Col 7' ) ),
+		
 	);
 
 	$cardEditFormParams = array( 'cardItem'=>$cardItem, 'cardTmp'=>$cardTmp, 'rootPath'=>$rootPath, 'actionName'=>"createAnnuity", 'ajaxFolder'=>'create', 'appTable'=>$appTable );

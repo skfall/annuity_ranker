@@ -193,8 +193,11 @@ class BasicHelp extends BasicPrinter
 		            	    <button class='rzh r-z-h-s-save nonactive first-actives' alt='r-z-h-s-save' type='button' title='$nonactiveMsg'
 		            	    		id='activate-checked-button' onclick=\"activate_items('$appTable');\"></button>
             			";
-						break;
+						break;		
 					}
+					case 'static_texts':
+						$result .= "";
+						break;
 					// case 'events_land':{
 					// 	$result .= "
 					// 	    <button class='rzh r-z-h-s-create' alt='r-z-h-s-create' type='button' data-remodal-target='selectEventType' title='Создать'>Создать &nbsp;&nbsp;&nbsp;<span>+</span></button>

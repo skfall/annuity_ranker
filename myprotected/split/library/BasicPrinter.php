@@ -67,6 +67,12 @@ class BasicPrinter
 		{
 			$disabledTxt = ($inputDisabled ? " disabled " : "");
 			$readonlyTxt = ($inputReadonly ? " readonly " : "");
+			if ($inputReadonly) {
+				$readonly_style = 'color: #333;';
+			}else{
+				$readonly_style = '';
+			}
+			$readonly_style = 'color: #333;';
 			
 			$usageValue = $testClean = htmlentities($value, ENT_QUOTES | ENT_HTML401);
 			return "
@@ -74,7 +80,7 @@ class BasicPrinter
 			<div class='zen-form-item'>
 				<label for='save-$name'>$title</label><br>
 				<div class='zif-wrap'>
-                	<input	id='save-$name' class='my-field' type='$input_type' placeholder='$hold' onchange=\"$onchange\" onkeyup=\"$onchange\" 
+                	<input style='$readonly_style'	id='save-$name' class='my-field' type='$input_type' placeholder='$hold' onchange=\"$onchange\" onkeyup=\"$onchange\" 
                     		value=\"$usageValue\" name='$name' size='$size' $disabledTxt $readonlyTxt/>
                 </div>
             </div>
