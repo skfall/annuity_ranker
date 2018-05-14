@@ -17,9 +17,12 @@
 		'clear-1'				=>	array( 'type'=>'clear' ),
 		'Publish'			=>	array( 'type'=>'block', 	'field'=>'block', 			'params'=>array( 'reverse'=>true ) ),
 		'Display order'				=>	array( 'type'=>'number', 		'field'=>'pos', 		'params'=>array( 'size'=>100, 'hold'=>'Display order' ) ),
+		'clear-2'				=>	array( 'type'=>'clear' ),
+		'Min amount'				=>	array( 'type'=>'number', 		'field'=>'min_amount', 		'params'=>array( 'size'=>100, 'hold'=>'Min amount' ) ),
+		'Max amount'				=>	array( 'type'=>'number', 		'field'=>'max_amount', 		'params'=>array( 'size'=>100, 'hold'=>'Max amount' ) ),
 		
 		//'Контент'				=>	array( 'type'=>'summernote', 		'field'=>'section_content', 		'params'=>array( 'size'=>100, 'hold'=>'Подзаголовок' ) ),
-		'clear-2'				=>	array( 'type'=>'clear' ),
+		'clear-3'				=>	array( 'type'=>'clear' ),
 		'Preview image'		=>	array( 'type'=>'image_mono','field'=>'preview', 		'params'=>array( 'path'=>RSF."/split/files/annuities/", 'appTable'=>$appTable, 'id'=>$item_id ) ),
 		'Background image'		=>	array( 'type'=>'image_mono','field'=>'background', 		'params'=>array( 'path'=>RSF."/split/files/annuities/", 'appTable'=>$appTable, 'id'=>$item_id ) ),
 		'Is video background?'			=>	array( 'type'=>'block', 	'field'=>'is_video_bg', 'params'=>array( ) ),

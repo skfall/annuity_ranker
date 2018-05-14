@@ -2,8 +2,9 @@
 	$headParams = array( 'parent'=>$parent, 'alias'=>$alias, 'id'=>$id, 'appTable'=>$appTable );
 	$data['headContent'] = $zh->getLandingHeader($headParams);
 
-	$itemsList = $zh->getQuestions($params);
-	$totalItems = $zh->getQuestions($params,true);
+	$itemsList = $zh->getAnswers($params);
+	$totalItems = $zh->getAnswers($params,true);
+
 	
 	$on_page = (isset($_COOKIE['global_on_page']) ? $_COOKIE['global_on_page'] : GLOBAL_ON_PAGE);
 	$pages = ceil($totalItems/$on_page);
@@ -21,12 +22,12 @@
 	if(isset($_COOKIE['filter-2']) && $_COOKIE['filter-2']) $data['filter']['f2'] = 1;
 	if(isset($_COOKIE['filter-3']) && $_COOKIE['filter-3']) $data['filter']['f3'] = 1;
 
-	$filter1_options = array( 'By ID'=>'M.id', 'By Question'=>'M.question' );
+	$filter1_options = array( 'By ID'=>'M.id', 'By Answer'=>'M.answer', 'By Question'=>'Q.question', 'By Annuity'=>'A.name' );
 	$filter2_options = array( 
-								'Publish' => array( 'fieldName'=>'M.block', 'params' => array('Yes'=>'0', 'No'=>'1') ) 
+								'Publish' => array( 'fieldName'=>'M.block', 'params' => array('Yes'=>'0', 'No'=>'1') )
 							);
 	$filter3_options = array( 
-							'sort' => array( 'ID'=>'id'),
+							'sort' => array( 'ID'=>'id', 'By Answer'=>'answer', 'By Question'=>'question', 'By Annuity'=>'annuity_name',),
 							'order' => array( 'По возрастанию'=>'', 'По убыванию'=>' DESC' ) 
 							);
 	$filterFormParams = array(	'params'=>$params, 
@@ -41,6 +42,7 @@
 
 	$tableColumns = array(
 						  'Checkbox'			=>	array('type'=>'checkbox',	'field'=>''),
+						  'Answer'				=>	array('type'=>'text',		'field'=>'answer'),
 						  'Question'				=>	array('type'=>'text',		'field'=>'question'),
 						  'Annuity name'				=>	array('type'=>'text',		'field'=>'annuity_name'),
 						  'Display order'				=>	array('type'=>'text',		'field'=>'pos'),

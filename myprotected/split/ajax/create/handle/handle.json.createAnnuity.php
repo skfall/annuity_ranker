@@ -16,6 +16,8 @@
 		'block'			=> $_POST['block'][0],
 		'is_video_bg'	=> $_POST['is_video_bg'][0],
 		'pos'	=> (int)$_POST['pos'],
+		'min_amount'	=> (int)$_POST['min_amount'],
+		'max_amount'	=> (int)$_POST['max_amount'],
 		'modified'	=> $now,
 		'created' 	=> $now
 	);

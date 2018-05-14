@@ -136,7 +136,16 @@ class Ranker extends BasicHelp {
 			$q = "SELECT M.id, M.name FROM `osc_companies` AS M";
 			return $this->rs($q);
 		}
+		
+		public function getQuestionsList(){
+			$q = "
+				SELECT M.id, 
+				(SELECT `name` FROM `osc_annuities` WHERE `id` = M.annuity_id LIMIT 1) as annuity_name, 
+				CONCAT(IFNULL((SELECT `name` FROM `osc_annuities` WHERE `id` = M.annuity_id LIMIT 1), 'NO ANNUITY'), ' | ', M.question) as question 
+				FROM `osc_questions` AS M ORDER BY annuity_name";
 
+			return $this->rs($q);
+		}
 		
 
 		public function getCompanyRates($company_id){
@@ -252,6 +261,58 @@ class Ranker extends BasicHelp {
 			}else{
 				$query = "SELECT COUNT(*)  
 						FROM `osc_questions` as M  
+						WHERE 1 $filter_and 
+						LIMIT 100000";	
+				$result = $this->rs($query);
+				return $result[0]['COUNT(*)'];
+			}
+		}
+
+		public function getAnswer($id) {
+			$query = "
+				SELECT M.*, Q.pos as question_pos, Q.question, Q.block as question_block, A.name as annuity_name 
+				FROM `osc_answers` as M 
+				LEFT JOIN `osc_questions` AS Q ON Q.id = M.question_id  
+				LEFT JOIN `osc_annuities` AS A ON A.id = Q.annuity_id   
+				WHERE M.id='$id' 
+				LIMIT 1
+			";
+			$resultMassive = $this->rs($query);
+			$result = ($resultMassive ? $resultMassive[0] : array());
+			return $result;
+		}
+
+		public function getAnswers($params=array(),$typeCount=false) {
+			$filter_and = "";
+			if(isset($params['filtr']['massive'])) {
+				foreach($params['filtr']['massive'] as $f_name => $f_value) {
+					if($f_value < 0) continue;
+					$filter_and .= " AND ($f_name='$f_value') ";
+				}
+			}
+			if(isset($params['filtr']['filtr_search_key']) && isset($params['filtr']['filtr_search_field']) && trim($params['filtr']['filtr_search_key']) != "") {
+				$search_field = $params['filtr']['filtr_search_field'];
+				$search_key = $params['filtr']['filtr_search_key'];
+				$filter_and .= " AND ($search_field LIKE '%$search_key%') ";
+			}
+			$sort_field		= (isset($params['filtr']['sort_filtr']) ? $params['filtr']['sort_filtr'] : "M.id");
+			$sort_vector	= (isset($params['filtr']['order_filtr']) ? $params['filtr']['order_filtr'] : "");
+			$limit = (isset($_COOKIE['global_on_page']) ? (int)$_COOKIE['global_on_page'] : GLOBAL_ON_PAGE);
+			if($limit <= 0) $limit = GLOBAL_ON_PAGE;
+			$start = (isset($params['start']) ? ($params['start']-1)*$limit : 0);
+			if(!$typeCount) {
+				$query = " 
+						SELECT M.*, Q.pos as question_pos, Q.question, Q.block as question_block, A.name as annuity_name 
+						FROM `osc_answers` as M 
+						LEFT JOIN `osc_questions` AS Q ON Q.id = M.question_id  
+						LEFT JOIN `osc_annuities` AS A ON A.id = Q.annuity_id
+						WHERE 1 $filter_and 
+						ORDER BY $sort_field $sort_vector DESC 
+						LIMIT $start,$limit";
+				return $this->rs($query);
+			}else{
+				$query = "SELECT COUNT(*)  
+						FROM `osc_answers` as M  
 						WHERE 1 $filter_and 
 						LIMIT 100000";	
 				$result = $this->rs($query);

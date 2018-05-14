@@ -7,28 +7,20 @@
 	
 	// Start body content
 	
-	$cardItem = $zh->getAnnuity($item_id);
+	$cardItem = $zh->getAnswer($item_id);
 
 	$rootPath = ROOT_PATH;
-	
+
 	$cardTmp = array(
 		'ID'						=>	array( 'type'=>'text', 		'field'=>'id', 				'params'=>array() ),
-		'Name'					=>	array( 'type'=>'text', 		'field'=>'name', 		'params'=>array() ),
-		'Alias'					=>	array( 'type'=>'text', 		'field'=>'alias', 			'params'=>array() ),
-		'Min amount'					=>	array( 'type'=>'text', 		'field'=>'min_amount', 			'params'=>array() ),
-		'Max amount'					=>	array( 'type'=>'text', 		'field'=>'max_amount', 			'params'=>array() ),
+		'Answer'					=>	array( 'type'=>'text', 		'field'=>'answer', 		'params'=>array() ),
+		'Question'					=>	array( 'type'=>'text', 		'field'=>'question', 			'params'=>array() ),		
+		'Annuity'					=>	array( 'type'=>'text', 		'field'=>'annuity_name', 			'params'=>array() ),
 		'Published'			=>	array( 'type'=>'text', 		'field'=>'block', 			'params'=>array( 'replace'=>array('0'=>'Yes', '1'=>'No') ) ),
 		'Display order'			=>	array( 'type'=>'text', 		'field'=>'pos'),
-		'Modified'		=>	array( 'type'=>'date', 		'field'=>'modified', 		'params'=>array() ),
 		'Created'		=>	array( 'type'=>'date', 		'field'=>'created', 		'params'=>array() ),
-		'Preview image'		=>	array( 'type'=>'image',		'field'=>'preview',			'params'=>array( 'path'=>RSF.'/split/files/annuities/' ) ),
+		'Modified'		=>	array( 'type'=>'date', 		'field'=>'modified', 		'params'=>array() ),
 	);
-
-	if($cardItem['is_video_bg']){
-		$cardTmp['Background image'] = array( 'type'=>'video',		'field'=>'background',			'params'=>array( 'path'=>RSF.'/split/files/annuities/' ) );
-	}else{
-		$cardTmp['Background image'] = array( 'type'=>'image',		'field'=>'background',			'params'=>array( 'path'=>RSF.'/split/files/annuities/' ) );
-	}
 
 
 
