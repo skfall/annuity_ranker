@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Час створення: Трв 14 2018 р., 21:00
+-- Час створення: Трв 15 2018 р., 16:48
 -- Версія сервера: 5.7.19
 -- Версія PHP: 7.1.9
 
@@ -165,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `osc_annuities` (
 --
 
 INSERT INTO `osc_annuities` (`id`, `name`, `alias`, `pos`, `preview`, `background`, `age`, `special_age`, `special_active`, `col_1`, `col_2`, `col_3`, `col_4`, `col_5`, `col_6`, `col_7`, `is_video_bg`, `block`, `created`, `modified`) VALUES
-(1, 'Fixed', 'fixed', 1, NULL, NULL, 20, 20, 1, '', '', '', '', '', '', NULL, 0, 0, '2018-05-14 23:51:48', '2018-05-14 23:51:48');
+(1, 'Fixed', 'fixed', 1, 'an_prev20180515192441742.svg', NULL, 20, 20, 1, '', '', '', '', '', '', NULL, 0, 0, '2018-05-14 23:51:48', '2018-05-15 19:24:41');
 
 -- --------------------------------------------------------
 
@@ -183,7 +183,15 @@ CREATE TABLE IF NOT EXISTS `osc_answers` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Дамп даних таблиці `osc_answers`
+--
+
+INSERT INTO `osc_answers` (`id`, `answer`, `question_id`, `pos`, `block`, `created`, `modified`) VALUES
+(1, 'Answer 1', 1, 0, 0, '2018-05-15 19:43:59', '2018-05-15 19:43:59'),
+(2, 'Answer 2', 1, 0, 0, '2018-05-15 19:44:07', '2018-05-15 19:44:07');
 
 -- --------------------------------------------------------
 
@@ -491,7 +499,7 @@ CREATE TABLE IF NOT EXISTS `osc_logs` (
   `userid` int(11) NOT NULL DEFAULT '0',
   `ip` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='Project logs';
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='Project logs';
 
 --
 -- Дамп даних таблиці `osc_logs`
@@ -516,7 +524,8 @@ INSERT INTO `osc_logs` (`id`, `date`, `type`, `description`, `userid`, `ip`) VAL
 (16, '2018-04-26 23:17:59', 1, 'Admin login: Success login.', 1, '::1'),
 (17, '2018-05-12 16:48:17', 1, 'Admin login: Success login.', 1, '::1'),
 (18, '2018-05-13 15:52:41', 1, 'Admin login: Success login.', 1, '::1'),
-(19, '2018-05-14 14:59:59', 1, 'Admin login: Success login.', 1, '::1');
+(19, '2018-05-14 14:59:59', 1, 'Admin login: Success login.', 1, '::1'),
+(20, '2018-05-15 16:23:06', 1, 'Admin login: Success login.', 1, '::1');
 
 -- --------------------------------------------------------
 
@@ -607,14 +616,27 @@ CREATE TABLE IF NOT EXISTS `osc_meta` (
   `meta_keys` varchar(255) DEFAULT NULL,
   `meta_desc` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп даних таблиці `osc_meta`
 --
 
 INSERT INTO `osc_meta` (`id`, `alias`, `meta_title`, `meta_keys`, `meta_desc`) VALUES
-(1, 'home', 'Home', NULL, NULL);
+(2, 'home', 'Ranker', '', ''),
+(3, 'child-home', '', '', ''),
+(4, 'test', '', '', ''),
+(5, 'test-2', '', '', ''),
+(6, 'test-3', '', '', ''),
+(7, 'test-4', '', '', ''),
+(8, 'test-5', '', '', ''),
+(9, 'test-6', '', '', ''),
+(10, 'test-7', '', '', ''),
+(11, 'test-8', '', '', ''),
+(12, 'test-9', '', '', ''),
+(13, 'test-10', '', '', ''),
+(14, 'test-11', '', '', ''),
+(15, 'testttt', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -628,23 +650,28 @@ CREATE TABLE IF NOT EXISTS `osc_nav` (
   `type` int(11) NOT NULL DEFAULT '0',
   `parent` int(11) NOT NULL DEFAULT '0',
   `alias` varchar(255) DEFAULT NULL,
+  `content` text,
   `pos` int(11) NOT NULL DEFAULT '0',
   `block` int(11) NOT NULL DEFAULT '0',
+  `display_in_header` tinyint(4) NOT NULL DEFAULT '1',
+  `display_in_footer` tinyint(4) NOT NULL DEFAULT '0',
   `target` int(11) NOT NULL DEFAULT '0',
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Дамп даних таблиці `osc_nav`
 --
 
-INSERT INTO `osc_nav` (`id`, `type`, `parent`, `alias`, `pos`, `block`, `target`, `created`, `modified`, `name`) VALUES
-(1, 0, 0, 'home', 0, 0, 0, '2018-03-31 00:00:00', '2018-04-09 15:12:07', 'Home'),
-(5, 0, 0, 'contacts', 4, 0, 0, '2018-03-31 00:00:00', '2018-04-09 15:12:23', 'Contacts'),
-(6, 0, 0, 'invest-relations', 3, 0, 0, '2018-03-31 00:00:00', '2018-03-31 00:00:00', 'Invest relations');
+INSERT INTO `osc_nav` (`id`, `type`, `parent`, `alias`, `content`, `pos`, `block`, `display_in_header`, `display_in_footer`, `target`, `created`, `modified`, `name`) VALUES
+(8, 1, 0, 'home', NULL, 0, 0, 1, 0, 0, '2018-05-15 16:59:29', '2018-05-15 17:35:07', 'Home'),
+(18, 0, 8, 'test-9', '', 0, 0, 1, 1, 0, '2018-05-15 18:31:25', '2018-05-15 19:12:40', 'test 9'),
+(19, 0, 8, 'test-10', '', 0, 0, 1, 1, 0, '2018-05-15 18:31:29', '2018-05-15 19:12:47', 'test 10'),
+(20, 0, 8, 'test-11', '', 0, 0, 1, 1, 0, '2018-05-15 18:31:32', '2018-05-15 19:12:57', 'test 11'),
+(21, 0, 0, 'testttt', '', 0, 0, 1, 1, 0, '2018-05-15 19:09:00', '2018-05-15 19:15:22', 'testttt');
 
 -- --------------------------------------------------------
 
@@ -662,7 +689,14 @@ CREATE TABLE IF NOT EXISTS `osc_questions` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Дамп даних таблиці `osc_questions`
+--
+
+INSERT INTO `osc_questions` (`id`, `question`, `annuity_id`, `pos`, `block`, `created`, `modified`) VALUES
+(1, 'Question', 1, 0, 0, '2018-05-15 19:43:53', '2018-05-15 19:43:53');
 
 -- --------------------------------------------------------
 
