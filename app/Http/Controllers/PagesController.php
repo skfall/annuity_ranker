@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Config;
 
 use App\Models\Annuity;
+use App\Models\Question;
 
 
 class PagesController extends AppController {
@@ -19,6 +20,7 @@ class PagesController extends AppController {
         $annuities = Annuity::where('block', 0)->orderBy('id')->get();
 
         $view_model['annuities'] = $annuities;
+        $view_model['questions'] = Question::where([['block', 0]])->orderBy('pos')->get();
 
     	return view('pages.home', $view_model);
     }

@@ -31,7 +31,7 @@
                     <h2 class="title-big animate">We help you find and compare annuity rates</h2>
                     <div class="choices animate">
                         @foreach ($annuities as $key => $item)
-                            <a href="javascript:void(0)" class="choice js_btn-choice js_btn-step" data-choice="1" data-step="1-1">
+                            <a href="javascript:void(0)" class="choice js_btn-choice js_btn-step" data-choice="1" data-step="{{$item->id}}-1">
                                 <div class="wr">
                                     <div class="ct">
                                         <img src="{{ UPLOADS.'annuities/'.$item->preview }}" alt="" class="img">
@@ -63,36 +63,41 @@
             </div>
         </div>
 
-        <div class="sct-block sct-block--step js_step" data-step="1-1">
-            <div class="pwr">
-                <div class="pct">
-                    <div class="step">
-                        <div class="main">
-                            <h4 class="title-big">What type of annuity?</h4>
-                            <div class="cols cols-3">
-                                <div class="col">   
-                                    <a href="javascript:void(0)" class="btn btn-step-value js_btn-step" data-step="1-2"><span>Purchase</span></a>
-                                </div>
-                                <div class="col">   
-                                    <a href="javascript:void(0)" class="btn btn-step-value"><span>Refinance</span></a>
-                                </div>
-                                <div class="col">   
-                                    <a href="javascript:void(0)" class="btn btn-step-value"><span>Home equity</span></a>
+        @if ($questions)
+            @foreach ($questions as $key => $question)
+                @if (count($question->answers()->get()) > 0)
+                    <?php $answers = $question->answers; ?>
+                    <div class="sct-block sct-block--step js_step" data-step="{{$question->annuity_id}}-1">
+                        <div class="pwr">
+                            <div class="pct">
+                                <div class="step">
+                                    <div class="main">
+                                        <h4 class="title-big">{{ $question->question }}</h4>
+                                        <div class="cols cols-3">
+                                            @foreach ($answers as $answer)
+                                                <div class="col">   
+                                                    <a href="javascript:void(0)" class="btn btn-step-value js_btn-step" data-step="1-2"><span>{{ $answer->answer }}</span></a>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <footer class="footer">
+                                        <button class="btn btn-back icon icon-arrow-left js_btn-back" data-step="0">Back</button>
+                                        <div class="choice-group">
+                                            <img src="{{ UPLOADS.'annuities/'.$question->annuity()->first()->preview }}" alt="" class="img">
+                                            <span class="name">{{ $question->annuity()->first()->name }}</span>
+                                        </div>
+                                    </footer>
                                 </div>
                             </div>
                         </div>
-                        <footer class="footer">
-                            <button class="btn btn-back icon icon-arrow-left js_btn-back" data-step="0">Back</button>
-                            <div class="choice-group">
-                                <img src="{{ IMG.'icons-general/icon1.svg' }}" alt="" class="img">
-                                <span class="name">Variable Annuities</span>
-                            </div>
-                        </footer>
                     </div>
-                </div>
-            </div>
-        </div>
+                @endif
+            @endforeach
+        @endif
 
+        
+{{-- 
         <div class="sct-block sct-block--step js_step" data-step="1-2">
             <div class="pwr">
                 <div class="pct">
@@ -154,7 +159,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
     </section>
 @endsection
