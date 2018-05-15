@@ -202,10 +202,11 @@ class Core extends Helper {
 			$id = (int)$annuity_id;
 		}
 
+		
 		$annuity = Models\Annuity::find($id);
 		if ($annuity) {
 			$questions = $annuity->questions()->get();
-			if ($questions) {
+			if (count($questions) > 0) {
 				$html = "";
 				ob_start();
 				foreach ($questions as $qi => $question) { ?>
@@ -225,14 +226,15 @@ class Core extends Helper {
 				$response['html'] = $html;
 
 			}else{
-				$response['reason'] = "no_questions";
-				$response['message'] = "Questions not found";
+				$response['status'] = "success";
+				$response['reason'] = $annuity->name;
+				$response['trigger'] = "get_form";
 			}
 		}else{
 			$response['reason'] = "no_annuity";
 			$response['message'] = "Annuity not found";
 		}
-
+		
 		return $response;
 	}
 

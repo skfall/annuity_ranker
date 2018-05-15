@@ -8,16 +8,27 @@
 	$appTable = $_POST['appTable'];
 	
 	$item_id = $_POST['item_id'];
+
+	$now = date("Y-m-d H:i:s", time());
+
 	$lpx = $_POST['lpx'];
 	$lang_prefix = ($lpx ? $lpx."_" : ""); // empty = iw
-	$query = "SELECT `alias` FROM [pre]nav WHERE `id`='$item_id' LIMIT 1";
-	$menu = $ah->dbh->q($query,1);
+	$q = "SELECT * FROM [pre]nav WHERE `id`='$item_id' LIMIT 1";
+	$nav_item = $ah->rs($q, 1);
 	$cardUpd = array(
 		'name'		=> $_POST['name'],
 		'block'			=> $_POST['block'][0],
-		'modified'	=> date("Y-m-d H:i:s", time())
+		'modified'	=> $now,
+	
+		'pos'		=> (int)$_POST['pos'],
+
 	);
-		
+
+	if ($nav_item['type'] != 1) {
+		$cardUpd['alias'] = $_POST['alias']; 
+		$cardUpd['parent'] = (int)$_POST['parent']; 
+	}
+
 	$meta_title = $_POST['meta_title'];		
 	$meta_keys = $_POST['meta_keys'];		
 	$meta_desc = $_POST['meta_desc'];		

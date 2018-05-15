@@ -1,7 +1,7 @@
 <?php 
 	// Start header content
 
-	$headParams = array( 'parent'=>$parent, 'alias'=>$alias, 'id'=>$id, 'appTable'=>$appTable, 'type'=>'menuLandingHeader' ); // 
+	$headParams = array( 'parent'=>$parent, 'alias'=>$alias, 'id'=>$id, 'appTable'=>$appTable); // 
 	
 	$data['headContent'] = $zh->getLandingHeader($headParams);
 	
@@ -75,6 +75,7 @@
 						  'Checkbox'			=>	array('type'=>'checkbox',	'field'=>''),
 						  'Nav item'			=>	array('type'=>'text',		'field'=>'name'),
 						  'Alias'				=>	array('type'=>'text',		'field'=>'alias'),
+						  'Parent'				=>	array('type'=>'text',		'field'=>'parent_name'),						  
 						  'Display order'				=>	array('type'=>'text',		'field'=>'pos'),
 						  'Publishing'			=>	array('type'=>'block',		'field'=>'block'),
 						  'View'			=>	array('type'=>'cardView',	'field'=>'View', 'lpx'=>true),

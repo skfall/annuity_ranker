@@ -921,20 +921,29 @@ class BasicHelp extends BasicPrinter
 			{
 				$icnt++;
 				$iid = $item['id'];
-
+				
 				$fixed_type = (isset($item['fixed']) && $item['fixed'] ? $item['fixed'] : 0);
 				$iclass = ($icnt%2==1 ? "trcolor" : "");
-		
+				
 				$result .= "
-						<tr class='$iclass' id='$iid'>
-						";
+				<tr class='$iclass' id='$iid'>
+				";
+				
 				foreach($params['tableColumns'] as $columnHeader => $columnParams)
 				{
 					switch($columnParams['type'])
 					{
 						case 'firstColumn':
 						{
-							$result .= "<td class='check-col'>&nbsp;</td>";
+							
+							$nav_type = $item['type'];
+							$checkClass = (
+								$params['headParams']['appTable']=='galleries' && ($iid==13 || $iid==15 || $iid==16) 
+								? "empty-col" 
+								: "check-col"
+								);
+
+							$result .= "<td class='$checkClass'>&nbsp;</td>";
 							break;
 						}
 						case 'update_cat_pos':
@@ -944,6 +953,19 @@ class BasicHelp extends BasicPrinter
 						}
 						case 'checkbox':
 						{
+							$nav_type = $item['type'];
+							$checkClass = (
+								$params['headParams']['appTable']=='nav' && ($nav_type==1) 
+								? "empty-col" 
+								: "check-col"
+								);
+
+								if($checkClass=='empty-col'){
+									$result .= "
+											<td class='empty-col'></td>
+										   ";
+										   continue;
+								}
 							if ($columnParams['fixed_cb_id'] == 1) {
 								$fixed_id = $columnParams['fixed_cb_id'];
 							}else{
@@ -957,7 +979,7 @@ class BasicHelp extends BasicPrinter
 							   ";
 							}else{	
 								$result .= "
-									<td class='check-col'>
+									<td class='$checkClass'>
 		        	    				<input	type='checkbox' 
 		        	    	    			name='checker$iid' 
 		        	    	        	    class='table-checkbox' 

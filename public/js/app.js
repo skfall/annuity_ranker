@@ -106,7 +106,11 @@ var network = {
 		if (annuity_id > 0 || annuity_id == "default") {
 			network.post(RS + "ajax/", { action: "get_questions", annuity_id: annuity_id }, function(response){
 				if (response.status == "success") {
-					$('.questions').html(response.html);
+					if (response.trigger == "get_form") {
+						network.sendAnswer(null, null, annuity_id)
+					}else{
+						$('.questions').html(response.html);
+					}
 					app.log('<li>Annuity selected: ' + response.reason + '</li>');
 				}else{
 					app.log('<li>' + response.message + '</li>');
@@ -115,7 +119,11 @@ var network = {
 		}
 	},
 	sendAnswer: function(question_id, answer_id, annuity_id){
-		app.log('<li>Answer selected: Question id:' + question_id + ', Answer id: ' + answer_id + ' </li>');
+		if (question_id && answer_id) {
+			app.log('<li>Answer selected: Question id:' + question_id + ', Answer id: ' + answer_id + ' </li>');
+		}else{
+			app.log('<li>No questions</li>');
+		}
 		network.getAnnuityForm(annuity_id);
 	},
 	getAnnuityForm: function(annuity_id){

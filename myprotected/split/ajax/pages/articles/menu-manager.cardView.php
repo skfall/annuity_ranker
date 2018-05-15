@@ -15,6 +15,7 @@
 					 'ID'						=>	array( 'type'=>'text', 		'field'=>'id', 				'params'=>array() ),
 					 'Name '.$lpx			=>	array( 'type'=>'text', 		'field'=>$pref.'name', 			'params'=>array() ),
 					 'Alias'					=>	array( 'type'=>'text', 		'field'=>'alias', 			'params'=>array() ),
+					 'Parent'					=>	array( 'type'=>'text', 		'field'=>'parent_name', 			'params'=>array() ),
 					 
 					 'Display position'					=>	array( 'type'=>'text', 		'field'=>'pos', 			'params'=>array() ),
 					
