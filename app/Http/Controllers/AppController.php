@@ -56,7 +56,7 @@ class AppController extends BaseController {
         define('JS', RS.'public/js/');
         define('CSS', RS.'public/css/');
         define('IMG', RS.'public/img/');
-        define('UPLOAD', RS.'split/files/');
+        define('UPLOADS', RS.'split/files/');
         // test
 
         $lang_alias = Config::get('app.routeLang');
@@ -102,6 +102,7 @@ class AppController extends BaseController {
         }
 
         // Set view model
+
     	$viewmodel = array(
     		'config' => $this->config,
     		'nav' => $this->nav,

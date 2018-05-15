@@ -26,12 +26,15 @@
 	   
 			'clear-2'				=>	array( 'type'=>'clear' ),
 	
-		'Bind nav item to another'			=>	array( 'type'=>'select', 	'field'=>'parent', 			'params'=>array( 'list'=>$parents,
+			'Bind nav item to another'			=>	array( 'type'=>'select', 	'field'=>'parent', 			'params'=>array( 'list'=>$parents,
 																											'first'=>array( 'name'=>'Not selected', 'id'=>0 ), 
 																											 'fieldValue'=>'id', 
 																											'fieldTitle'=>'name',
 																											'currValue'=>$cardItem['parent'], 
-																											) ));
+																											) ),
+			'clear-99'				=>	array( 'type'=>'clear' ),
+			'Content'				=>	array( 'type'=>'summernote', 	'field'=>'content', 		'params'=>array( 'size'=>25, 'hold'=>'Page content' ) ),
+		);
 		if($cardItem['type'] != 1){
 			$cardTmp = array_merge($cardTmp, $part2);
 		}
@@ -45,6 +48,8 @@
 		'Display order'				=>	array( 'type'=>'number', 	'field'=>'pos', 		'params'=>array( 'size'=>25, 'hold'=>'Display order' ) ),
 		
 		'Publish'			=>	array( 'type'=>'block', 	'field'=>'block', 			'params'=>array( 'reverse'=>true ) ),
+		'Display in header'			=>	array( 'type'=>'block', 	'field'=>'display_in_header', 			'params'=>array( ) ),
+		'Display in footer'			=>	array( 'type'=>'block', 	'field'=>'display_in_footer', 			'params'=>array( ) ),
 		
 		'clear-4'				=>	array( 'type'=>'clear' ),
 		'Meta data'	=>	array( 'type'=>'header'),

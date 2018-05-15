@@ -20,6 +20,9 @@
 					 'Display position'					=>	array( 'type'=>'text', 		'field'=>'pos', 			'params'=>array() ),
 					
 					 'Publishing'				=>	array( 'type'=>'text', 		'field'=>'block', 			'params'=>array( 'replace'=>array('0'=>'Да', '1'=>'Нет') ) ),
+					 'Display in header'				=>	array( 'type'=>'text', 		'field'=>'display_in_header', 			'params'=>array( 'replace'=>array('1'=>'Да', '0'=>'Нет') ) ),
+					 'Display in footer'				=>	array( 'type'=>'text', 		'field'=>'display_in_footer', 			'params'=>array( 'replace'=>array('1'=>'Да', '0'=>'Нет') ) ),
+					 
 					 'Created'			=>	array( 'type'=>'date', 		'field'=>'created', 		'params'=>array() ),
 					 'Modified'		=>	array( 'type'=>'date', 		'field'=>'modified', 		'params'=>array() ),
 					 'Meta-title'					=>	array( 'type'=>'text', 		'field'=>'meta_title', 			'params'=>array() ),

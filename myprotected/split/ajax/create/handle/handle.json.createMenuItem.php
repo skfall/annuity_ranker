@@ -14,9 +14,12 @@
 	$cardUpd = array(
 		'name'			=> $_POST['name'],
 		'alias'			=> $_POST['alias'],
-		'parent'			=> $_POST['parent'],
+		'parent'			=> (int)$_POST['parent'],
+		'content'			=> $_POST['content'],
 		'pos'		=> (int)$_POST['pos'],
 		'block'			=> $_POST['block'][0],
+		'display_in_header'			=> $_POST['display_in_header'][0],
+		'display_in_footer'			=> $_POST['display_in_footer'][0],
 		'created'	=> $now,
 		'modified'	=> $now
 	);

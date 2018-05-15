@@ -19,14 +19,16 @@
 		'name'		=> $_POST['name'],
 		'block'			=> $_POST['block'][0],
 		'modified'	=> $now,
-	
 		'pos'		=> (int)$_POST['pos'],
+		'display_in_header'			=> $_POST['display_in_header'][0],
+		'display_in_footer'			=> $_POST['display_in_footer'][0],
 
 	);
 
 	if ($nav_item['type'] != 1) {
 		$cardUpd['alias'] = $_POST['alias']; 
 		$cardUpd['parent'] = (int)$_POST['parent']; 
+		$cardUpd['content'] = $_POST['content'];
 	}
 
 	$meta_title = $_POST['meta_title'];		
@@ -55,8 +57,8 @@
 				$ah->rs($query);
 
 				$_alias = $cardUpd['alias'];
-				$q = "UPDATE `osc_meta` SET `meta_title` = '$meta_title, `meta_keys` = '$meta_keys, `meta_desc` = '$meta_desc' WHERE alias = '$_alias' LIMIT 1";
-				$ah->rs($q);
+				$q = "UPDATE `osc_meta` SET `meta_title` = '$meta_title', `meta_keys` = '$meta_keys', `meta_desc` = '$meta_desc' WHERE alias = '$_alias' LIMIT 1";
+				$res_meta = $ah->rs($q);
 				
 				// Upload files
 				/*

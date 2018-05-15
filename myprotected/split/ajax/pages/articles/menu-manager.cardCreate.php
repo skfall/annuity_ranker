@@ -33,11 +33,16 @@
 																														 ) ),
 					 
 					 'clear-3'				=>	array( 'type'=>'clear' ),
+
+					 'Content'				=>	array( 'type'=>'summernote', 	'field'=>'content', 		'params'=>array( 'size'=>25, 'hold'=>'Page content' ) ),
+					  
 					 
 					 
 					 'Display order'				=>	array( 'type'=>'number', 	'field'=>'pos', 		'params'=>array( 'size'=>25, 'hold'=>'Display order' ) ),
 					 
 					 'Publish'			=>	array( 'type'=>'block', 	'field'=>'block', 			'params'=>array( 'reverse'=>true ) ),
+					 'Display in header'			=>	array( 'type'=>'block', 	'field'=>'display_in_header', 			'params'=>array( ) ),
+					 'Display in footer'			=>	array( 'type'=>'block', 	'field'=>'display_in_footer', 			'params'=>array( ) ),
 					 
 					 'clear-4'				=>	array( 'type'=>'clear' ),
 					 'Meta data'	=>	array( 'type'=>'header'),
