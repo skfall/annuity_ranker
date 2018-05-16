@@ -20,3 +20,5 @@
 .content_target table td {border: 1px solid #333; display: table-cell !important; width: auto !important; padding: 5px !important;}
 .content_target table tr {display: table-row !important;}
 .content_target table {display: table !important; border-collapse: collapse !important; margin-bottom: 10px;}
+ 
+/*.content .number-big .separator:last-child {display: none !important;} */

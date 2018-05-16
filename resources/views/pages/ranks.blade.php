@@ -232,9 +232,19 @@
                                             <div class="content">
                                                 <span class="number-big">
                                                     <?php 
-                                                        $growth = str_replace('/', '', $item->growth_rate);
-                                                        
-                                                        $growth = str_replace('%', '<span class="ending">%/</span>', $growth);
+                                                        $growth = $item->growth_rate;
+                                                        $new_row = [];
+                                                        for($i = 0; $i < mb_strlen($growth); $i++){
+                                                            if($growth[$i] == "%"){
+                                                                $new_row[$i] = "<span class='ending'>%</span>";
+                                                            }elseif($growth[$i] == "/"){
+                                                                $new_row[$i] = "<span class='separator'>/</span>";
+                                                            }else{
+                                                                $new_row[$i] = "<span class='value'>".$growth[$i]."</span>";      
+                                                            }
+                                                        }
+
+                                                        $growth = implode('',$new_row);
                                                     ?>
                                                     {!! $growth !!}
                                                     @if ($item->td_field_29_plus == 1 && $item->tabs()->count() > 0)
@@ -259,7 +269,7 @@
                                         <td class="r-cell cell-fee">
                                             <span class="t-mobile"><span class="text">{!! $annuity->col_4 !!}</span></span>
                                             <div class="content">
-                                                <span class="number-big">{{ $item->percent }}<span class="ending">%</span>
+                                                <span class="number-big"><span class="value">{{ $item->percent }}</span><span class="ending">%</span>
                                                 @if ($item->percent_plus == 1 && $item->tabs()->count() > 0)
                                                     <button class="btn btn-toggler js_tgl-trigger btn-open-details" data-toggler="{!! $item->id !!}"><span class="box"></span></button></span>
                                                 @endif
@@ -285,7 +295,18 @@
                                             <div class="content">
                                                 <span class="number-big">
                                                     <?php 
-                                                        $withdraw = str_replace('%', '<span class="ending">%</span>', $item->withdrawal_rate);
+                                                        $withdraw = $item->withdrawal_rate;
+                                                        $new_row = [];
+                                                        for($i = 0; $i < mb_strlen($withdraw); $i++){
+                                                            if($withdraw[$i] == "%"){
+                                                                $new_row[$i] = "<span class='ending'>%</span>";
+                                                            }elseif($withdraw[$i] == "/"){
+                                                                $new_row[$i] = "<span class='separator'>/</span>";
+                                                            }else{
+                                                                $new_row[$i] = "<span class='value'>".$withdraw[$i]."</span>";      
+                                                            }
+                                                        }
+                                                        $withdraw = implode('',$new_row);
                                                     ?>
                                                     {!! $withdraw !!}
                                                     @if ($item->td_field_27_plus == 1 && $item->tabs()->count() > 0)
@@ -304,7 +325,7 @@
                                                 <?php 
                                                     $bonus = str_replace('%', '<span class="ending">%</span>', $item->td_field_30);
                                                 ?>
-                                                <span class="number-big">{!! $bonus !!}</span>
+                                                <span class="number-big"><span class="value">{!! $bonus !!}</span></span>
                                             </div>
                                         </td>
                                         <td class="r-cell cell-btn">
