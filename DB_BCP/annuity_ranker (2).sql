@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Час створення: Трв 15 2018 р., 16:48
+-- Час створення: Трв 16 2018 р., 21:07
 -- Версія сервера: 5.7.19
 -- Версія PHP: 7.1.9
 
@@ -143,6 +143,7 @@ CREATE TABLE IF NOT EXISTS `osc_annuities` (
   `pos` int(11) NOT NULL DEFAULT '0',
   `preview` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `background` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `default_amount` int(11) NOT NULL DEFAULT '0',
   `age` int(11) NOT NULL DEFAULT '0',
   `special_age` int(11) NOT NULL DEFAULT '0',
   `special_active` tinyint(1) NOT NULL DEFAULT '0',
@@ -158,14 +159,15 @@ CREATE TABLE IF NOT EXISTS `osc_annuities` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Дамп даних таблиці `osc_annuities`
 --
 
-INSERT INTO `osc_annuities` (`id`, `name`, `alias`, `pos`, `preview`, `background`, `age`, `special_age`, `special_active`, `col_1`, `col_2`, `col_3`, `col_4`, `col_5`, `col_6`, `col_7`, `is_video_bg`, `block`, `created`, `modified`) VALUES
-(1, 'Fixed', 'fixed', 1, 'an_prev20180515192441742.svg', NULL, 20, 20, 1, '', '', '', '', '', '', NULL, 0, 0, '2018-05-14 23:51:48', '2018-05-15 19:24:41');
+INSERT INTO `osc_annuities` (`id`, `name`, `alias`, `pos`, `preview`, `background`, `default_amount`, `age`, `special_age`, `special_active`, `col_1`, `col_2`, `col_3`, `col_4`, `col_5`, `col_6`, `col_7`, `is_video_bg`, `block`, `created`, `modified`) VALUES
+(1, 'Fixed', 'fixed', 1, 'an_prev20180515192441742.svg', 'an_bg20180516182821393.mp4', 200, 20, 12, 1, 'Contract name', 'Insurers', 'Growth Rate', 'Annual contract &amp; <br>Rider fee', 'Withdrawal Rate', 'Bonus', NULL, 1, 0, '2018-05-14 23:51:48', '2018-05-16 20:17:16'),
+(2, 'Variable', 'variable', 0, 'an_prev20180516185702136.svg', NULL, 200, 20, 10, 1, 'Contract name', 'Insurers', 'Growth Rate', 'Annual contract &amp; <br>Rider fee', 'Withdrawal Rate', 'Bonus', NULL, 0, 0, '2018-05-16 18:57:02', '2018-05-16 22:42:46');
 
 -- --------------------------------------------------------
 
@@ -246,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `osc_companies` (
 
 INSERT INTO `osc_companies` (`id`, `name`, `alias`, `block`, `td_field_15_r1`, `td_field_15_r2`, `td_field_15_r3`, `td_field_15_r4`, `td_field_14`, `logo`, `td_field_11`, `min_amount`, `max_amount`, `percent`, `percent_plus`, `td_field_29_plus`, `td_field_27_plus`, `td_field_30`, `td_field_31`, `td_field_16`, `td_field_10_r1`, `td_field_10_r2`, `td_field_10_r3`, `td_field_10_r4`, `td_field_9_r1`, `td_field_9_r2`, `td_field_8_r1`, `td_field_8_r2`, `td_field_8_r3`, `td_field_8_r4`, `td_field_7_r1`, `td_field_7_r2`, `td_field_7_r3`, `td_field_7_r4`, `created`, `modified`) VALUES
 (1, 'Sivkovich inc.', 'sivkovich-inc', 0, '', '', '', '', '', 'logo_20180514235609933.jpg', '', 5000, 100000, 5.00, 1, 1, 1, '', 'https://kaminskiy-design.com.ua/', 'Klyaha development', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2018-05-14 23:56:09', '2018-05-14 23:59:54'),
-(2, 'Test', 'test', 0, '', '', '', '', '', NULL, '', 1, 2, 20.00, 0, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2018-05-15 00:00:22', '2018-05-15 00:00:22');
+(2, 'Test', 'test', 0, 'asdasdas', 'dasdasd', 'asdasd', 'asdasd', 'asdasd', 'logo_20180516224530134.PNG', 'asdasd', 100, 500, 3.00, 1, 1, 1, 'asdasd', 'https://www.google.com.ua/', '', 'asdasda', 'sdasdas', 'dasdas', 'dasdasda', 'sdasdasd', 'asdasdasd', 'asdasda', 'sdasdasdasdas', 'dasd', 'asdasdas', 'fasfasfasf', 'asfasfas', 'fasfasfas', 'fasfasfasf', '2018-05-15 00:00:22', '2018-05-16 22:45:30');
 
 -- --------------------------------------------------------
 
@@ -499,7 +501,7 @@ CREATE TABLE IF NOT EXISTS `osc_logs` (
   `userid` int(11) NOT NULL DEFAULT '0',
   `ip` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='Project logs';
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COMMENT='Project logs';
 
 --
 -- Дамп даних таблиці `osc_logs`
@@ -525,7 +527,8 @@ INSERT INTO `osc_logs` (`id`, `date`, `type`, `description`, `userid`, `ip`) VAL
 (17, '2018-05-12 16:48:17', 1, 'Admin login: Success login.', 1, '::1'),
 (18, '2018-05-13 15:52:41', 1, 'Admin login: Success login.', 1, '::1'),
 (19, '2018-05-14 14:59:59', 1, 'Admin login: Success login.', 1, '::1'),
-(20, '2018-05-15 16:23:06', 1, 'Admin login: Success login.', 1, '::1');
+(20, '2018-05-15 16:23:06', 1, 'Admin login: Success login.', 1, '::1'),
+(21, '2018-05-16 17:47:05', 1, 'Admin login: Success login.', 1, '::1');
 
 -- --------------------------------------------------------
 
@@ -655,6 +658,8 @@ CREATE TABLE IF NOT EXISTS `osc_nav` (
   `block` int(11) NOT NULL DEFAULT '0',
   `display_in_header` tinyint(4) NOT NULL DEFAULT '1',
   `display_in_footer` tinyint(4) NOT NULL DEFAULT '0',
+  `page_header` varchar(255) DEFAULT NULL,
+  `background` varchar(255) DEFAULT NULL,
   `target` int(11) NOT NULL DEFAULT '0',
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
@@ -666,12 +671,12 @@ CREATE TABLE IF NOT EXISTS `osc_nav` (
 -- Дамп даних таблиці `osc_nav`
 --
 
-INSERT INTO `osc_nav` (`id`, `type`, `parent`, `alias`, `content`, `pos`, `block`, `display_in_header`, `display_in_footer`, `target`, `created`, `modified`, `name`) VALUES
-(8, 1, 0, 'home', NULL, 0, 0, 1, 0, 0, '2018-05-15 16:59:29', '2018-05-15 17:35:07', 'Home'),
-(18, 0, 8, 'test-9', '', 0, 0, 1, 1, 0, '2018-05-15 18:31:25', '2018-05-15 19:12:40', 'test 9'),
-(19, 0, 8, 'test-10', '', 0, 0, 1, 1, 0, '2018-05-15 18:31:29', '2018-05-15 19:12:47', 'test 10'),
-(20, 0, 8, 'test-11', '', 0, 0, 1, 1, 0, '2018-05-15 18:31:32', '2018-05-15 19:12:57', 'test 11'),
-(21, 0, 0, 'testttt', '', 0, 0, 1, 1, 0, '2018-05-15 19:09:00', '2018-05-15 19:15:22', 'testttt');
+INSERT INTO `osc_nav` (`id`, `type`, `parent`, `alias`, `content`, `pos`, `block`, `display_in_header`, `display_in_footer`, `page_header`, `background`, `target`, `created`, `modified`, `name`) VALUES
+(8, 1, 0, 'home', NULL, 0, 0, 1, 0, 'Page header', 'page_bg20180516182413650.jpg', 0, '2018-05-15 16:59:29', '2018-05-16 18:24:13', 'Home'),
+(18, 0, 8, 'test-9', '', 0, 0, 1, 1, NULL, NULL, 0, '2018-05-15 18:31:25', '2018-05-15 19:12:40', 'test 9'),
+(19, 0, 8, 'test-10', '', 0, 0, 1, 1, NULL, NULL, 0, '2018-05-15 18:31:29', '2018-05-15 19:12:47', 'test 10'),
+(20, 0, 8, 'test-11', '', 0, 0, 1, 1, NULL, NULL, 0, '2018-05-15 18:31:32', '2018-05-15 19:12:57', 'test 11'),
+(21, 0, 0, 'testttt', '', 0, 0, 1, 1, NULL, NULL, 0, '2018-05-15 19:09:00', '2018-05-15 19:15:22', 'testttt');
 
 -- --------------------------------------------------------
 
@@ -731,15 +736,15 @@ INSERT INTO `osc_rates` (`annuity_id`, `company_id`, `age`, `rate1`, `special_ra
 (1, 1, 16, 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', '2018-05-14 23:59:54', '2018-05-14 23:59:54'),
 (1, 1, 13, 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', '2018-05-14 23:59:54', '2018-05-14 23:59:54'),
 (1, 1, 14, 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', '2018-05-14 23:59:54', '2018-05-14 23:59:54'),
-(1, 2, 10, '5%/2%/NA', '5%/2%/NA', '5%/2%/NA', '5%/2%/NA', '2018-05-15 00:00:22', '2018-05-15 00:00:22'),
-(1, 2, 11, 'NA/2%/5%', 'NA/2%/5%', 'NA/2%/5%', 'NA/2%/5%', '2018-05-15 00:00:22', '2018-05-15 00:00:22'),
-(1, 2, 12, '7%/NA/NA', '7%/NA/NA', '7%/NA/NA', '7%/NA/NA', '2018-05-15 00:00:22', '2018-05-15 00:00:22'),
-(1, 2, 13, 'NA/NA/7%', 'NA/NA/7%', 'NA/NA/7%', 'NA/NA/7%', '2018-05-15 00:00:22', '2018-05-15 00:00:22'),
-(1, 2, 14, 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', '2018-05-15 00:00:22', '2018-05-15 00:00:22'),
-(1, 2, 15, 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', '2018-05-15 00:00:22', '2018-05-15 00:00:22'),
-(1, 2, 16, 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', '2018-05-15 00:00:22', '2018-05-15 00:00:22'),
-(1, 2, 13, 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', '2018-05-15 00:00:22', '2018-05-15 00:00:22'),
-(1, 2, 14, 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', '2018-05-15 00:00:22', '2018-05-15 00:00:22');
+(2, 2, 10, '5%/2%/NA', '5%/2%/NA', '5%/2%/NA', '5%/2%/NA', '2018-05-15 00:00:22', '2018-05-15 00:00:22'),
+(2, 2, 11, 'NA/2%/5%', 'NA/2%/5%', 'NA/2%/5%', 'NA/2%/5%', '2018-05-15 00:00:22', '2018-05-15 00:00:22'),
+(2, 2, 12, '7%/NA/NA', '7%/NA/NA', '7%/NA/NA', '7%/NA/NA', '2018-05-15 00:00:22', '2018-05-15 00:00:22'),
+(2, 2, 13, 'NA/NA/7%', 'NA/NA/7%', 'NA/NA/7%', 'NA/NA/7%', '2018-05-15 00:00:22', '2018-05-15 00:00:22'),
+(2, 2, 14, 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', '2018-05-15 00:00:22', '2018-05-15 00:00:22'),
+(2, 2, 15, 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', '2018-05-15 00:00:22', '2018-05-15 00:00:22'),
+(2, 2, 16, 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', '2018-05-15 00:00:22', '2018-05-15 00:00:22'),
+(2, 2, 13, 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', '2018-05-15 00:00:22', '2018-05-15 00:00:22'),
+(2, 2, 14, 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', 'X%/X%/X%', '2018-05-15 00:00:22', '2018-05-15 00:00:22');
 
 -- --------------------------------------------------------
 
@@ -774,6 +779,8 @@ CREATE TABLE IF NOT EXISTS `osc_settings` (
   `email` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `address` text,
+  `footer_text` text,
+  `footer_header` varchar(255) DEFAULT NULL,
   `fb_link` varchar(255) DEFAULT NULL,
   `vk_link` varchar(255) DEFAULT NULL,
   `tw_link` varchar(255) DEFAULT NULL,
@@ -792,8 +799,8 @@ CREATE TABLE IF NOT EXISTS `osc_settings` (
 -- Дамп даних таблиці `osc_settings`
 --
 
-INSERT INTO `osc_settings` (`id`, `sitename`, `email`, `phone`, `address`, `fb_link`, `vk_link`, `tw_link`, `li_link`, `lat`, `lng`, `site_index`, `copyright`, `top_script`, `bot_script`, `modified`) VALUES
-(1, 'Annuity ranker', 'info@ranker.com', '+38 0981112233', 'Ukraine, Kiev', NULL, NULL, NULL, NULL, 50.426, 30.515, 0, 'Copyright ©2018 Volterra Energy Group. All Rights Reserved.', '', '', '2018-05-14 19:21:15');
+INSERT INTO `osc_settings` (`id`, `sitename`, `email`, `phone`, `address`, `footer_text`, `footer_header`, `fb_link`, `vk_link`, `tw_link`, `li_link`, `lat`, `lng`, `site_index`, `copyright`, `top_script`, `bot_script`, `modified`) VALUES
+(1, 'Annuity ranker', 'info@ranker.com', '+38 0981112233', 'Ukraine, Kiev', 'Footer text...Footer text...Footer text...Footer text...Footer text...Footer text...', 'Footer header', NULL, NULL, NULL, NULL, 50.426, 30.515, 0, 'Copyright ©2018 Volterra Energy Group. All Rights Reserved.', '', '', '2018-05-16 18:14:16');
 
 -- --------------------------------------------------------
 
@@ -819,12 +826,23 @@ DROP TABLE IF EXISTS `osc_static_texts`;
 CREATE TABLE IF NOT EXISTS `osc_static_texts` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `value` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `value` text COLLATE utf8_unicode_ci,
   `link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Дамп даних таблиці `osc_static_texts`
+--
+
+INSERT INTO `osc_static_texts` (`id`, `name`, `value`, `link`, `created`, `modified`) VALUES
+(1, 'Ranks header (23)', 'Today\'s annuity rates', '', '2018-05-16 00:00:00', '2018-05-16 22:34:35'),
+(2, 'Date (24)', '', '', '2018-05-16 00:00:00', '2018-05-16 23:26:18'),
+(3, 'Text (25)', 'Find and compare annuity rates below and consult with a Five Star &trade; agent, free of charge', '', '2018-05-16 00:00:00', '2018-05-16 22:40:22'),
+(4, 'Popup button (22)', 'Advertising Disclosure', '', '2018-05-16 00:00:00', '2018-05-16 22:36:18'),
+(5, 'Popup text (22)', 'The listings that appear on this page are from companies from which this website receives compensation, which may impact how, where and in what order products appear. This table does not include all companies or all available products.', '', '2018-05-16 00:00:00', '2018-05-16 22:37:48');
 
 -- --------------------------------------------------------
 
@@ -889,7 +907,15 @@ CREATE TABLE IF NOT EXISTS `osc_tabs` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Дамп даних таблиці `osc_tabs`
+--
+
+INSERT INTO `osc_tabs` (`id`, `name`, `content`, `company_id`, `type`, `pos`, `block`, `created`, `modified`) VALUES
+(1, 'test tab', '<p>dasdas dasdas dasdasd asdas</p>', 2, 1, 1, 0, '2018-05-16 23:32:41', '2018-05-16 23:32:41'),
+(2, 'test tab 2', '<h1>Tab header</h1><table class=\"table table-bordered\"><tbody><tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr><tr><td>dsadasd</td><td>dsadasd</td><td>dasd</td><td>asdasdasd</td><td>asdasdasd</td></tr></tbody></table><p style=\"text-align: center; \"><img src=\"/annuity_ranker/split/files/summernote/6013cfb756bcbd48ed544cd9558510c3.jpg\" style=\"width: 25%; float: none;\" class=\"\"><br></p>', 2, 1, -1, 0, '2018-05-16 23:38:50', '2018-05-16 23:38:50');
 
 -- --------------------------------------------------------
 
@@ -1058,7 +1084,22 @@ CREATE TABLE IF NOT EXISTS `osc_user_answers` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Дамп даних таблиці `osc_user_answers`
+--
+
+INSERT INTO `osc_user_answers` (`id`, `ip`, `question_id`, `answer_id`, `created`, `modified`) VALUES
+(1, '::1', 1, 1, '2018-05-16 14:53:33', '2018-05-16 14:53:33'),
+(2, '::1', 1, 2, '2018-05-16 14:53:38', '2018-05-16 14:53:38'),
+(3, '::1', 1, 1, '2018-05-16 15:07:34', '2018-05-16 15:07:34'),
+(4, '::1', 1, 2, '2018-05-16 15:28:45', '2018-05-16 15:28:45'),
+(5, '::1', 1, 1, '2018-05-16 15:35:00', '2018-05-16 15:35:00'),
+(6, '::1', 1, 1, '2018-05-16 16:12:36', '2018-05-16 16:12:36'),
+(7, '::1', 1, 2, '2018-05-16 16:13:40', '2018-05-16 16:13:40'),
+(8, '::1', 1, 1, '2018-05-16 16:17:19', '2018-05-16 16:17:19'),
+(9, '::1', 1, 2, '2018-05-16 19:41:26', '2018-05-16 19:41:26');
 
 -- --------------------------------------------------------
 
