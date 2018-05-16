@@ -19,6 +19,7 @@
 		'special_age'	=> (int)$_POST['special_age'],		
 		'special_active'	=> $_POST['special_active'][0],
 		'pos'	=> (int)$_POST['pos'],
+		'default_amount'	=> (int)$_POST['default_amount'],
 		'col_1'			=> $_POST['col_1'],
 		'col_2'			=> $_POST['col_2'],
 		'col_3'			=> $_POST['col_3'],

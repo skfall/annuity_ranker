@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Config;
 
 use App\Models\Annuity;
+use App\Models\StaticText;
 use App\Models\Question;
 
 
@@ -26,9 +27,26 @@ class PagesController extends AppController {
     }
 
     public function ranks($alias){
-
+        
         $annuity = Annuity::where([['block', 0], ['alias', $alias]])->first();
-        echo '<pre>'; print_r($annuity->toArray()); echo '</pre>'; exit();
+        $annuities = Annuity::where('block', 0)->get();
+        $texts = StaticText::all()->toArray();
+
+        $companies = $this->core->getCompanies('default', $annuity);
+
+        $t = [];
+        foreach($texts as $key){
+            $t[$key['id']] = array('l' => ($key['link'] ? $key['link'] : false), 'v' => $key['value']);
+        }
+
+        $view_model = [
+            'annuity' => $annuity,
+            'annuities' => $annuities,
+            'texts' => $t,
+            'companies' => $companies
+        ];
+ 
+    	return view('pages.ranks', $view_model);
     }
 
     public function manual($alias){

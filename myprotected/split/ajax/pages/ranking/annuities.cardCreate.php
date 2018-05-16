@@ -19,6 +19,7 @@
 		'Display order'				=>	array( 'type'=>'number', 		'field'=>'pos', 		'params'=>array( 'size'=>100, 'hold'=>'Display order' ) ),
 
 		'clear-2'				=>	array( 'type'=>'clear' ),		
+		'Default amount'				=>	array( 'type'=>'number', 		'field'=>'default_amount', 		'params'=>array( 'size'=>100, 'hold'=>'Default amount' ) ),
 		'Default value for age'	=>	array( 'type'=>'number', 		'field'=>'age', 		'params'=>array( 'size'=>3, 'hold'=>'Default value for age' ) ),
 		'Default value for spouse age'	=>	array( 'type'=>'number', 		'field'=>'special_age', 		'params'=>array( 'size'=>3, 'hold'=>'Default value for spouse age' ) ),
 		'Special rate default value'			=>	array( 'type'=>'block', 	'field'=>'special_active', 			'params'=>array() ),

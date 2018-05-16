@@ -13,3 +13,10 @@
 .content_target p, .content_target li, .content_target div {margin-bottom: 15px;}
 .content_target {overflow: hidden;}
 .content_target img {width: auto; height: auto; max-width: 100%;}
+
+
+.c_link a {font: inherit;}
+.c_link a:hover {text-decoration: underline;}
+.content_target table td {border: 1px solid #333; display: table-cell !important; width: auto !important; padding: 5px !important;}
+.content_target table tr {display: table-row !important;}
+.content_target table {display: table !important; border-collapse: collapse !important; margin-bottom: 10px;}

@@ -4,6 +4,7 @@ use App\Rockstar\Helper as Helper;
 use App;
 use Config;
 use Session;
+use DB;
 use App\Models;
 
 class Core extends Helper {
@@ -204,6 +205,47 @@ class Core extends Helper {
 		if($success) $response['status'] = "success";
 
 		return $response;
+	}
+
+	public function getCompanies($mode, $annuity, $params = []){
+		$annuity_id = $annuity->id;
+		if ($mode == "default") {
+			$age = $annuity->age;
+			$spouse_age = $annuity->special_age;
+			$special_active = $annuity->special_active;
+
+			$companies = Models\Company::where('block', 0)
+			->whereHas('rates', function($q) use ($annuity_id, $special_active, $age, $spouse_age){
+				$q->where('annuity_id', $annuity_id);
+				if ($special_active == 1) {
+					$min_age = min($age, $spouse_age);
+					$q->where('age', $min_age);
+				}else{
+					$q->where('age', $age);
+				}
+			})
+			->where('min_amount', '<=', $annuity->default_amount)
+			->where('max_amount', '>=', $annuity->default_amount)
+			->orderBy('id')
+			->skip(0)
+			->take(30)
+			->get();
+
+			foreach ($companies as $key => &$c) {
+				if ($special_active == 1) {
+					$min_age = min($age, $spouse_age);
+					$c{'growth_rate'} = $c->rates()->where('age', $min_age)->first()->special_rate1;
+					$c{'withdrawal_rate'} = $c->rates()->where('age', $min_age)->first()->special_rate2;
+				}else{
+					$c{'growth_rate'} = $c->rates()->where('age', $age)->first()->rate1;
+					$c{'withdrawal_rate'} = $c->rates()->where('age', $age)->first()->rate2;
+				}
+			}
+
+			return $companies;
+		}else{
+			// 
+		}
 	}
 
 
