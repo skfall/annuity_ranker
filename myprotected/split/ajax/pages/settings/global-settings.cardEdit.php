@@ -23,6 +23,11 @@
 					 'clear-0'				=>	array( 'type'=>'clear' ),
 
 					 'Copyright'		=>	array( 'type'=>'input', 	'field'=>'copyright', 			'params'=>array( 'size'=>50, 'hold'=>'Copyright') ),
+					 'clear-3'				=>	array( 'type'=>'clear' ),
+					
+	
+					 'Footer header'		=>	array( 'type'=>'input', 	'field'=>'footer_header', 			'params'=>array( 'size'=>50, 'hold'=>'Footer header') ),
+					 'Footer text'		=>	array( 'type'=>'area', 	'field'=>'footer_text', 			'params'=>array( 'size'=>50, 'hold'=>'Footer text') ),
 
 					'Contact information' => array('type' =>  'header'),
 					'Email'		=>	array( 'type'=>'input', 	'field'=>'email', 			'params'=>array( 'size'=>35, 'hold'=>'') ),

@@ -104,7 +104,8 @@ class AppController extends BaseController {
         // Set view model
 
     	$viewmodel = array(
-    		'config' => $this->config,
+            'config' => $this->config,
+            'page' => $curr_nav,
     		'nav' => $this->nav,
             'top_nav' => $this->top_nav,
             'meta' => collect($meta_array),

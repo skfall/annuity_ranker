@@ -4,7 +4,11 @@
     <section class="psc psc-main">
         <div class="sct-bg">
             <div class="bg active js_choice-bg" data-choice="0">
-                <div class="img" style="background-image: url('{{ IMG.'content/bg0.jpg' }}')"></div>
+                @if ($page->background)
+                    <div class="img" style="background-image: url('{{ UPLOADS.'common/'.$page->background }}')"></div>                
+                @else
+                    <div class="img" style="background-image: url('{{ IMG.'content/bg0.jpg' }}')"></div>
+                @endif
             </div>
             @foreach ($annuities as $key => $item)
                 @if ($item->is_video_bg)
@@ -28,7 +32,7 @@
         <div class="sct-block sct-block--start js_step active" data-step="0">
             <div class="pwr">
                 <div class="pct">
-                    <h2 class="title-big animate">We help you find and compare annuity rates</h2>
+                    <h2 class="title-big animate">{{ $page->page_header }}</h2>
                     <div class="choices animate">
                         @foreach ($annuities as $key => $item)
                             <?php 

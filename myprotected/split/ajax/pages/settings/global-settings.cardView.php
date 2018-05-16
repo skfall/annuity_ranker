@@ -19,6 +19,8 @@
 					 'Email'		=>	array( 'type'=>'text', 		'field'=>'email', 		'params'=>array() ),
 					 'Phones'		=>	array( 'type'=>'text', 		'field'=>'phone', 		'params'=>array() ),
 					 'Address'		=>	array( 'type'=>'text', 		'field'=>'address', 		'params'=>array() ),
+					 'Footer header'		=>	array( 'type'=>'text', 		'field'=>'footer_header', 		'params'=>array() ),
+					 'Footer text'		=>	array( 'type'=>'text', 		'field'=>'footer_text', 		'params'=>array() ),
 
 					 'Site indexing in search engines'		=>	array( 'type'=>'text', 		'field'=>'site_index', 		'params'=>array( 'replace'=>array('0'=>'Нет', '1'=>'Да') ) ),
 					 

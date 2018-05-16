@@ -26,6 +26,8 @@
 					'address'		=> $_POST['address'],
 					
 					'copyright'		=> $_POST['copyright'],
+					'footer_header'		=> $_POST['footer_header'],
+					'footer_text'		=> $_POST['footer_text'],
 			
 					'top_script'		=> $_POST['top_script'],
 					'bot_script'		=> $_POST['bot_script'],

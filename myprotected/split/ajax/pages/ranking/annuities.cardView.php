@@ -32,7 +32,7 @@
 		'Table col 5'					=>	array( 'type'=>'text', 		'field'=>'col_5', 			'params'=>array() ),
 		'Table col 6'					=>	array( 'type'=>'text', 		'field'=>'col_6', 			'params'=>array() ),
 		'Table col 7'					=>	array( 'type'=>'text', 		'field'=>'col_7', 			'params'=>array() ),		
-		'Preview image'		=>	array( 'type'=>'image',		'field'=>'preview',			'params'=>array( 'path'=>RSF.'/split/files/annuities/' ) ),
+		'Icon'		=>	array( 'type'=>'image',		'field'=>'preview',			'params'=>array( 'path'=>RSF.'/split/files/annuities/' ) ),
 	);
 
 	if($cardItem['is_video_bg']){

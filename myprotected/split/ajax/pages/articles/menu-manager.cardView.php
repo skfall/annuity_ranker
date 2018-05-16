@@ -29,6 +29,12 @@
 					 'Meta-keys'					=>	array( 'type'=>'text', 		'field'=>'meta_keys', 			'params'=>array() ),
 					 'Meta-desc'					=>	array( 'type'=>'text', 		'field'=>'meta_desc', 			'params'=>array() ),
 					 );
+
+	if($cardItem['type'] == 1){
+		$cardTmp['Page header'] = array( 'type'=>'text', 		'field'=>'page_header', 			'params'=>array() );
+		$cardTmp['Background image'] = array( 'type'=>'image',		'field'=>'background',			'params'=>array( 'path'=>RSF.'/split/files/common/' ) );
+	}
+
 	$cardViewTableParams = array( 'cardItem'=>$cardItem, 'cardTmp'=>$cardTmp, 'rootPath'=>$rootPath, 'lpx'=>$lpx, 'headParams'=>$headParams, 'langs'=>$langs );
 	
 	$cardViewTableStr = $zh->getCardViewTable($cardViewTableParams);

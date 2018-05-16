@@ -35,8 +35,15 @@
 			'clear-99'				=>	array( 'type'=>'clear' ),
 			'Content'				=>	array( 'type'=>'summernote', 	'field'=>'content', 		'params'=>array( 'size'=>25, 'hold'=>'Page content' ) ),
 		);
+
+		$part4 = array(
+			'Page header'				=>	array( 'type'=>'input', 		'field'=>'page_header', 		'params'=>array( 'size'=>50, 'hold'=>'Page header' ) ),
+			'Background'		=>	array( 'type'=>'image_mono','field'=>'background', 		'params'=>array( 'path'=>RSF."/split/files/common/", 'appTable'=>$appTable, 'id'=>$item_id ) ),
+		);
 		if($cardItem['type'] != 1){
 			$cardTmp = array_merge($cardTmp, $part2);
+		}else{
+			$cardTmp = array_merge($cardTmp, $part4);			
 		}
 		
 		

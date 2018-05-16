@@ -27,10 +27,8 @@
 				</div>
 				<div class="col col-right">
 					<div class="text">
-						<h5>How we make money</h5>
-						<p>
-							Annuityrate.com is an independent, advertising-supported publisher and comparison service. Annuityrate is compensated in exchange for featured placement of sponsored products and services, or your clicking on links posted on this website. This compensation may impact how, where and in what order products appear. Annuityrate.com does not include all companies or all available products. 
-						</p>
+						<h5>{{ $config->footer_header }}</h5>
+						<p>{{ $config->footer_text }}</p>
 					</div>
 				</div>
 			</div>
