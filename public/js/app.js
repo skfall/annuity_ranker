@@ -101,40 +101,19 @@ var network = {
 			}
 		}, "json");
 	},
-	get_questions: function(annuity_id){
+	answer: function(question_id, answer_id, annuity_id, annuity_alias, self){
+		var question_id = question_id || 0;
+		var answer_id = answer_id || 0;
 		var annuity_id = annuity_id || 0;
-		if (annuity_id > 0 || annuity_id == "default") {
-			network.post(RS + "ajax/", { action: "get_questions", annuity_id: annuity_id }, function(response){
-				if (response.status == "success") {
-					if (response.trigger == "get_form") {
-						network.sendAnswer(null, null, annuity_id)
-					}else{
-						$('.questions').html(response.html);
+		network.post(RS + "ajax/", {action: "user_answer", question_id: question_id, answer_id: answer_id}, function(response){
+			if(annuity_id > 0) {
+				setTimeout(function(){
+					var last_question = $('.sct-block[data-annuity='+annuity_id+']').last();
+					if(last_question.is($(self).closest('.sct-block'))){
+						document.location.href = RS + "ranks/" + annuity_alias;
 					}
-					app.log('<li>Annuity selected: ' + response.reason + '</li>');
-				}else{
-					app.log('<li>' + response.message + '</li>');
-				}
-			}, "json");
-		}
-	},
-	sendAnswer: function(question_id, answer_id, annuity_id){
-		if (question_id && answer_id) {
-			app.log('<li>Answer selected: Question id:' + question_id + ', Answer id: ' + answer_id + ' </li>');
-		}else{
-			app.log('<li>No questions</li>');
-		}
-		network.getAnnuityForm(annuity_id);
-	},
-	getAnnuityForm: function(annuity_id){
-		app.log('<li>Trying to load annuity form...</li>');
-		network.post(RS + "ajax/", { action: "get_annuity_form", annuity_id: annuity_id }, function(response){
-			if (response.status == "success") {
-				$('.questions').html(response.html);
-				app.log('<li>Form loaded. Selected annuity: ' + response.message + '</li>');
-			}else{
-				app.log('<li>' + response.message + '</li>');
-			}
+				}, 100);
+			}; 
 		}, "json");
 	}
 };

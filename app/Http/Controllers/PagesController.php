@@ -17,12 +17,18 @@ class PagesController extends AppController {
 
     public function home(){
         $view_model = [];
-        $annuities = Annuity::where('block', 0)->orderBy('id')->get();
+        $annuities = Annuity::where('block', 0)->orderBy('pos')->get();
 
         $view_model['annuities'] = $annuities;
         $view_model['questions'] = Question::where([['block', 0]])->orderBy('pos')->get();
 
     	return view('pages.home', $view_model);
+    }
+
+    public function ranks($alias){
+
+        $annuity = Annuity::where([['block', 0], ['alias', $alias]])->first();
+        echo '<pre>'; print_r($annuity->toArray()); echo '</pre>'; exit();
     }
 
     public function manual($alias){
