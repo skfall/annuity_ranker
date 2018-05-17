@@ -1,9 +1,9 @@
 <?php 
-	$headParams = array( 'parent'=>$parent, 'alias'=>$alias, 'id'=>$id, 'appTable'=>$appTable, 'type' => 'static_texts' );
+	$headParams = array( 'parent'=>$parent, 'alias'=>$alias, 'id'=>$id, 'appTable'=>$appTable, 'type' => 'download_activity' );
 	$data['headContent'] = $zh->getLandingHeader($headParams);
 
-	$itemsList = $zh->getTexts($params);
-	$totalItems = $zh->getTexts($params,true);
+	$itemsList = $zh->getUserActivities($params);
+	$totalItems = $zh->getUserActivities($params,true);
 
 	
 	$on_page = (isset($_COOKIE['global_on_page']) ? $_COOKIE['global_on_page'] : GLOBAL_ON_PAGE);
@@ -42,11 +42,9 @@
 
 	$tableColumns = array(
 						  ''			=>	array('type'=>'checkbox',	'field'=>''),
-						  'Name'				=>	array('type'=>'text',		'field'=>'name'),
-						  'Text'				=>	array('type'=>'text',		'field'=>'value'),
-						  'Link'				=>	array('type'=>'text',		'field'=>'link'),
+						  'IP'				=>	array('type'=>'text',		'field'=>'ip'),
+						  'Created'				=>	array('type'=>'text',		'field'=>'created'),
 						  'View'			=>	array('type'=>'cardView',	'field'=>'Смотреть'),
-						  'Edit'		=>	array('type'=>'cardEdit',	'field'=>'Редактировать'),
 						  'ID'					=>	array('type'=>'text',		'field'=>'id')
 						  );
 	

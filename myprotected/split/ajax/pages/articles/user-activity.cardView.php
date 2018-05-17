@@ -7,16 +7,15 @@
 	
 	// Start body content
 	
-	$cardItem = $zh->getText($item_id);
+	$cardItem = $zh->getUserActivity($item_id);
 
 	$rootPath = ROOT_PATH;
 
 	$cardTmp = array(
 		'ID'						=>	array( 'type'=>'text', 		'field'=>'id', 				'params'=>array() ),
-		'Name'					=>	array( 'type'=>'text', 		'field'=>'name', 		'params'=>array() ),
-		'Text'					=>	array( 'type'=>'text', 		'field'=>'value', 			'params'=>array() ),
-		'Link'					=>	array( 'type'=>'text', 		'field'=>'link', 			'params'=>array() ),		
-		'Modified'		=>	array( 'type'=>'date', 		'field'=>'modified', 		'params'=>array() ),
+		'IP'					=>	array( 'type'=>'text', 		'field'=>'ip', 		'params'=>array() ),
+		'Data' => array('type' => 'arr_mono', 'params' => array('fields' => json_decode($cardItem['activity_state'], true))),
+		'Created'		=>	array( 'type'=>'date', 		'field'=>'created', 		'params'=>array() ),
 	);
 
 

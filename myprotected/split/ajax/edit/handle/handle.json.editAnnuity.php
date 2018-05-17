@@ -31,7 +31,10 @@
 		'col_5'			=> $_POST['col_5'],
 		'col_6'			=> $_POST['col_6'],
 		'col_6'			=> $_POST['col_7'],
-		'modified'	=> $now
+		'modified'	=> $now,
+		'meta_keys' => $_POST["meta_keys"],
+		'meta_title' => $_POST["meta_title"],
+		'meta_desc' => $_POST["meta_desc"],
 	);
 
 	

@@ -54,12 +54,19 @@ class PagesController extends AppController {
             $t[$key['id']] = array('l' => ($key['link'] ? $key['link'] : false), 'v' => $key['value']);
         }
 
+        $meta_array = array(
+            'meta_title' => $annuity->meta_title ?: "Annuity rates",
+            'meta_keys' => $annuity->meta_keys,
+            'meta_desc' => $annuity->meta_desc,
+        );
+
         $view_model = [
             'annuity' => $annuity,
             'annuities' => $annuities,
             'texts' => $t,
             'companies' => $companies,
-            'count_left' => $count_left
+            'count_left' => $count_left,
+            'meta' => collect($meta_array)
         ];
  
     	return view('pages.ranks', $view_model);

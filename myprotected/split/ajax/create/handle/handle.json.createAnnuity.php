@@ -28,7 +28,10 @@
 		'col_6'			=> $_POST['col_6'],
 		'col_6'			=> $_POST['col_7'],
 		'modified'	=> $now,
-		'created' 	=> $now
+		'created' 	=> $now,
+		'meta_keys' => $_POST["meta_keys"],
+		'meta_title' => $_POST["meta_title"],
+		'meta_desc' => $_POST["meta_desc"],
 	);
 
 	$file_path = "../../../../split/files/annuities/";

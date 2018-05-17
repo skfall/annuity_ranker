@@ -27,7 +27,7 @@
 	}
 	$params['filtr'] = $prmFiltr;
 	
-	$appTable = "static_texts"; // Main table
+	$appTable = "osc_user_activity"; // Main table
 	
 	$moduleFile = $alias.".".$actionType.".php";
 	

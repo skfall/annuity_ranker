@@ -38,6 +38,11 @@
 		'Col 5'				=>	array( 'type'=>'input', 		'field'=>'col_5', 		'params'=>array( 'size'=>40, 'hold'=>'Col 5' ) ),
 		'Col 6'				=>	array( 'type'=>'input', 		'field'=>'col_6', 		'params'=>array( 'size'=>40, 'hold'=>'Col 6' ) ),
 		'Col 7'				=>	array( 'type'=>'input', 		'field'=>'col_7', 		'params'=>array( 'size'=>40, 'hold'=>'Col 7' ) ),
+
+		'Meta data'				=>	array( 'type'=>'header' ),
+		'Meta title'				=>	array( 'type'=>'input', 		'field'=>'meta_title', 		'params'=>array( 'size'=>50, 'hold'=>'Meta title' ) ),
+		'Meta keys'				=>	array( 'type'=>'input', 		'field'=>'meta_keys', 		'params'=>array( 'size'=>50, 'hold'=>'Meta keys' ) ),
+		'Meta description'				=>	array( 'type'=>'area', 		'field'=>'meta_desc', 		'params'=>array( 'size'=>50, 'hold'=>'Meta description')), 
 		
 	);
 

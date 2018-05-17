@@ -198,6 +198,11 @@ class BasicHelp extends BasicPrinter
 					case 'static_texts':
 						$result .= "";
 						break;
+					case 'download_activity':
+						$result .= "
+							<button class='rzh r-z-h-s-create' alt='r-z-h-s-create' type='button' onclick=\"download_activity();\" title='Download data'>Download data</button>
+						";
+						break;
 					case 'user_answers':
 						$result .= "<button class='rzh r-z-h-s-delete nonactive first-actives' alt='r-z-h-s-delete' type='button' title='$nonactiveMsg' 
 						id='delete-checked-button' onclick=\"show_is_delete_items('$appTable');\"></button>";
@@ -1470,11 +1475,12 @@ class BasicHelp extends BasicPrinter
 					}
 					case 'arr_mono':
 					{
-						if(!$params['cardItem'][$tmp['field']])
-						{
-							$result .= "<td>-</td>";
-							break;
-						}
+						
+						// if(!$params['cardItem'][$tmp['field']])
+						// {
+						// 	$result .= "<td>-</td>";
+						// 	break;
+						// }
 						if(isset($tmp['params']['link']))
 						{
 							$lp = $tmp['params']['link'];
@@ -1487,9 +1493,10 @@ class BasicHelp extends BasicPrinter
 							if(isset($tmp['params']['fields']))
 							{
 								$result .= "<td>";
-								foreach($tmp['params']['fields'] as $fieldName)
+	
+								foreach($tmp['params']['fields'] as $k => $fieldName)
 								{
-									$result .= $params['cardItem'][$tmp['field']][$fieldName]." / ";
+									$result .= str_replace('_', ' ', ucfirst($k)) . " : <strong>". $fieldName."</strong> <br> ";
 								}
 								$result .= "</td>";
 							}else

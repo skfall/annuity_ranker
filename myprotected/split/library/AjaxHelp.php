@@ -1100,5 +1100,10 @@ class ajaxHelp
         $resultMass = $this->rs($q);
 		if($resultMass) $result = $resultMass[0];
         return $result;
-    }
+	}
+	
+	public function getActivity(){
+		$q = "SELECT M.* FROM `osc_user_activity` AS M";
+        return $this->rs($q);
+	}
 }
