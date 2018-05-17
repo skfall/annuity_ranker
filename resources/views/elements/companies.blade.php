@@ -3,22 +3,22 @@
         <table class="r-header">
             <tbody>
                 <tr>
-                    <td class="r-cell cell-1">
+                    <td class="r-cell cell-1 sortable" onclick="network.sort_table(1);">
                         <span class="text">{!! $annuity->col_1 !!}</span>
                     </td>
-                    <td class="r-cell cell-2">
+                    <td class="r-cell cell-2 sortable" onclick="network.sort_table(2);">
                         <span class="text">{!! $annuity->col_2 !!}</span>
                     </td>
-                    <td class="r-cell cell-3">
+                    <td class="r-cell cell-3 sortable" onclick="network.sort_table(3);">
                         <span class="text">{!! $annuity->col_3 !!}</span>
                     </td>
-                    <td class="r-cell cell-4">
+                    <td class="r-cell cell-4 sortable" onclick="network.sort_table(4);">
                         <span class="text">{!! $annuity->col_4 !!}</span>
                     </td>
-                    <td class="r-cell cell-5">
+                    <td class="r-cell cell-5 sortable" onclick="network.sort_table(5);">
                         <span class="text">{!! $annuity->col_5 !!}</span>
                     </td>
-                    <td class="r-cell cell-bonus">
+                    <td class="r-cell cell-bonus sortable" onclick="network.sort_table(6);">
                         <span class="text">{!! $annuity->col_6 !!}</span>
                     </td>
                     <td class="r-cell cell-btn">
@@ -83,7 +83,7 @@
                             </div>
                         </div>
                     </td>
-                    <td class="r-cell cell-growth-rate">
+                    <td class="r-cell cell-growth-rate">                
                         <span class="t-mobile"><span class="text">{!! $annuity->col_3 !!}</span></span>
                         <div class="content">
                             <span class="number-big">
@@ -122,7 +122,7 @@
                             </div>
                         </div>
                     </td>
-                    <td class="r-cell cell-fee">
+                    <td class="r-cell cell-fee">                     
                         <span class="t-mobile"><span class="text">{!! $annuity->col_4 !!}</span></span>
                         <div class="content">
                             <span class="number-big"><span class="value">{{ $item->percent }}</span><span class="ending">%</span>
@@ -147,6 +147,7 @@
                         </div>
                     </td>
                     <td class="r-cell cell-withdrawal">
+
                         <span class="t-mobile"><span class="text">{!! $annuity->col_5 !!}</span></span>
                         <div class="content">
                             <span class="number-big">
@@ -175,7 +176,8 @@
                             </div>
                         </div>
                     </td>
-                    <td class="r-cell cell-bonus">
+                    <td class="r-cell cell-bonus">                    
+                        
                         <span class="t-mobile"><span class="text">{!! $annuity->col_6 !!}</span></span>
                         <div class="content">
                             <?php 

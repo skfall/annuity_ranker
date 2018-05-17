@@ -116,8 +116,10 @@ var network = {
 			}; 
 		}, "json");
 	},
-	get_companies: function(event, self, curr_count){
+	get_companies: function(event, self, curr_count, key_index, sort){
+		var sort = sort || false;
 		var curr_count = curr_count || 0;
+		var key_index = key_index || 0;
 		var form = $('#filter_form');
 		var annuity_id = parseInt(form.find('input[name=type]:checked').val());
 		var amount = parseInt(form.find('input[name=amount]').val()); 
@@ -145,14 +147,21 @@ var network = {
 						age: age,
 						spouse_age: spouse_age,
 						curr_count: curr_count,
-						old_url: document.location.href
+						old_url: document.location.href,
+						key_index: key_index
 					}, function(response){
 						if (response.status == "success") {
-							if (curr_count > 0) {
+							if (curr_count > 0 && !sort) {
 								$('.show_more').remove();
 								$('#search_result').append(response.html);								
 							}else{
-								$('#search_result').html(response.html);
+								if (sort) {
+									var table_header = $('#search_result').find('.r-header-holder').clone();
+									$('#search_result').html(table_header);
+									$('#search_result').append(response.html);
+								}else{
+									$('#search_result').html(response.html);
+								}
 							}
 
 							var new_url = response.new_url;
@@ -179,6 +188,11 @@ var network = {
 	loadMore: function(){
 		var curr_count = $('table[data-company]').length;
 		network.get_companies(event, this, curr_count);
+	},
+	sort_table: function(key_index){
+		var key_index = key_index || 1;
+		var curr_count = $('table[data-company]').length;
+		network.get_companies(event, this, curr_count, key_index, true);
 	}
 };
 

@@ -11,6 +11,7 @@ use View;
 class Core extends Helper {
 	public function __construct(){
 		parent::__construct();
+		$this->pag_size = 30;
 	}
 
 	public function changeLang(){
@@ -235,7 +236,7 @@ class Core extends Helper {
 			->where('max_amount', '>=', $default_amount)
 			->orderBy('name')
 			->skip(0)
-			->take(30);
+			->take($this->pag_size);
 			$total_count = $companies->count();
 			$companies = $companies
 			->get();
@@ -262,6 +263,7 @@ class Core extends Helper {
 			$response = array('status' => 'failed', 'html' => '', 'message' => '');
 
 			$curr_count = (int)$_POST["curr_count"];			
+			$key_index = (int)$_POST["key_index"];			
 			$annuity_id = (int)$_POST["annuity_id"];
 			$amount = (int)$_POST["amount"];
 			$spouse_rates = (int)$_POST["spouse_rate"];
@@ -281,6 +283,30 @@ class Core extends Helper {
 							}
 						}
 
+						$sort_by = 'name';
+						switch ($key_index) {
+							case '3':
+								$sort_by = "growth_rate";
+							case '4':
+								$sort_by = "percent";
+							case '5':
+								$sort_by = "withdrawal_rate";
+							case '6':
+								$sort_by = "td_field_30";
+							default:
+								$sort_by = 'name';
+								break;
+						}
+
+						if ($key_index != 0) {
+							$skip = 0;
+							$take = $curr_count;
+						}else{
+							$skip = $curr_count;
+							$take = $this->pag_size;
+						}
+						
+
 						$companies = Models\Company::where('block', 0)
 						->whereHas('rates', function($q) use ($annuity_id, $spouse_rates, $age, $spouse_age){
 							$q->where('annuity_id', $annuity_id);
@@ -294,8 +320,8 @@ class Core extends Helper {
 						->where('min_amount', '<=', $amount)
 						->where('max_amount', '>=', $amount)
 						->orderBy('name')
-						->skip($curr_count)
-						->take(30);
+						->skip($skip)
+						->take($take);
 						$total_count = $companies->count();
 						$companies = $companies						
 						->get();
@@ -312,6 +338,17 @@ class Core extends Helper {
 								$c{'withdrawal_rate'} = $c->rates()->where('age', $age)->first()->rate2;
 							}
 						}
+
+						if (session()->has('sort_desc')) {
+							$companies = $companies->sortByDesc($sort_by);
+							session()->forget('sort_desc');
+						}else{
+							$companies = $companies->sortBy($sort_by);
+							session()->put('sort_desc', 1);
+						}
+
+
+						
 
 						$response['html'] = $this->getCompaniesHtml($annuity, $companies, $curr_count, $count_left);
 						$response['status'] = "success";
@@ -424,5 +461,6 @@ class Core extends Helper {
 		return $html;
 	}
 
+	private $pag_size;
 
 }

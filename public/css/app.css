@@ -51,3 +51,5 @@
 
 .show_more {width: 100%; padding: 10px 20px; background: #3139f2; text-align: center; text-transform: uppercase; border: none; font: 16px "Calibre-Semibold", Tahoma; color: #fff; cursor: pointer; transition-duration: 0.3s;}
 .show_more:hover {opacity: 0.9;}
+
+.r-header .r-cell.sortable:hover {background: rgba(49, 57, 242, 0.7); cursor: pointer; color: #fff;}
