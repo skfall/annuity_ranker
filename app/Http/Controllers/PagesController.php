@@ -50,7 +50,11 @@ class PagesController extends AppController {
     }
 
     public function manual($alias){
-        echo "<pre>"; print_r($alias); echo "</pre>"; exit();
+
+        $view_model = [
+            'page' => $this->nav->where('alias', $alias)->first()
+        ];
+        return view('pages.manual', $view_model);
     }
 
 }

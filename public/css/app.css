@@ -21,4 +21,13 @@
 .content_target table tr {display: table-row !important;}
 .content_target table {display: table !important; border-collapse: collapse !important; margin-bottom: 10px;}
  
-/*.content .number-big .separator:last-child {display: none !important;} */
+.manual_page {padding: 30px 15px; min-height: 500px; margin: 0 auto;}
+.content_target * {font-family: "Calibre-Semibold", Tahoma;}
+.content_target img {margin: 10px;}
+.manual_page {width: 100%; max-width: 1200px;}
+@media(max-width: 1200px){
+    .manual_page {width: 100%; max-width: 993px;}
+}
+@media(max-width: 993px){
+    .manual_page {min-height: 200px;}
+}
