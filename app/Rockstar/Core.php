@@ -6,6 +6,7 @@ use Config;
 use Session;
 use DB;
 use App\Models;
+use View;
 
 class Core extends Helper {
 	public function __construct(){
@@ -208,11 +209,17 @@ class Core extends Helper {
 	}
 
 	public function getCompanies($mode, $annuity, $params = []){
-		$annuity_id = $annuity->id;
+		if (gettype($annuity) == "object") {
+			$annuity_id = $annuity->id;
+		}else{
+			$annuity_id = 0;
+		}
 		if ($mode == "default") {
-			$age = $annuity->age;
-			$spouse_age = $annuity->special_age;
-			$special_active = $annuity->special_active;
+			
+			$age = $params['url_age'] ?: $annuity->age;
+			$spouse_age = $params['url_spousal_age'] ?: $annuity->special_age;
+			$special_active = $params['url_spousal_rate'] ?: $annuity->special_active;
+			$default_amount = $params['url_amount'] ?: $annuity->default_amount;
 
 			$companies = Models\Company::where('block', 0)
 			->whereHas('rates', function($q) use ($annuity_id, $special_active, $age, $spouse_age){
@@ -224,12 +231,17 @@ class Core extends Helper {
 					$q->where('age', $age);
 				}
 			})
-			->where('min_amount', '<=', $annuity->default_amount)
-			->where('max_amount', '>=', $annuity->default_amount)
-			->orderBy('id')
+			->where('min_amount', '<=', $default_amount)
+			->where('max_amount', '>=', $default_amount)
+			->orderBy('name')
 			->skip(0)
-			->take(30)
+			->take(30);
+			$total_count = $companies->count();
+			$companies = $companies
 			->get();
+
+			$count_left = $total_count - $companies->count();
+
 
 			foreach ($companies as $key => &$c) {
 				if ($special_active == 1) {
@@ -242,10 +254,174 @@ class Core extends Helper {
 				}
 			}
 
-			return $companies;
-		}else{
-			// 
+			return [
+				'companies' => $companies,
+				'count_left' => $count_left
+			];
+		}elseif($mode == "filter"){
+			$response = array('status' => 'failed', 'html' => '', 'message' => '');
+
+			$curr_count = (int)$_POST["curr_count"];			
+			$annuity_id = (int)$_POST["annuity_id"];
+			$amount = (int)$_POST["amount"];
+			$spouse_rates = (int)$_POST["spouse_rate"];
+			$age = (int)$_POST["age"];
+			$spouse_age = (int)$_POST["spouse_age"];
+			$old_url = $_POST['old_url'];
+
+			$annuity = Models\Annuity::where([['block', 0], ['id', $annuity_id]])->first();
+			if ($annuity) {
+				if ($amount > 0) {
+					if ($age > 0) {
+						if ($spouse_rates == 1) {
+							if($spouse_age <= 0){
+								$response['reason'] = "bad_spouse_age";
+								$response['message'] = "Enter spouse age.";
+								return $response;
+							}
+						}
+
+						$companies = Models\Company::where('block', 0)
+						->whereHas('rates', function($q) use ($annuity_id, $spouse_rates, $age, $spouse_age){
+							$q->where('annuity_id', $annuity_id);
+							if ($spouse_rates == 1) {
+								$min_age = min($age, $spouse_age);
+								$q->where('age', $min_age);
+							}else{
+								$q->where('age', $age);
+							}
+						})
+						->where('min_amount', '<=', $amount)
+						->where('max_amount', '>=', $amount)
+						->orderBy('name')
+						->skip($curr_count)
+						->take(30);
+						$total_count = $companies->count();
+						$companies = $companies						
+						->get();
+
+						$count_left = $total_count - $companies->count();
+						
+						foreach ($companies as $key => &$c) {
+							if ($spouse_rates == 1) {
+								$min_age = min($age, $spouse_age);
+								$c{'growth_rate'} = $c->rates()->where('age', $min_age)->first()->special_rate1;
+								$c{'withdrawal_rate'} = $c->rates()->where('age', $min_age)->first()->special_rate2;
+							}else{
+								$c{'growth_rate'} = $c->rates()->where('age', $age)->first()->rate1;
+								$c{'withdrawal_rate'} = $c->rates()->where('age', $age)->first()->rate2;
+							}
+						}
+
+						$response['html'] = $this->getCompaniesHtml($annuity, $companies, $curr_count, $count_left);
+						$response['status'] = "success";
+						$response['count_left'] = $count_left;
+						
+
+						$exploded = explode('/', $old_url);
+						$last = $exploded[count($exploded) - 1];
+						if ($last == "") {
+							$last = $exploded[count($exploded) - 2];
+						}
+						$last_key = array_search($last, $exploded);
+							
+						$exploded[$last_key] = $annuity->alias;
+						$new_url = implode('/', $exploded);
+						$new_url .= "?amount=".$amount."&spousal_rate=".$spouse_rates."&age=".$age."&spouse_age=".$spouse_age;
+						$response['new_url'] = $new_url;
+
+						$user_activity = new Models\UserActivity();
+						$user_activity->ip = $_SERVER['REMOTE_ADDR'];
+						$user_activity->type = 1;
+						$user_activity->activity_state = json_encode([
+							'annuity' => $annuity->name,
+							'amount' => $amount,
+							'spouse_rates' => $spouse_rates == 1 ? "yes" : "no",
+							'age' => $age,
+							'spouse_age' => $spouse_age,
+						]);
+						$user_activity->created = $this->now;
+						$user_activity->modified = $this->now;
+						$user_activity->save();
+
+					}else{
+						$response['reason'] = "bad_age";
+						$response['message'] = "Enter your age.";	
+					}
+				}else{
+					$response['reason'] = "bad_ammount";
+					$response['message'] = "Enter amount.";
+				}
+
+			}else{
+				$response['reason'] = "bad_annuity";
+				$response['message'] = "Annuity type is not selected.";
+			}
+
+			return $response;
 		}
+		return false;
+	}
+
+	public function getCompaniesHtml($annuity, $companies, $curr_count, $count_left){
+		$html = "";
+		if ($companies->count() > 0) {
+			define('RS', Config::get('app.RS'));
+			define('UPLOADS', RS.'split/files/');
+			$html = view('elements.companies', [
+				'companies' => $companies,
+				'annuity' => $annuity,
+				'curr_count' => $curr_count,
+				'count_left' => $count_left
+			])->render();
+		}else{
+			if (!$curr_count) {
+				$html = "
+				<div class=\"r-header-holder\">
+					<table class=\"r-header\">
+						<tbody>
+							<tr>
+								<td class=\"r-cell cell-1\">
+									<span class=\"text\">$annuity->col_1</span>
+								</td>
+								<td class=\"r-cell cell-2\">
+									<span class=\"text\">$annuity->col_2</span>
+								</td>
+								<td class=\"r-cell cell-3\">
+									<span class=\"text\">$annuity->col_3</span>
+								</td>
+								<td class=\"r-cell cell-4\">
+									<span class=\"text\">$annuity->col_4</span>
+								</td>
+								<td class=\"r-cell cell-5\">
+									<span class=\"text\">$annuity->col_5</span>
+								</td>
+								<td class=\"r-cell cell-bonus\">
+									<span class=\"text\">$annuity->col_6</span>
+								</td>
+								<td class=\"r-cell cell-btn\">
+									<span class=\"text\">$annuity->col_7</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<table class=\"r-main-table\">
+				<tbody>
+				<tr>
+				<td class=\"r-cell cell-company-name\" colspan=\"7\" style=\"width: 100%;\">
+				<div class=\"content\">
+				<div class=\"space10\"></div>
+				<h4 class=\"company-name tac\">No results</h4>
+				</div>
+				</td>
+				</tr>
+				</tbody>
+				</table>
+				";
+			}
+		}
+		return $html;
 	}
 
 

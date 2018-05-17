@@ -26,6 +26,9 @@ class AjaxController extends BaseController {
             case 'user_answer':
                 $response = $core->answer_entry();
                 break;
+            case 'get_companies': 
+                $response = $core->getCompanies('filter', null);
+                break;
     		default:
     			break;
     	}

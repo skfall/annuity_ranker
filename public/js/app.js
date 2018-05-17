@@ -115,6 +115,70 @@ var network = {
 				}, 100);
 			}; 
 		}, "json");
+	},
+	get_companies: function(event, self, curr_count){
+		var curr_count = curr_count || 0;
+		var form = $('#filter_form');
+		var annuity_id = parseInt(form.find('input[name=type]:checked').val());
+		var amount = parseInt(form.find('input[name=amount]').val()); 
+		var spouse_rate = parseInt(form.find('input[name=spousal-rates]:checked').val());
+		var age = parseInt(form.find('input[name=user-age]').val());
+		var spouse_age = parseInt(form.find('input[name=spouse-age]').val());
+
+		var response_log = form.find('.response');
+		response_log.text("");
+		$('#search_result').addClass('loading');
+
+		if(annuity_id > 0){
+			if (amount > 0) {
+				if(age > 0){
+					if (spouse_rate == 1) {
+						if(spouse_age <= 0) {
+							response_log.text("Enter spouse age.");	return;				
+						}
+					}
+					network.post(RS + "ajax/", {
+						action: "get_companies",
+						annuity_id: annuity_id,
+						amount: amount,
+						spouse_rate: spouse_rate,
+						age: age,
+						spouse_age: spouse_age,
+						curr_count: curr_count,
+						old_url: document.location.href
+					}, function(response){
+						if (response.status == "success") {
+							if (curr_count > 0) {
+								$('.show_more').remove();
+								$('#search_result').append(response.html);								
+							}else{
+								$('#search_result').html(response.html);
+							}
+
+							var new_url = response.new_url;
+							if (new_url) {
+								history.replaceState(null, null, new_url);
+							}
+						}else{
+							response_log.text(response.message);
+						}
+						cs.initTabs();
+						cs.initToggler();
+						$('#search_result').removeClass('loading');
+					}, "json");
+				}else{
+					response_log.text("Enter your age.");
+				}
+			}else{
+				response_log.text("Enter amount.");
+			}
+		}else{
+			response_log.text("Annuity type is not selected.");
+		}
+	},
+	loadMore: function(){
+		var curr_count = $('table[data-company]').length;
+		network.get_companies(event, this, curr_count);
 	}
 };
 

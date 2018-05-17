@@ -31,3 +31,23 @@
 @media(max-width: 993px){
     .manual_page {min-height: 200px;}
 }
+
+#search_result {position: relative; transition-duration: 0.3s;}
+#search_result::after {
+    visibility: hidden;
+    transition-duration: 1s;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+#search_result.loading::after {   
+    background: rgba(0, 0, 0, 0.6);
+    display: block;
+    visibility: visible;
+}
+
+.show_more {width: 100%; padding: 10px 20px; background: #3139f2; text-align: center; text-transform: uppercase; border: none; font: 16px "Calibre-Semibold", Tahoma; color: #fff; cursor: pointer; transition-duration: 0.3s;}
+.show_more:hover {opacity: 0.9;}

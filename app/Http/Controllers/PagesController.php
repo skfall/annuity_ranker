@@ -26,13 +26,28 @@ class PagesController extends AppController {
     	return view('pages.home', $view_model);
     }
 
-    public function ranks($alias){
+    public function ranks(Request $request, $alias){
         
         $annuity = Annuity::where([['block', 0], ['alias', $alias]])->first();
         $annuities = Annuity::where('block', 0)->get();
         $texts = StaticText::all()->toArray();
 
-        $companies = $this->core->getCompanies('default', $annuity);
+        $url_amount = $request->input('amount');
+        $url_spousal_rate = $request->input('spousal_rate');
+        $url_age = $request->input('age');
+        $url_spousal_age = $request->input('spousal_age');
+
+        if ($url_amount) $annuity->default_amount = $url_amount;
+        if ($url_spousal_rate) $annuity->special_active = $url_spousal_rate;
+        if ($url_age) $annuity->age = $url_age;
+        if ($url_spousal_age) $annuity->special_age = $url_spousal_age;
+
+        
+        $companies_result = $this->core->getCompanies('default', $annuity, compact(
+            'url_amount', 'url_spousal_rate', 'url_age', 'url_spousal_age'
+        ));
+        $companies = $companies_result['companies'];
+        $count_left = $companies_result['count_left'];
 
         $t = [];
         foreach($texts as $key){
@@ -43,7 +58,8 @@ class PagesController extends AppController {
             'annuity' => $annuity,
             'annuities' => $annuities,
             'texts' => $t,
-            'companies' => $companies
+            'companies' => $companies,
+            'count_left' => $count_left
         ];
  
     	return view('pages.ranks', $view_model);
