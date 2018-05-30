@@ -1,2 +1,2 @@
-# clear_laravel
-Clear laravel framework, prepared for web development with basic functionlaity like multilanguage, auth, registration etc...
+# Annuity ranker project
+insuredincomes.com // url address
